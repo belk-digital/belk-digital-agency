@@ -682,7 +682,6 @@ const translations = {
     contactTitle: 'Contáctenos',
     contactItems: {
       email: 'contact@belkdigital.com',
-      phone: '+1 (843) 330-7365'
     },
     columns: {
       pages: {

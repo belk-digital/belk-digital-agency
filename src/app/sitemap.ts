@@ -5,35 +5,62 @@ import { blogPostsEN } from '@/i18n/blogPosts';
 
 const baseUrl = 'https://belkdigital.com';
 
+// Location city/region slugs that have dedicated pages
+const locationSlugs = [
+    'usa',
+    'europe',
+    'gcc',
+    'australia',
+    'canada',
+    'dubai',
+    'london',
+    'new-york',
+    'riyadh',
+    'jeddah',
+    'abu-dhabi',
+    'sydney',
+    'toronto',
+    'vancouver',
+];
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const routes = [
-        '',
-        '/about',
-        '/blog',
-        '/contact',
-        '/faq',
-        '/locations',
-        '/privacy',
-        '/services',
-        '/terms',
-        '/work',
+    const staticRoutes = [
+        { path: '', priority: 1.0, changeFrequency: 'weekly' as const },
+        { path: '/services', priority: 0.9, changeFrequency: 'weekly' as const },
+        { path: '/about', priority: 0.8, changeFrequency: 'monthly' as const },
+        { path: '/blog', priority: 0.8, changeFrequency: 'weekly' as const },
+        { path: '/contact', priority: 0.8, changeFrequency: 'monthly' as const },
+        { path: '/faq', priority: 0.7, changeFrequency: 'monthly' as const },
+        { path: '/locations', priority: 0.8, changeFrequency: 'monthly' as const },
+        { path: '/work', priority: 0.7, changeFrequency: 'monthly' as const },
+        { path: '/privacy', priority: 0.3, changeFrequency: 'yearly' as const },
+        { path: '/terms', priority: 0.3, changeFrequency: 'yearly' as const },
     ];
 
     let sitemap: MetadataRoute.Sitemap = [];
 
     for (const locale of i18n.locales) {
         // 1. Static Routes
-        for (const route of routes) {
+        for (const route of staticRoutes) {
             sitemap.push({
-                url: `${baseUrl}/${locale}${route}`,
+                url: `${baseUrl}/${locale}${route.path}`,
                 lastModified: new Date(),
-                changeFrequency: 'weekly',
-                priority: route === '' ? 1 : 0.8,
+                changeFrequency: route.changeFrequency,
+                priority: route.priority,
             });
         }
 
-        // 2. Dynamic Blog Posts
-        // Using English posts to get slugs as they are consistent across languages
+        // 2. Location sub-pages (city/region pages)
+        for (const slug of locationSlugs) {
+            sitemap.push({
+                url: `${baseUrl}/${locale}/locations/${slug}`,
+                lastModified: new Date(),
+                changeFrequency: 'monthly',
+                priority: 0.7,
+            });
+        }
+
+        // 3. Dynamic Blog Posts
         for (const post of blogPostsEN) {
             sitemap.push({
                 url: `${baseUrl}/${locale}/blog/${post.slug}`,
@@ -43,7 +70,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             });
         }
 
-        // 3. Dynamic Services
+        // 4. Dynamic Services
         const dict = await getDictionary(locale as Locale);
         if (dict.services?.items) {
             dict.services.items.forEach((service: any) => {

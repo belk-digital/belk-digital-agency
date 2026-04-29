@@ -6,24 +6,28 @@ import { Layout as AppLayout } from '@/components/layout/Layout';
 import { SmoothScroll } from '@/components/layout/SmoothScroll';
 import { CustomScrollbar } from '@/components/ui/CustomScrollbar';
 import { Preloader } from '@/components/ui/Preloader';
-
+import { Metadata } from 'next';
 import Script from 'next/script';
+import JsonLd from '@/components/seo/JsonLd';
 
-
-
-export const metadata = {
-    title: "Belk Digital",
-    description: "Digital Transformation Agency",
+export const metadata: Metadata = {
+    metadataBase: new URL('https://belkdigital.com'),
+    title: {
+        default: 'Belk Digital | Premium Web Design & Digital Agency',
+        template: '%s | Belk Digital',
+    },
+    description: 'Belk Digital delivers high-performance websites and expert digital strategies to help businesses elevate their online presence globally.',
     icons: {
         icon: '/favicon.png',
+    },
+    verification: {
+        google: 'sBaajTez7z9DFfQbQ3OumVRXJiidx-yTFabbuT2eMQE',
     },
 };
 
 export async function generateStaticParams() {
     return i18n.locales.map((locale) => ({ lang: locale }));
 }
-
-import JsonLd from '@/components/seo/JsonLd';
 
 export default async function Layout({
     children,
@@ -39,8 +43,18 @@ export default async function Layout({
     return (
         <html lang={lang} dir={dir} suppressHydrationWarning>
             <head>
+                {/* Preconnect for performance */}
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+                <link rel="preconnect" href="https://api.fontshare.com" />
+
+                {/* Fonts */}
                 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet" />
                 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet" />
+
+                {/* Theme color */}
+                <meta name="theme-color" content="#0A0A0A" />
+
                 <JsonLd />
             </head>
             <body className="antialiased">

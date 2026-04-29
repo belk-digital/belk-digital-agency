@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { useLanguage } from '@/i18n/LanguageContext';
 import {
   Mail,
-  Phone,
   Facebook,
   Instagram,
   Twitter,
@@ -42,11 +41,6 @@ export function Footer() {
       icon: <Mail size={18} className="text-[#3ca2fa]" />,
       text: footerData.contactItems.email,
       href: `mailto:${footerData.contactItems.email}`,
-    },
-    {
-      icon: <Phone size={18} className="text-[#3ca2fa]" />,
-      text: footerData.contactItems.phone,
-      href: `tel:${footerData.contactItems.phone.replace(/\s/g, '')}`,
     },
   ];
 

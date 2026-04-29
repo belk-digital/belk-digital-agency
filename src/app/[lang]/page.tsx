@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
             description: dict.seo.home.description,
             path: '/'
         }),
-        keywords: "web design, web development, digital agency, branding, SEO, UI/UX design, custom websites",
+        keywords: "web design, web development, digital agency, branding, SEO, UI/UX design, custom websites, SaaS development, shopify development, website redesign",
     };
 }
 
