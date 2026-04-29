@@ -1406,8 +1406,8 @@ const translations = {
     cardView: 'View',
     hint: 'Click project to reveal details',
     items: [
-      { title: 'Lumina', year: '2024', tags: ['CGI Motion', 'Strategy', 'Design'], image: '/images/projects/lumina.png' },
-      { title: 'Zenith', year: '2024', tags: ['3D Viz', 'Brand Identity', 'Product'], image: '/images/projects/zenith.png' },
+      { title: 'Colors Structure', year: '2024', tags: ['CGI Motion', 'Strategy', 'Design'], image: '/images/projects/colors stucture.png' },
+      { title: 'Belk Body Lab', year: '2024', tags: ['3D Viz', 'Brand Identity', 'Product'], image: '/images/projects/belk-body-lab.png' },
       { title: '99PurityPeptides', year: '2023', tags: ['Photography', 'UI/UX', 'Art'], image: '/images/projects/project-image-1.png' },
       { title: 'FilmFluence', year: '2024', tags: ['Branding', 'Print', 'Digital'], image: '/images/projects/project-image-2.png' }
     ]

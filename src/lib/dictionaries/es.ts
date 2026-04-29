@@ -1099,8 +1099,8 @@ const translations = {
     cardView: 'Ver',
     hint: 'Haz clic para ver detalles',
     items: [
-      { title: 'Lumina', year: '2024', tags: ['CGI Motion', 'Estrategia', 'Diseño'], image: '/images/projects/lumina.png' },
-      { title: 'Zenith', year: '2024', tags: ['3D Viz', 'Identidad de Marca', 'Producto'], image: '/images/projects/zenith.png' },
+      { title: 'Colors Structure', year: '2024', tags: ['CGI Motion', 'Estrategia', 'Diseño'], image: '/images/projects/colors stucture.png' },
+      { title: 'Belk Body Lab', year: '2024', tags: ['3D Viz', 'Identidad de Marca', 'Producto'], image: '/images/projects/belk-body-lab.png' },
       { title: '99PurityPeptides', year: '2023', tags: ['Fotografía', 'UI/UX', 'Arte'], image: '/images/projects/project-image-1.png' },
       { title: 'FilmFluence', year: '2024', tags: ['Branding', 'Impresión', 'Digital'], image: '/images/projects/project-image-2.png' }
     ]

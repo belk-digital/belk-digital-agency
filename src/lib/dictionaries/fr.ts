@@ -1339,8 +1339,8 @@ terms: {
     cardView: 'Voir',
     hint: 'Cliquez sur le projet pour voir les détails',
     items: [
-      { title: 'Lumina', year: '2024', tags: ['Motion CGI', 'Stratégie', 'Design'], image: '/images/projects/lumina.png' },
-      { title: 'Zenith', year: '2024', tags: ['3D Viz', 'Identité Visuelle', 'Produit'], image: '/images/projects/zenith.png' },
+      { title: 'Colors Structure', year: '2024', tags: ['Motion CGI', 'Stratégie', 'Design'], image: '/images/projects/colors stucture.png' },
+      { title: 'Belk Body Lab', year: '2024', tags: ['3D Viz', 'Identité Visuelle', 'Produit'], image: '/images/projects/belk-body-lab.png' },
       { title: '99PurityPeptides', year: '2023', tags: ['Photographie', 'UI/UX', 'Art'], image: '/images/projects/project-image-1.png' },
       { title: 'FilmFluence', year: '2024', tags: ['Branding', 'Print', 'Digital'], image: '/images/projects/project-image-2.png' }
     ]
