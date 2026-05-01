@@ -30,6 +30,7 @@ interface ServiceSchemaProps {
     url: string;
     serviceType?: string;
     areaServed?: string[];
+    breadcrumb?: Array<{ name: string; url: string }>;
 }
 
 interface FAQSchemaProps {
@@ -37,17 +38,34 @@ interface FAQSchemaProps {
     questions: Array<{ question: string; answer: string }>;
 }
 
+interface SpeakableSchemaProps {
+    type: 'Speakable';
+    url: string;
+    cssSelectors: string[];
+}
+
 type PageJsonLdProps =
     | WebPageSchemaProps
     | ArticleSchemaProps
     | ServiceSchemaProps
-    | FAQSchemaProps;
+    | FAQSchemaProps
+    | SpeakableSchemaProps;
+
+const buildBreadcrumb = (items: Array<{ name: string; url: string }>) => ({
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: item.name,
+        item: item.url,
+    })),
+});
 
 export default function PageJsonLd(props: PageJsonLdProps) {
-    let schema: Record<string, unknown> = {};
+    const schemas: Record<string, unknown>[] = [];
 
     if (props.type === 'WebPage') {
-        schema = {
+        schemas.push({
             '@context': 'https://schema.org',
             '@type': 'WebPage',
             '@id': props.url,
@@ -56,22 +74,12 @@ export default function PageJsonLd(props: PageJsonLdProps) {
             description: props.description,
             isPartOf: { '@id': 'https://belkdigital.com/#website' },
             publisher: { '@id': 'https://belkdigital.com/#organization' },
-            ...(props.breadcrumb && {
-                breadcrumb: {
-                    '@type': 'BreadcrumbList',
-                    itemListElement: props.breadcrumb.map((item, index) => ({
-                        '@type': 'ListItem',
-                        position: index + 1,
-                        name: item.name,
-                        item: item.url,
-                    })),
-                },
-            }),
-        };
+            ...(props.breadcrumb && { breadcrumb: buildBreadcrumb(props.breadcrumb) }),
+        });
     }
 
     if (props.type === 'Article') {
-        schema = {
+        schemas.push({
             '@context': 'https://schema.org',
             '@type': 'Article',
             '@id': props.url,
@@ -88,16 +96,23 @@ export default function PageJsonLd(props: PageJsonLdProps) {
             publisher: { '@id': 'https://belkdigital.com/#organization' },
             isPartOf: { '@id': 'https://belkdigital.com/#website' },
             ...(props.image && {
-                image: {
-                    '@type': 'ImageObject',
-                    url: props.image,
-                },
+                image: { '@type': 'ImageObject', url: props.image },
             }),
-        };
+        });
+
+        // Add BreadcrumbList for blog posts
+        schemas.push({
+            '@context': 'https://schema.org',
+            ...buildBreadcrumb([
+                { name: 'Home', url: 'https://belkdigital.com/en' },
+                { name: 'Blog', url: 'https://belkdigital.com/en/blog' },
+                { name: props.headline, url: props.url },
+            ]),
+        });
     }
 
     if (props.type === 'Service') {
-        schema = {
+        schemas.push({
             '@context': 'https://schema.org',
             '@type': 'Service',
             name: props.name,
@@ -111,11 +126,23 @@ export default function PageJsonLd(props: PageJsonLdProps) {
                     name: area,
                 })),
             }),
-        };
+        });
+
+        // Add BreadcrumbList for service pages
+        schemas.push({
+            '@context': 'https://schema.org',
+            ...buildBreadcrumb(
+                props.breadcrumb || [
+                    { name: 'Home', url: 'https://belkdigital.com/en' },
+                    { name: 'Services', url: 'https://belkdigital.com/en/services' },
+                    { name: props.name, url: props.url },
+                ]
+            ),
+        });
     }
 
     if (props.type === 'FAQPage') {
-        schema = {
+        schemas.push({
             '@context': 'https://schema.org',
             '@type': 'FAQPage',
             mainEntity: props.questions.map(({ question, answer }) => ({
@@ -126,13 +153,31 @@ export default function PageJsonLd(props: PageJsonLdProps) {
                     text: answer,
                 },
             })),
-        };
+        });
+    }
+
+    if (props.type === 'Speakable') {
+        schemas.push({
+            '@context': 'https://schema.org',
+            '@type': 'WebPage',
+            '@id': props.url,
+            speakable: {
+                '@type': 'SpeakableSpecification',
+                cssSelector: props.cssSelectors,
+            },
+            url: props.url,
+        });
     }
 
     return (
-        <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-        />
+        <>
+            {schemas.map((schema, i) => (
+                <script
+                    key={i}
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+                />
+            ))}
+        </>
     );
 }

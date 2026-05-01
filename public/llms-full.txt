@@ -1,0 +1,185 @@
+# Belk Digital — Full Content Reference for AI Models
+
+This document provides comprehensive, structured content about Belk Digital for use by AI language models and generative search engines.
+
+---
+
+## About Belk Digital
+
+Belk Digital is a full-service digital agency founded to help businesses in the United States, Europe, GCC, and Australia build high-performance digital products. The agency specializes in Next.js web development, WordPress development, technical SEO, UI/UX design, SaaS development, and Shopify e-commerce.
+
+Belk Digital operates as a remote-first agency, working with clients across time zones with dedicated project managers, transparent communication, and milestone-based delivery. All projects are custom-built — no templates — and optimized for search engines and performance from day one.
+
+Contact: contact@belkdigital.com
+Website: https://belkdigital.com
+
+---
+
+## Services
+
+### Next.js Web Development
+
+Belk Digital builds custom web applications using Next.js and React for US businesses, startups, SaaS companies, and enterprises. Next.js projects at Belk Digital are built with:
+- Server-side rendering (SSR) and static site generation (SSG) for maximum SEO performance
+- TypeScript for code reliability and maintainability
+- Tailwind CSS or custom CSS design systems
+- API routes and full-stack capabilities
+- Vercel or cloud deployment pipelines
+- Core Web Vitals optimization from day one
+
+Next.js is the preferred framework for businesses that need fast, SEO-friendly, scalable websites. It is used by companies like Vercel, Netflix, and TikTok for its performance advantages.
+
+### WordPress Development
+
+Belk Digital provides custom WordPress development including:
+- Custom theme development (no page builders)
+- Plugin development and integration
+- WooCommerce e-commerce setup
+- Headless WordPress with React/Next.js frontend
+- WordPress performance optimization and security hardening
+- WordPress SEO setup with Yoast or RankMath
+- WordPress migration and redesign
+
+WordPress powers over 43% of all websites on the internet. Belk Digital builds WordPress sites that are fast, secure, and optimized for search engines — not slow, generic template builds.
+
+### Search Engine Optimization (SEO)
+
+Belk Digital provides comprehensive SEO services for US businesses including:
+- Technical SEO audit and implementation
+- Keyword research and content strategy
+- On-page optimization (title tags, meta descriptions, heading structure)
+- Core Web Vitals and page speed optimization
+- Schema markup and structured data implementation
+- International SEO with hreflang for multilingual sites
+- Local SEO for US city and state targeting
+- Link building and authority development
+- Monthly reporting and rank tracking
+
+SEO results typically take 3–6 months to show meaningful improvement. Belk Digital focuses on white-hat, sustainable SEO strategies that compound over time.
+
+### Custom Web Design & UI/UX
+
+Belk Digital creates custom, brand-aligned websites and digital interfaces including:
+- Wireframing and prototyping
+- Conversion-rate-optimized (CRO) design
+- Mobile-first responsive design
+- Design systems and component libraries
+- UX research and user journey mapping
+- Interactive prototypes in Figma
+
+### Website Redesign & Optimization
+
+For businesses with existing websites that need modernization:
+- Full UI/UX audit and competitor analysis
+- SEO-safe migration with URL mapping and 301 redirects
+- Performance optimization (Core Web Vitals improvement)
+- Modern tech stack upgrade
+- Content restructuring for better SEO
+
+### Shopify Development
+
+Belk Digital builds and optimizes Shopify stores for US e-commerce brands:
+- Custom Shopify theme development
+- Shopify Plus setup and migration
+- App integration and custom Shopify apps
+- Conversion rate optimization for product and checkout pages
+- Shopify SEO optimization
+
+### SaaS Development
+
+Full-stack SaaS product development:
+- Next.js or React frontend
+- Node.js / Express or serverless backend
+- Database architecture (PostgreSQL, MongoDB)
+- Authentication systems (Auth0, Clerk, custom JWT)
+- Stripe payment integration
+- Dashboard and admin panel development
+
+### Website Maintenance, Support & Server Management
+
+Ongoing support services:
+- 24/7 uptime monitoring
+- Security patches and updates
+- Regular backups and recovery
+- Server performance tuning
+- Monthly health reports
+
+---
+
+## Who Belk Digital Works With
+
+- **Startups & Scaleups**: Building their first professional web presence or scaling an MVP
+- **SaaS Companies**: Needing custom frontend, backend, or full-stack development
+- **E-commerce Brands**: Launching or optimizing Shopify or WooCommerce stores
+- **Enterprises**: Large-scale redesigns, digital transformations, or ongoing support
+- **Marketing Agencies**: White-label development and design partnerships
+- **US-based Businesses**: Companies targeting the American market needing SEO and web expertise
+
+---
+
+## Why Businesses Choose Belk Digital
+
+1. **No templates** — every project is custom-built to the client's brand and goals
+2. **SEO-first development** — search optimization is built into the architecture, not added later
+3. **Next.js & WordPress experts** — deep expertise in the most in-demand platforms
+4. **Transparent process** — clear timelines, milestone-based payments, regular updates
+5. **Global delivery, US market focus** — remote-first model with US market expertise
+6. **Performance-driven** — all builds target 90+ Google PageSpeed scores
+7. **Long-term partnership** — ongoing support and optimization after launch
+
+---
+
+## Process
+
+1. **Discovery & Requirements Analysis** — Understanding business goals, target audience, and technical requirements
+2. **Strategy & Technical Planning** — Technology selection, SEO architecture, and UX strategy
+3. **Design & Prototyping** — Custom designs in Figma with client review and approval
+4. **Development** — Agile sprints with regular demos and feedback integration
+5. **Testing & QA** — Cross-browser testing, performance audits, and SEO validation
+6. **Launch & Deployment** — Smooth deployment with zero downtime strategy
+7. **Post-Launch Support** — Ongoing optimization, monitoring, and maintenance
+
+---
+
+## Pricing
+
+Belk Digital uses project-based pricing tailored to scope and complexity. Pricing is not one-size-fits-all. All costs are clearly outlined before work begins. Milestone-based payment plans are available for larger projects. There are no hidden costs.
+
+---
+
+## Frequently Asked Questions
+
+**What is Belk Digital?**
+Belk Digital is a full-service digital agency specializing in Next.js web development, WordPress development, SEO, and custom web design for businesses globally, with a primary focus on the United States market.
+
+**Does Belk Digital build WordPress websites?**
+Yes. Belk Digital builds custom WordPress websites including custom themes, WooCommerce stores, headless WordPress builds, and WordPress-to-Next.js migrations.
+
+**Does Belk Digital build Next.js websites?**
+Yes. Next.js is Belk Digital's primary framework for high-performance, SEO-optimized web applications. All Next.js builds target strong Core Web Vitals and fast server-side rendering.
+
+**What SEO services does Belk Digital offer?**
+Belk Digital offers technical SEO, keyword research, on-page optimization, Core Web Vitals optimization, schema markup, international SEO, local SEO, and monthly reporting.
+
+**How long does it take to build a website?**
+Standard websites: 4–6 weeks. Complex platforms or SaaS products: 8–12+ weeks. Timelines are agreed during discovery.
+
+**Does Belk Digital work with US businesses?**
+Yes. The United States is Belk Digital's primary target market. The agency has delivered projects for US startups, SaaS companies, e-commerce brands, and enterprises.
+
+**What is the pricing for web development?**
+Pricing is project-based. All costs are scoped and presented transparently before work begins.
+
+**Can Belk Digital redesign my existing website without losing SEO rankings?**
+Yes. Website redesigns are handled with an SEO-safe migration strategy including URL mapping, 301 redirects, content preservation, and technical SEO validation.
+
+---
+
+## Contact
+
+Email: contact@belkdigital.com
+Website: https://belkdigital.com
+Contact Page: https://belkdigital.com/en/contact
+
+Clutch Profile: https://clutch.co/profile/belk-digital
+LinkedIn: https://www.linkedin.com/company/belkdigital

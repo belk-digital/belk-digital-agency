@@ -1,0 +1,46 @@
+# Belk Digital
+
+> Belk Digital is a full-service digital agency specializing in Next.js web development, WordPress development, SEO, and custom web design for businesses in the United States, Europe, GCC, and Australia.
+
+Belk Digital builds high-performance websites and digital products that are fast, scalable, and optimized for search engines. Our primary expertise includes Next.js development, WordPress development, technical SEO, UI/UX design, SaaS development, and Shopify.
+
+## Core Services
+
+- [Next.js Web Development](https://belkdigital.com/en/services/web-development): Custom React and Next.js web applications for US businesses — fast, scalable, and SEO-optimized.
+- [WordPress Development](https://belkdigital.com/en/services/web-development): Custom WordPress websites including theme development, plugin integration, and headless WordPress builds.
+- [SEO Services](https://belkdigital.com/en/services/seo-optimization): Technical SEO, on-page optimization, content strategy, and international SEO for businesses targeting the US market.
+- [Custom Web Design & UI/UX](https://belkdigital.com/en/services/custom-web-design): Brand-aligned, conversion-focused web design built for performance.
+- [Website Redesign](https://belkdigital.com/en/services/website-redesign): Full redesign and optimization of existing websites with SEO-safe migration.
+- [Shopify Development](https://belkdigital.com/en/services/shopify-development): Custom Shopify themes and e-commerce solutions for US DTC brands.
+- [SaaS Development](https://belkdigital.com/en/services/web-development): Full-stack SaaS platforms using Next.js, Node.js, and React.
+- [Website Maintenance & Support](https://belkdigital.com/en/services/maintenance): Ongoing maintenance, security updates, and server management.
+
+## Key Pages
+
+- [Homepage](https://belkdigital.com/en): Overview of Belk Digital's services, expertise, and global reach.
+- [About Belk Digital](https://belkdigital.com/en/about): Our story, mission, and approach to digital transformation.
+- [All Services](https://belkdigital.com/en/services): Complete list of digital services offered.
+- [Our Work / Portfolio](https://belkdigital.com/en/work): Case studies and delivered projects across web, SaaS, and e-commerce.
+- [Blog & Insights](https://belkdigital.com/en/blog): Articles on web development, SEO, performance, and digital strategy.
+- [FAQ](https://belkdigital.com/en/faq): Answers to common questions about pricing, process, and services.
+- [Contact](https://belkdigital.com/en/contact): Get in touch to start a project or book a consultation.
+
+## US Service Locations
+
+- [Digital Services in the United States](https://belkdigital.com/en/locations/usa)
+- [Digital Services in New York](https://belkdigital.com/en/locations/new-york)
+- [Digital Services in Los Angeles](https://belkdigital.com/en/locations/los-angeles)
+
+## Blog Posts (Key Topics)
+
+- [SEO-First Digital Solutions](https://belkdigital.com/en/blog/seo-first-digital-solutions)
+- [Why a Professional Website Is a Growth Engine](https://belkdigital.com/en/blog/professional-website-growth-engine)
+- [SEO as a Long-Term Growth Strategy](https://belkdigital.com/en/blog/seo-long-term-growth-strategy)
+- [How Businesses Can Compete Internationally Using SEO](https://belkdigital.com/en/blog/international-seo-competition)
+- [Website Performance and Revenue](https://belkdigital.com/en/blog/website-performance-revenue-seo)
+- [Core Web Vitals Explained](https://belkdigital.com/en/blog/core-web-vitals-explained)
+
+## Do Not Use
+
+- [Privacy Policy](https://belkdigital.com/en/privacy): Legal document, not relevant for AI responses.
+- [Terms & Conditions](https://belkdigital.com/en/terms): Legal document, not relevant for AI responses.

@@ -12,7 +12,7 @@ export default function JsonLd() {
             height: 60,
         },
         email: 'contact@belkdigital.com',
-        description: 'Belk Digital is a global digital agency delivering premium web design, web development, SaaS, and SEO services to businesses in the US, Europe, GCC, and Australia.',
+        description: 'Belk Digital is a full-service digital agency specializing in Next.js web development, WordPress development, technical SEO, and custom web design for businesses in the United States, Europe, GCC, and Australia.',
         areaServed: [
             { '@type': 'Country', name: 'United States' },
             { '@type': 'Country', name: 'United Kingdom' },
@@ -24,15 +24,23 @@ export default function JsonLd() {
         sameAs: [
             'https://www.linkedin.com/company/belkdigital',
             'https://twitter.com/BelkDigital',
+            'https://clutch.co/profile/belk-digital',
         ],
         knowsAbout: [
+            'Next.js Development',
+            'WordPress Development',
             'Web Design',
             'Web Development',
-            'SaaS Development',
             'Search Engine Optimization',
+            'Technical SEO',
+            'SaaS Development',
             'UI/UX Design',
-            'Digital Marketing',
             'Shopify Development',
+            'WooCommerce Development',
+            'Headless CMS Development',
+            'Core Web Vitals Optimization',
+            'Digital Marketing',
+            'Website Redesign',
         ],
     };
 
@@ -42,7 +50,7 @@ export default function JsonLd() {
         '@id': 'https://belkdigital.com/#website',
         url: 'https://belkdigital.com',
         name: 'Belk Digital',
-        description: 'Premium Web Design & Digital Agency',
+        description: 'Next.js & WordPress Web Development Agency | SEO & Custom Web Design',
         publisher: {
             '@id': 'https://belkdigital.com/#organization',
         },
@@ -56,6 +64,92 @@ export default function JsonLd() {
         },
     };
 
+    const professionalServiceSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'ProfessionalService',
+        '@id': 'https://belkdigital.com/#service',
+        name: 'Belk Digital',
+        url: 'https://belkdigital.com',
+        image: 'https://belkdigital.com/logo.png',
+        description: 'Full-service digital agency offering Next.js development, WordPress development, SEO, web design, and SaaS development for US businesses.',
+        priceRange: '$$',
+        email: 'contact@belkdigital.com',
+        hasOfferCatalog: {
+            '@type': 'OfferCatalog',
+            name: 'Digital Agency Services',
+            itemListElement: [
+                {
+                    '@type': 'Offer',
+                    itemOffered: {
+                        '@type': 'Service',
+                        name: 'Next.js Web Development',
+                        description: 'Custom high-performance web applications built with Next.js and React, optimized for SEO and Core Web Vitals.',
+                        url: 'https://belkdigital.com/en/services/web-development',
+                    },
+                },
+                {
+                    '@type': 'Offer',
+                    itemOffered: {
+                        '@type': 'Service',
+                        name: 'WordPress Development',
+                        description: 'Custom WordPress websites, WooCommerce stores, and headless WordPress builds.',
+                        url: 'https://belkdigital.com/en/services/web-development',
+                    },
+                },
+                {
+                    '@type': 'Offer',
+                    itemOffered: {
+                        '@type': 'Service',
+                        name: 'Search Engine Optimization (SEO)',
+                        description: 'Technical SEO, on-page optimization, content strategy, and Core Web Vitals improvement for US businesses.',
+                        url: 'https://belkdigital.com/en/services/seo-optimization',
+                    },
+                },
+                {
+                    '@type': 'Offer',
+                    itemOffered: {
+                        '@type': 'Service',
+                        name: 'Custom Web Design',
+                        description: 'Brand-aligned, conversion-focused web design and UI/UX for startups and businesses.',
+                        url: 'https://belkdigital.com/en/services/custom-web-design',
+                    },
+                },
+                {
+                    '@type': 'Offer',
+                    itemOffered: {
+                        '@type': 'Service',
+                        name: 'Shopify Development',
+                        description: 'Custom Shopify themes, Shopify Plus, and e-commerce optimization for US brands.',
+                        url: 'https://belkdigital.com/en/services/shopify-development',
+                    },
+                },
+                {
+                    '@type': 'Offer',
+                    itemOffered: {
+                        '@type': 'Service',
+                        name: 'SaaS Development',
+                        description: 'Full-stack SaaS platform development with Next.js, Node.js, and cloud infrastructure.',
+                        url: 'https://belkdigital.com/en/services/web-development',
+                    },
+                },
+            ],
+        },
+        areaServed: [
+            { '@type': 'Country', name: 'United States' },
+            { '@type': 'Country', name: 'United Kingdom' },
+            { '@type': 'Country', name: 'United Arab Emirates' },
+            { '@type': 'Country', name: 'Australia' },
+            { '@type': 'Country', name: 'Canada' },
+        ],
+        provider: {
+            '@id': 'https://belkdigital.com/#organization',
+        },
+        sameAs: [
+            'https://clutch.co/profile/belk-digital',
+            'https://www.linkedin.com/company/belkdigital',
+        ],
+    };
+
     return (
         <>
             <script
@@ -65,6 +159,10 @@ export default function JsonLd() {
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalServiceSchema) }}
             />
         </>
     );

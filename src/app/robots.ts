@@ -6,14 +6,17 @@ export default function robots(): MetadataRoute.Robots {
             {
                 userAgent: '*',
                 allow: '/',
-                disallow: [
-                    '/api/',
-                    '/_next/',
-                    '/static/',
-                ],
+                disallow: ['/api/', '/_next/', '/static/'],
             },
+            // Explicitly welcome AI crawlers
+            { userAgent: 'GPTBot', allow: '/' },
+            { userAgent: 'ChatGPT-User', allow: '/' },
+            { userAgent: 'PerplexityBot', allow: '/' },
+            { userAgent: 'ClaudeBot', allow: '/' },
+            { userAgent: 'anthropic-ai', allow: '/' },
+            { userAgent: 'Applebot', allow: '/' },
+            { userAgent: 'Amazonbot', allow: '/' },
         ],
         sitemap: 'https://belkdigital.com/sitemap.xml',
-        host: 'https://belkdigital.com',
     };
 }

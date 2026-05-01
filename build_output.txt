@@ -1,0 +1,94 @@
+﻿.\node_modules\.bin\next.CMD : ΓÜá Warning: Next.js inferred your workspace root, but it may not be correct.
+At line:1 char:1
++ .\node_modules\.bin\next.CMD build 2>&1 | Out-File -FilePath "build_o ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (ΓÜá Warning: Ne...not be correct.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+ We detected multiple lockfiles and selected the directory of C:\Users\ASUS\package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if 
+it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * C:\Users\ASUS\Downloads\belk-digital-main\pnpm-lock.yaml
+
+Γû▓ Next.js 16.1.6 (Turbopack)
+
+ΓÜá The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: 
+https://nextjs.org/docs/messages/middleware-to-proxy
+  Creating an optimized production build ...
+Γ£ô Compiled successfully in 18.1s
+  Running TypeScript ...
+  Collecting page data using 3 workers ...
+  Generating static pages using 3 workers (0/44) ...
+  Generating static pages using 3 workers (11/44) 
+  Generating static pages using 3 workers (22/44) 
+  Generating static pages using 3 workers (33/44) 
+Γ£ô Generating static pages using 3 workers (44/44) in 5.7s
+  Finalizing page optimization ...
+
+Route (app)
+Γöî Γùï /_not-found
+Γö£ ΓùÅ /[lang]
+Γöé Γö£ /en
+Γöé Γö£ /es
+Γöé Γö£ /fr
+Γöé Γöö /de
+Γö£ ΓùÅ /[lang]/about
+Γöé Γö£ /en/about
+Γöé Γö£ /es/about
+Γöé Γö£ /fr/about
+Γöé Γöö /de/about
+Γö£ ΓùÅ /[lang]/blog
+Γöé Γö£ /en/blog
+Γöé Γö£ /es/blog
+Γöé Γö£ /fr/blog
+Γöé Γöö /de/blog
+Γö£ ╞Æ /[lang]/blog/[slug]
+Γö£ ΓùÅ /[lang]/contact
+Γöé Γö£ /en/contact
+Γöé Γö£ /es/contact
+Γöé Γö£ /fr/contact
+Γöé Γöö /de/contact
+Γö£ ΓùÅ /[lang]/faq
+Γöé Γö£ /en/faq
+Γöé Γö£ /es/faq
+Γöé Γö£ /fr/faq
+Γöé Γöö /de/faq
+Γö£ ΓùÅ /[lang]/locations
+Γöé Γö£ /en/locations
+Γöé Γö£ /es/locations
+Γöé Γö£ /fr/locations
+Γöé Γöö /de/locations
+Γö£ ╞Æ /[lang]/locations/[city]
+Γö£ ΓùÅ /[lang]/privacy
+Γöé Γö£ /en/privacy
+Γöé Γö£ /es/privacy
+Γöé Γö£ /fr/privacy
+Γöé Γöö /de/privacy
+Γö£ ΓùÅ /[lang]/services
+Γöé Γö£ /en/services
+Γöé Γö£ /es/services
+Γöé Γö£ /fr/services
+Γöé Γöö /de/services
+Γö£ ╞Æ /[lang]/services/[slug]
+Γö£ ΓùÅ /[lang]/terms
+Γöé Γö£ /en/terms
+Γöé Γö£ /es/terms
+Γöé Γö£ /fr/terms
+Γöé Γöö /de/terms
+Γö£ ΓùÅ /[lang]/work
+Γöé Γö£ /en/work
+Γöé Γö£ /es/work
+Γöé Γö£ /fr/work
+Γöé Γöö /de/work
+Γö£ Γùï /robots.txt
+Γöö Γùï /sitemap.xml
+
+
+╞Æ Proxy (Middleware)
+
+Γùï  (Static)   prerendered as static content
+ΓùÅ  (SSG)      prerendered as static HTML (uses generateStaticParams)
+╞Æ  (Dynamic)  server-rendered on demand
+
