@@ -1002,8 +1002,8 @@ const translations = {
       titlePart2: 'online.',
       subtitle: 'We’re here to craft more than just a website—our mission is to help you build a digital experience that connects, engages, and drives real results for your business.',
       members: [
-        { name: 'James', role: 'Strategic Founder', portrait: 'james' },
-        { name: 'Sara', role: 'Tech & Architecture Lead', portrait: 'sara' },
+        { name: 'Kyle Belk', role: 'Strategic Founder', portrait: 'kyle-belk' },
+        { name: 'Kamran Khalid', role: 'Tech & Architecture Lead', portrait: 'kamran-khalid' },
         { name: 'Adam', role: 'Creative & Design Lead', portrait: 'adam' },
       ],
     },

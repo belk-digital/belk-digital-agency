@@ -802,8 +802,8 @@ const translations = {
       titlePart2: 'en línea.',
       subtitle: 'Nuestra misión es ayudarlo a construir.',
       members: [
-        { name: 'James', role: 'Fundador Estratégico', portrait: 'james' },
-        { name: 'Sara', role: 'Líder Técnico', portrait: 'sara' },
+        { name: 'Kyle Belk', role: 'Fundador Estratégico', portrait: 'kyle-belk' },
+        { name: 'Kamran Khalid', role: 'Líder Técnico & Arquitectura', portrait: 'kamran-khalid' },
         { name: 'Adam', role: 'Líder Creativo', portrait: 'adam' },
       ],
     },

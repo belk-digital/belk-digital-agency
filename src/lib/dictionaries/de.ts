@@ -700,8 +700,8 @@ about: {
     titlePart2: 'online zu erzielen.',
     subtitle: 'Wir sind hier, um mehr als nur eine Website zu erstellen – unsere Mission ist es, Ihnen dabei zu helfen, ein digitales Erlebnis aufzubauen, das verbindet, einbindet und echte Ergebnisse für Ihr Unternehmen liefert.',
     members: [
-      { name: 'James', role: 'Strategischer Gründer', portrait: 'james' },
-      { name: 'Sara', role: 'Tech & Architecture Lead', portrait: 'sara' },
+      { name: 'Kyle Belk', role: 'Strategischer Gründer', portrait: 'kyle-belk' },
+      { name: 'Kamran Khalid', role: 'Tech & Architecture Lead', portrait: 'kamran-khalid' },
       { name: 'Adam', role: 'Creative & Design Lead', portrait: 'adam' },
     ],
   },

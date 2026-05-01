@@ -935,8 +935,8 @@ about: {
     titlePart2: 'en ligne.',
     subtitle: 'Nous sommes ici pour concevoir plus qu’un simple site Web – notre mission est de vous aider à construire une expérience numérique qui connecte, engage et génère de réels résultats pour votre entreprise.',
     members: [
-      { name: 'James', role: 'Fondateur Stratégique', portrait: 'james' },
-      { name: 'Sara', role: 'Tech & Architecture Lead', portrait: 'sara' },
+      { name: 'Kyle Belk', role: 'Fondateur Stratégique', portrait: 'kyle-belk' },
+      { name: 'Kamran Khalid', role: 'Tech & Architecture Lead', portrait: 'kamran-khalid' },
       { name: 'Adam', role: 'Creative & Design Lead', portrait: 'adam' },
     ],
   },

@@ -23,8 +23,8 @@ import cardRedesign from '@/assets/images/card_redesign.png';
 import cardSeo from '@/assets/images/card_seo.png';
 import cardMarketing from '@/assets/images/card_marketing.png';
 import cardSupport from '@/assets/images/card_support.png';
-import jamesPortrait from '@/assets/images/team/james.png';
-import saraPortrait from '@/assets/images/team/sara.png';
+import kylePortrait from '@/assets/images/team/kyle-belk.jpeg';
+import kamranPortrait from '@/assets/images/team/kamran-khalid.jpeg';
 import adamPortrait from '@/assets/images/team/adam.png';
 
 
@@ -46,7 +46,7 @@ export function AboutContent() {
     const whatWeDoIcons = [Layout, Sparkles, PenTool, Target, Code, BarChart, Shield];
     const valuesIcons = [Lightbulb, Target, Zap, Shield];
     const whyChooseIcons = [Globe2, TrendingUp, Cpu, Handshake];
-    const teamImages = [jamesPortrait, saraPortrait, adamPortrait];
+    const teamImages = [kylePortrait, kamranPortrait, adamPortrait];
 
     // Unique looping animations per icon index
     const iconAnimations = [
