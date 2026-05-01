@@ -488,7 +488,7 @@ export function AboutContent() {
                                     className="flex flex-col items-center text-center group"
                                 >
                                     {/* Member Portrait */}
-                                    <div className="relative w-full aspect-[4/5] rounded-[2.5rem] overflow-hidden mb-8 grayscale hover:grayscale-0 transition-all duration-700 bg-neutral-900 border border-white/5 group-hover:border-white/20">
+                                    <div className="relative w-full aspect-[4/5] rounded-[2.5rem] overflow-hidden mb-8 transition-all duration-700 bg-neutral-900 border border-white/5 group-hover:border-white/20">
                                         <Image
                                             src={teamImages[index % teamImages.length]}
                                             alt={member.name}
