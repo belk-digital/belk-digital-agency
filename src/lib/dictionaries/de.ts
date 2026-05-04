@@ -1063,7 +1063,7 @@ whoWeAre: {
 footer: {
     description: 'Wir schaffen außergewöhnliche digitale Erlebnisse, die Unternehmen helfen, in der modernen Welt erfolgreich zu sein.',
     branding: 'Belk Digital',
-    copyright: '© 2026 Belk Digital Industries. Alle Rechte vorbehalten.',
+    copyright: '© 2026 Belk Digital. Alle Rechte vorbehalten.',
     contactTitle: 'Kontakt',
     contactItems: {
       email: 'contact@belkdigital.com',

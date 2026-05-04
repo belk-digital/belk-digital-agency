@@ -790,7 +790,7 @@ faq: {
 footer: {
   description: 'Nous créons des expériences numériques exceptionnelles qui aident les entreprises à prospérer dans le monde moderne.',
   branding: 'Belk Digital',
-  copyright: '© 2026 Belk Digital Industries. Tous droits réservés.',
+  copyright: '© 2026 Belk Digital. Tous droits réservés.',
   contactTitle: 'Contactez-nous',
   contactItems: {
     email: 'contact@belkdigital.com',

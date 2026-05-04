@@ -678,7 +678,7 @@ const translations = {
   footer: {
     description: 'Creamos experiencias digitales excepcionales que ayudan a las empresas a prosperar.',
     branding: 'Belk Digital',
-    copyright: '© 2026 Belk Digital Industries. Todos los derechos reservados.',
+    copyright: '© 2026 Belk Digital. Todos los derechos reservados.',
     contactTitle: 'Contáctenos',
     contactItems: {
       email: 'contact@belkdigital.com',

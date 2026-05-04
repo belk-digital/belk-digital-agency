@@ -1,7 +1,7 @@
 "use client";
 import Link from 'next/link';
 import { useLanguage } from '@/i18n/LanguageContext';
-import { Mail, MapPin } from "lucide-react";
+import { Mail, MapPin, Linkedin, Twitter, Instagram, Facebook } from "lucide-react";
 import { FooterBackgroundGradient, TextHoverEffect } from "@/components/ui/hover-footer";
 
 export function Footer() {
@@ -34,11 +34,11 @@ export function Footer() {
 
   return (
     <footer className="bg-black relative h-fit rounded-[40px] overflow-hidden m-4 md:m-8 border border-white/[0.05]">
-      <div className="max-w-7xl mx-auto p-10 md:p-14 z-40 relative">
+      <div className="max-w-7xl mx-auto p-10 md:p-14 z-40 relative pointer-events-none">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8 lg:gap-16 pb-12">
 
           {/* Brand section */}
-          <div className="flex flex-col space-y-6">
+          <div className="flex flex-col space-y-6 pointer-events-auto">
             <Link href={`/${language}`} className="flex items-center space-x-3 group">
               <img src="/logo.png" alt={footerData.branding} className="h-12 w-auto transition-transform group-hover:scale-110" />
             </Link>
@@ -56,7 +56,7 @@ export function Footer() {
           </div>
 
           {/* Quick Links */}
-          <div>
+          <div className="pointer-events-auto">
             <h4 className="text-white text-base font-bold uppercase tracking-[0.2em] mb-8 opacity-80">
               Quick Links
             </h4>
@@ -75,7 +75,7 @@ export function Footer() {
           </div>
 
           {/* Services */}
-          <div>
+          <div className="pointer-events-auto">
             <h4 className="text-white text-base font-bold uppercase tracking-[0.2em] mb-8 opacity-80">
               Services
             </h4>
@@ -94,7 +94,7 @@ export function Footer() {
           </div>
 
           {/* Locations */}
-          <div>
+          <div className="pointer-events-auto">
             <h4 className="text-white text-base font-bold uppercase tracking-[0.2em] mb-8 opacity-80">
               Locations
             </h4>
@@ -114,23 +114,28 @@ export function Footer() {
           </div>
         </div>
 
-        <hr className="border-t border-white/[0.05] my-8" />
-
-        {/* Footer bottom */}
-        <div className="flex flex-col md:flex-row justify-between items-center text-sm space-y-4 md:space-y-0 text-white/30">
-          <p className="font-medium uppercase tracking-widest text-[10px]">
-            {footerData.copyright}
-          </p>
-          <div className="flex gap-6 text-[10px] uppercase tracking-widest">
-            <Link href={`/${language}/privacy`} className="hover:text-white/60 transition-colors">Privacy Policy</Link>
-            <Link href={`/${language}/terms`} className="hover:text-white/60 transition-colors">Terms</Link>
-          </div>
-        </div>
       </div>
 
       {/* Text hover effect */}
-      <div className="lg:flex hidden h-[22rem] md:h-[30rem] -mt-40 md:-mt-52 -mb-28 md:-mb-36 overflow-hidden">
-        <TextHoverEffect text="BELK DIGITAL" className="z-50" />
+      <div className="lg:flex hidden h-[22rem] md:h-[30rem] -mt-40 md:-mt-52 -mb-8 md:-mb-12 overflow-hidden pointer-events-auto">
+        <TextHoverEffect text="BELK DIGITAL" className="z-10" />
+      </div>
+
+      {/* Footer bottom */}
+      <div className="max-w-7xl mx-auto px-10 md:px-14 pb-8 md:pb-12 z-40 relative pointer-events-auto w-full">
+        <div className="flex flex-col md:flex-row justify-between items-center text-sm space-y-4 md:space-y-0 text-white/30 border-t border-white/[0.05] pt-8 mt-4">
+          <p className="font-medium uppercase tracking-widest text-[10px] text-center md:text-left">
+            {footerData.copyright}
+          </p>
+          <div className="flex items-center gap-6 text-[10px] uppercase tracking-widest">
+            <div className="flex gap-4 items-center">
+              <a href="#" className="hover:text-[#3ca2fa] transition-colors"><Linkedin size={15} /></a>
+              <a href="#" className="hover:text-[#3ca2fa] transition-colors"><Twitter size={15} /></a>
+              <a href="#" className="hover:text-[#3ca2fa] transition-colors"><Instagram size={15} /></a>
+              <a href="#" className="hover:text-[#3ca2fa] transition-colors"><Facebook size={15} /></a>
+            </div>
+          </div>
+        </div>
       </div>
 
       <FooterBackgroundGradient />

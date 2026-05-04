@@ -862,7 +862,7 @@ const translations = {
   footer: {
     description: 'We craft exceptional digital experiences that help businesses thrive in the modern world.',
     branding: 'Belk Digital',
-    copyright: '© 2026 Belk Digital Industries. All rights reserved.',
+    copyright: '© 2026 Belk Digital. All rights reserved.',
     contactTitle: 'Contact Us',
     contactItems: {
       email: 'contact@belkdigital.com',
