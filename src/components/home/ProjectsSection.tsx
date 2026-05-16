@@ -103,9 +103,6 @@ function ProjectCard({ project, span, aspect, index }: { project: any, span: str
                 />
             </div>
 
-            {/* Halftone Overlay */}
-            <div className="absolute inset-0 halftone-pattern opacity-20 mix-blend-multiply transition-opacity group-hover:opacity-5" />
-
             {/* Hover State: Glassmorphic Transition */}
             <Link 
                 href={`/${language}/work`}
