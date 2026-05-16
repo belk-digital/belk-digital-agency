@@ -24,13 +24,17 @@ export function middleware(request: NextRequest) {
         (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
     );
 
-    // 3. Redirect if there is no locale
+    // 3. Handle missing locale
     if (pathnameIsMissingLocale) {
         const locale = getLocale(request);
 
-        // Construct new URL
-        const newUrl = new URL(`/${locale}${pathname === '/' ? '' : pathname}`, request.url);
+        // For the root path, rewrite internally to /en so the URL stays as /
+        if (pathname === '/') {
+            return NextResponse.rewrite(new URL(`/${locale}`, request.url));
+        }
 
+        // For all other paths without a locale, redirect to include the locale
+        const newUrl = new URL(`/${locale}${pathname}`, request.url);
         console.log(`Middleware: Redirecting ${pathname} to ${newUrl.pathname}`);
         return NextResponse.redirect(newUrl);
     }

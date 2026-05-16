@@ -881,7 +881,6 @@ const translations = {
       socials: {
         title: 'Socials',
         links: [
-          { label: 'Facebook', href: 'https://facebook.com' },
           { label: 'Instagram', href: 'https://instagram.com' },
           { label: 'Twitter', href: 'https://twitter.com' },
           { label: 'LinkedIn', href: 'https://linkedin.com' }
@@ -1406,10 +1405,10 @@ const translations = {
     cardView: 'View',
     hint: 'Click project to reveal details',
     items: [
-      { title: 'Colors Structure', year: '2024', tags: ['CGI Motion', 'Strategy', 'Design'], image: '/images/projects/colors stucture.png' },
-      { title: 'Belk Body Lab', year: '2024', tags: ['3D Viz', 'Brand Identity', 'Product'], image: '/images/projects/belk-body-lab.png' },
-      { title: '99PurityPeptides', year: '2023', tags: ['Photography', 'UI/UX', 'Art'], image: '/images/projects/project-image-1.png' },
-      { title: 'FilmFluence', year: '2024', tags: ['Branding', 'Print', 'Digital'], image: '/images/projects/project-image-2.png' }
+      { title: 'BelkBodyLab', year: '2024', tags: ['CGI Motion', 'Strategy', 'Design'], image: 'https://res.cloudinary.com/denskvdyt/image/upload/v1778902049/Screenshot_2026-05-16_085527_xl6rkv.png' },
+      { title: '99purity Wholesale', year: '2024', tags: ['3D Viz', 'Brand Identity', 'Product'], image: 'https://res.cloudinary.com/denskvdyt/image/upload/v1778903028/Screenshot_2026-05-16_091318_bia6jc.png' },
+      { title: '99purity Peptides', year: '2023', tags: ['Photography', 'UI/UX', 'Art'], image: '/images/projects/project-image-1.png' },
+      { title: 'BodybyBrad Fitness', year: '2024', tags: ['Branding', 'Print', 'Digital'], image: 'https://res.cloudinary.com/denskvdyt/image/upload/v1778902530/Screenshot_2026-05-16_090449_klndni.png' }
     ]
   },
   homeJournal: {
@@ -1443,12 +1442,12 @@ const translations = {
   numbersSection: {
     items: [
       {
-        value: "10+",
+        value: "3+",
         description: "Years in the business where we helped companies grow."
       },
       {
-        value: "100k+",
-        description: "Over 100k people have used our services."
+        value: "2k+",
+        description: "Clients served across industries worldwide."
       },
       {
         value: "100%",

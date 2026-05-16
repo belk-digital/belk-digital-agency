@@ -1,7 +1,7 @@
 "use client";
 import Link from 'next/link';
 import { useLanguage } from '@/i18n/LanguageContext';
-import { Mail, Linkedin, Twitter, Instagram, Facebook } from "lucide-react";
+import { Mail, Linkedin, Twitter, Instagram } from "lucide-react";
 import { FooterBackgroundGradient, TextHoverEffect } from "@/components/ui/hover-footer";
 
 export function Footer() {
@@ -104,7 +104,6 @@ export function Footer() {
               <a href="#" className="hover:text-[#3ca2fa] transition-colors"><Linkedin size={15} /></a>
               <a href="#" className="hover:text-[#3ca2fa] transition-colors"><Twitter size={15} /></a>
               <a href="#" className="hover:text-[#3ca2fa] transition-colors"><Instagram size={15} /></a>
-              <a href="#" className="hover:text-[#3ca2fa] transition-colors"><Facebook size={15} /></a>
             </div>
           </div>
         </div>

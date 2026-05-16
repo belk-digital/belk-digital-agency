@@ -7,8 +7,8 @@ import { Button } from "@/components/ui/button";
 import ShinyText from '@/components/ui/ShinyText/ShinyText';
 
 const brands = [
-    { name: 'Vortex', letter: 'V' },
-    { name: 'Nimbus', letter: 'N' },
+    { name: '99Purity Peptides', letter: 'P' },
+    { name: 'Belk Body Lab', letter: 'B' },
     { name: 'Prysma', letter: 'P' },
     { name: 'Cirrus', letter: 'C' },
     { name: 'Kynder', letter: 'K' },

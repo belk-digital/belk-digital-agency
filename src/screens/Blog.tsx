@@ -274,7 +274,7 @@ const Blog = () => {
       </section>
 
       {/* Category Filter */}
-      <section className="py-12 border-y border-white/5 sticky top-20 bg-[#0A0A0A]/80 backdrop-blur-md z-50">
+      <section className="py-12 border-y border-white/5">
         <div className="container-wide">
           <div className="flex flex-wrap justify-center gap-3 md:gap-4 font-sans">
             {categories.map((category) => (

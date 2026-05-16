@@ -25,8 +25,8 @@ export function NumbersSection() {
     ];
 
     const statsData = t.numbersSection?.items || [
-        { value: "10+", description: "Years in the business where we helped companies grow." },
-        { value: "100k+", description: "Over 100k people have used our services." },
+        { value: "3+", description: "Years in the business where we helped companies grow." },
+        { value: "2k+", description: "Clients served across industries worldwide." },
         { value: "100%", description: "We are always available to help you with your needs." }
     ];
 

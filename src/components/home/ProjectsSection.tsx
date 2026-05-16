@@ -93,12 +93,12 @@ function ProjectCard({ project, span, aspect, index }: { project: any, span: str
             )}
         >
             {/* Background Image */}
-            <div className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-105">
+            <div className="absolute inset-0 bg-[#111] transition-transform duration-700 ease-out group-hover:scale-105">
                 <Image
                     src={project.image}
                     alt={project.title}
                     fill
-                    className="object-cover"
+                    className="object-contain"
                     sizes="(max-width: 768px) 100vw, 50vw"
                 />
             </div>
