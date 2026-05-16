@@ -9,8 +9,8 @@ import ShinyText from '@/components/ui/ShinyText/ShinyText';
 const brands = [
     { name: '99Purity Peptides', letter: 'P' },
     { name: 'Belk Body Lab', letter: 'B' },
-    { name: 'Prysma', letter: 'P' },
-    { name: 'Cirrus', letter: 'C' },
+    { name: 'Body By Brad', letter: 'B' },
+    { name: '99purity Wholesale', letter: 'P' },
     { name: 'Kynder', letter: 'K' },
     { name: 'Halcyn', letter: 'H' },
 ];
