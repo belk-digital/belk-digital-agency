@@ -16,6 +16,7 @@ export function JournalSection() {
     return (
         <section className="py-24 md:py-32 bg-black transition-colors duration-300">
             <div className="max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16">
+
                 {/* Header */}
                 <div className="flex justify-between items-end mb-12 md:mb-16">
                     <motion.div
@@ -45,39 +46,54 @@ export function JournalSection() {
                     </motion.div>
                 </div>
 
-                {/* Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                {/* Cards grid */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
                     {latestPosts.map((post, index) => (
                         <motion.div
                             key={post.slug}
-                            initial={{ opacity: 0, y: 30 }}
+                            initial={{ opacity: 0, y: 36 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.8, delay: index * 0.15 }}
-                            className="group relative aspect-[3/4] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden cursor-pointer"
+                            transition={{ duration: 0.7, delay: index * 0.12 }}
+                            className="group relative aspect-[4/3] rounded-[1.75rem] md:rounded-[2rem] overflow-hidden cursor-pointer"
                         >
                             <Link href={`/${language}/blog/${post.slug}`} className="block w-full h-full">
+
+                                {/* Background image */}
                                 <Image
                                     src={post.image}
                                     alt={post.title}
                                     fill
-                                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                                     sizes="(max-width: 768px) 100vw, 33vw"
                                 />
 
-                                {/* Overlay Gradient */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300" />
+                                {/* Gradient — strong at bottom, fades out at top */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
 
-                                {/* Content */}
-                                <div className="absolute inset-0 p-8 md:p-10 flex flex-col justify-end">
-                                    <h3 className="text-white text-2xl md:text-3xl font-bold leading-[1.15] max-w-[90%] transition-transform duration-500 group-hover:translate-y-[-4px]">
+                                {/* Text pinned to bottom-left */}
+                                <div className="absolute inset-x-0 bottom-0 p-7 md:p-8 flex flex-col gap-1.5">
+                                    <span className="text-white/50 text-[11px] font-semibold tracking-widest uppercase">
+                                        {new Date(post.date).toLocaleDateString(
+                                            language === 'es' ? 'es-ES' : language === 'fr' ? 'fr-FR' : language === 'de' ? 'de-DE' : 'en-US',
+                                            { month: 'long', day: 'numeric', year: 'numeric' }
+                                        )}
+                                    </span>
+
+                                    <h3 className="text-white text-xl md:text-[1.35rem] font-bold leading-snug line-clamp-2 transition-transform duration-500 group-hover:-translate-y-0.5">
                                         {post.title}
                                     </h3>
+
+                                    <p className="text-white/55 text-sm leading-relaxed line-clamp-2 mt-0.5">
+                                        {post.excerpt}
+                                    </p>
                                 </div>
+
                             </Link>
                         </motion.div>
                     ))}
                 </div>
+
             </div>
         </section>
     );
