@@ -975,6 +975,7 @@ blog: {
       'Wie Unternehmen die richtigen digitalen Partner auswählen'
     ]
   },
+  latestPosts: 'Neueste Beiträge',
   postCta: {
     title: 'Benötigen Sie Expertenhilfe dabei?',
     subtitle: 'Wenn Sie diese Strategien für Ihr Unternehmen umsetzen möchten, kann unser Team Ihnen helfen, mit Zuversicht zu planen, zu bauen und zu skalieren.'

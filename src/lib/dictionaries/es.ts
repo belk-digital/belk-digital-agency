@@ -891,6 +891,7 @@ const translations = {
         'Cómo elegir los socios digitales adecuados'
       ]
     },
+    latestPosts: 'Publicaciones Recientes',
     postCta: {
       title: '¿Necesita Ayuda Experta?',
       subtitle: 'Si está buscando implementar estas estrategias, podemos ayudarlo.'

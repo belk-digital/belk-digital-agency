@@ -187,6 +187,9 @@ const Blog = () => {
     );
   }
 
+  const sortedByDate = [...blogPosts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  const latestPosts = sortedByDate.slice(0, 3);
+
   const filteredPosts = activeCategory === 'all'
     ? blogPosts
     : blogPosts.filter(post => post.category === activeCategory);
@@ -269,6 +272,105 @@ const Blog = () => {
                 </motion.div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Latest Posts Section */}
+      <section className="py-24 border-b border-white/5">
+        <div className="container-wide">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className={cn("flex items-center gap-4 mb-12", isRTL && "flex-row-reverse")}
+          >
+            <span className="px-4 py-1.5 rounded-full bg-white/10 border border-white/10 text-white/70 text-xs font-bold uppercase tracking-widest">
+              {t.blog.latestPosts}
+            </span>
+            <div className="h-px flex-1 bg-white/5" />
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {latestPosts.map((post, index) => (
+              <motion.article
+                key={`latest-${post.slug}`}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+              >
+                <Link
+                  href={`/${language}/blog/${post.slug}`}
+                  className="flex flex-col h-full bg-white/[0.02] backdrop-blur-sm rounded-[32px] border border-white/5 overflow-hidden group hover:border-white/10 hover:bg-white/[0.04] transition-all duration-500 hover:-translate-y-2"
+                >
+                  <div className="aspect-[16/10] overflow-hidden relative">
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out grayscale-[0.2] group-hover:grayscale-0"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute top-6 left-6 z-10 flex items-center gap-2">
+                      {index === 0 && (
+                        <span className="px-3 py-1 rounded-full bg-white text-black text-[10px] font-bold uppercase tracking-wider">
+                          New
+                        </span>
+                      )}
+                      <span className="px-3 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-white/90 text-[10px] font-bold uppercase tracking-wider">
+                        {t.blog.categories[post.category as keyof typeof t.blog.categories]}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="p-8 flex flex-col flex-grow">
+                    <div className={cn(
+                      "flex items-center gap-4 mb-6 text-[10px] font-bold text-white/40 uppercase tracking-widest",
+                      isRTL && "flex-row-reverse"
+                    )}>
+                      <span className="flex items-center gap-1.5">
+                        <Clock className="w-3.5 h-3.5" />
+                        {post.readTime} {t.blog.readTime}
+                      </span>
+                      <span className="w-1 h-1 rounded-full bg-white/20" />
+                      <span>{new Date(post.date).toLocaleDateString(language === 'es' ? 'es-ES' : 'en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                    </div>
+
+                    <h2 className={cn(
+                      "text-xl md:text-2xl font-sans font-[600] mb-4 text-white line-clamp-2 leading-snug",
+                      isRTL && "text-right"
+                    )}>
+                      {post.title}
+                    </h2>
+
+                    <p className={cn(
+                      "text-white/50 text-sm leading-relaxed line-clamp-3 mb-8 font-sans",
+                      isRTL && "text-right"
+                    )}>
+                      {post.excerpt}
+                    </p>
+
+                    <div className={cn(
+                      "flex items-center justify-between mt-auto pt-6 border-t border-white/5",
+                      isRTL && "flex-row-reverse"
+                    )}>
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-[10px] font-bold text-white">
+                          {post.author.charAt(0)}
+                        </div>
+                        <span className="text-xs font-semibold text-white/80">{post.author}</span>
+                      </div>
+                      <div className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all duration-300">
+                        <ChevronRight className={cn("w-4 h-4", isRTL && "rotate-180")} />
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              </motion.article>
+            ))}
           </div>
         </div>
       </section>

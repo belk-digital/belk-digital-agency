@@ -1,4 +1,4 @@
-const translations = {
+﻿const translations = {
   seo: {
     home: {
       title: 'Belk Digital | Premium Web Design & Strategic Search',
@@ -1103,9 +1103,10 @@ const translations = {
         'How businesses choose the right digital partners'
       ]
     },
+    latestPosts: "Latest Posts",
     postCta: {
-      title: 'Need Expert Help with This?',
-      subtitle: 'If you’re looking to implement these strategies for your business, our team can help you plan, build, and scale with confidence.'
+      title: "Need Expert Help with This?",
+      subtitle: "If you’re looking to implement these strategies for your business, our team can help you plan, build, and scale with confidence."
     }
   },
   contact: {

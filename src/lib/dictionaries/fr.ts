@@ -1034,6 +1034,7 @@ blog: {
       'Comment les entreprises choisissent les bons partenaires numériques'
     ]
   },
+  latestPosts: 'Derniers Articles',
   postCta: {
     title: 'Besoin d\'un expert pour cela ?',
     subtitle: 'Si vous cherchez à mettre en œuvre ces stratégies pour votre entreprise, notre équipe peut vous aider à planifier, construire et évoluer en toute confiance.'
