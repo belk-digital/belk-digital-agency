@@ -1,5 +1,6 @@
 import { CharlestonSC } from '@/screens/CharlestonSC';
 import { constructMetadata } from '@/lib/seo';
+import CharlestonJsonLd from '@/components/seo/CharlestonJsonLd';
 import type { Metadata } from 'next';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -11,5 +12,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function CharlestonSCPage() {
-    return <CharlestonSC />;
+    return (
+        <>
+            <CharlestonJsonLd />
+            <CharlestonSC />
+        </>
+    );
 }

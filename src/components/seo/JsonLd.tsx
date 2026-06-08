@@ -14,12 +14,22 @@ export default function JsonLd() {
         email: 'contact@belkdigital.com',
         description: 'Belk Digital is a full-service digital agency specializing in Next.js web development, WordPress development, technical SEO, and custom web design for businesses in the United States, Europe, GCC, and Australia.',
         areaServed: [
+            // Countries
             { '@type': 'Country', name: 'United States' },
             { '@type': 'Country', name: 'United Kingdom' },
             { '@type': 'Country', name: 'United Arab Emirates' },
             { '@type': 'Country', name: 'Saudi Arabia' },
             { '@type': 'Country', name: 'Australia' },
             { '@type': 'Country', name: 'Canada' },
+            // US cities — Charleston metro (primary local market)
+            { '@type': 'City', name: 'Charleston', containedInPlace: { '@type': 'State', name: 'South Carolina' } },
+            { '@type': 'City', name: 'Mount Pleasant', containedInPlace: { '@type': 'State', name: 'South Carolina' } },
+            { '@type': 'City', name: 'North Charleston', containedInPlace: { '@type': 'State', name: 'South Carolina' } },
+            { '@type': 'City', name: 'Summerville', containedInPlace: { '@type': 'State', name: 'South Carolina' } },
+            { '@type': 'City', name: 'Goose Creek', containedInPlace: { '@type': 'State', name: 'South Carolina' } },
+            // US cities — other major markets
+            { '@type': 'City', name: 'New York City', containedInPlace: { '@type': 'State', name: 'New York' } },
+            { '@type': 'City', name: 'Los Angeles', containedInPlace: { '@type': 'State', name: 'California' } },
         ],
         sameAs: [
             'https://www.linkedin.com/company/belkdigital',
@@ -135,11 +145,18 @@ export default function JsonLd() {
             ],
         },
         areaServed: [
+            // Countries
             { '@type': 'Country', name: 'United States' },
             { '@type': 'Country', name: 'United Kingdom' },
             { '@type': 'Country', name: 'United Arab Emirates' },
             { '@type': 'Country', name: 'Australia' },
             { '@type': 'Country', name: 'Canada' },
+            // US cities — Charleston metro (primary local market)
+            { '@type': 'City', name: 'Charleston', containedInPlace: { '@type': 'State', name: 'South Carolina' } },
+            { '@type': 'City', name: 'Mount Pleasant', containedInPlace: { '@type': 'State', name: 'South Carolina' } },
+            { '@type': 'City', name: 'North Charleston', containedInPlace: { '@type': 'State', name: 'South Carolina' } },
+            { '@type': 'City', name: 'Summerville', containedInPlace: { '@type': 'State', name: 'South Carolina' } },
+            { '@type': 'City', name: 'Goose Creek', containedInPlace: { '@type': 'State', name: 'South Carolina' } },
         ],
         provider: {
             '@id': 'https://belkdigital.com/#organization',

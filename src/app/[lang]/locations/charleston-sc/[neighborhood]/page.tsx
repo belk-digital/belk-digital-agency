@@ -1,6 +1,7 @@
 import { CharlestonNeighborhood } from '@/screens/CharlestonNeighborhood';
 import { constructMetadata } from '@/lib/seo';
 import { i18n } from '@/lib/i18n-config';
+import CharlestonNeighborhoodJsonLd from '@/components/seo/CharlestonNeighborhoodJsonLd';
 import type { Metadata } from 'next';
 
 const NEIGHBORHOOD_META: Record<string, { title: string; description: string }> = {
@@ -68,6 +69,16 @@ export async function generateMetadata({
     });
 }
 
-export default function NeighborhoodPage() {
-    return <CharlestonNeighborhood />;
+export default async function NeighborhoodPage({
+    params,
+}: {
+    params: Promise<{ neighborhood: string }>;
+}) {
+    const { neighborhood } = await params;
+    return (
+        <>
+            <CharlestonNeighborhoodJsonLd neighborhood={neighborhood} />
+            <CharlestonNeighborhood />
+        </>
+    );
 }
