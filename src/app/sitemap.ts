@@ -23,6 +23,18 @@ const locationSlugs = [
     'vancouver',
 ];
 
+// Charleston, SC neighborhood slugs
+const charlestonNeighborhoods = [
+    'downtown',
+    'mount-pleasant',
+    'north-charleston',
+    'west-ashley',
+    'james-island',
+    'johns-island',
+    'daniel-island',
+    'summerville',
+];
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const staticRoutes = [
         { path: '', priority: 1.0, changeFrequency: 'weekly' as const },
@@ -60,7 +72,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             });
         }
 
-        // 3. Dynamic Blog Posts
+        // 3. Charleston, SC hub page
+        sitemap.push({
+            url: `${baseUrl}/${locale}/locations/charleston-sc`,
+            lastModified: new Date(),
+            changeFrequency: 'monthly',
+            priority: 0.8,
+        });
+
+        // 4. Charleston, SC neighborhood pages
+        for (const neighborhood of charlestonNeighborhoods) {
+            sitemap.push({
+                url: `${baseUrl}/${locale}/locations/charleston-sc/${neighborhood}`,
+                lastModified: new Date(),
+                changeFrequency: 'monthly',
+                priority: 0.75,
+            });
+        }
+
+        // 5. Dynamic Blog Posts
         for (const post of blogPostsEN) {
             sitemap.push({
                 url: `${baseUrl}/${locale}/blog/${post.slug}`,
@@ -70,7 +100,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             });
         }
 
-        // 4. Dynamic Services
+        // 6. Dynamic Services
         const dict = await getDictionary(locale as Locale);
         if (dict.services?.items) {
             dict.services.items.forEach((service: any) => {
