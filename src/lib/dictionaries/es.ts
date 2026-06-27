@@ -1100,9 +1100,9 @@ const translations = {
     hint: 'Haz clic para ver detalles',
     items: [
       { title: 'BelkBodyLab', year: '2024', tags: ['CGI Motion', 'Estrategia', 'Diseño'], image: 'https://res.cloudinary.com/denskvdyt/image/upload/v1778902049/Screenshot_2026-05-16_085527_xl6rkv.png' },
-      { title: '99purity Wholesale', year: '2024', tags: ['3D Viz', 'Identidad de Marca', 'Producto'], image: 'https://res.cloudinary.com/denskvdyt/image/upload/v1778903028/Screenshot_2026-05-16_091318_bia6jc.png' },
-      { title: '99purity Peptides', year: '2023', tags: ['Fotografía', 'UI/UX', 'Arte'], image: '/images/projects/project-image-1.png' },
-      { title: 'BodybyBrad Fitness', year: '2024', tags: ['Branding', 'Impresión', 'Digital'], image: 'https://res.cloudinary.com/denskvdyt/image/upload/v1778902530/Screenshot_2026-05-16_090449_klndni.png' }
+      { title: 'BodybyBrad Fitness', year: '2024', tags: ['Branding', 'Impresión', 'Digital'], image: 'https://res.cloudinary.com/dgrrovta3/image/upload/v1782530464/Body_By_Brad_Project_Image_Belkdigital_fxy9rh.webp' },
+      { title: '99purity Peptides', year: '2023', tags: ['Fotografía', 'UI/UX', 'Arte'], image: 'https://res.cloudinary.com/dgrrovta3/image/upload/v1782530656/99_Purity_Peptides_Project_Image_Belkdigital_qfvjrc.webp' },
+      { title: 'Sparta Labs', year: '2024', tags: ['3D Viz', 'Identidad de Marca', 'Producto'], image: 'https://res.cloudinary.com/dgrrovta3/image/upload/v1782530465/Sparta_Labs_Project_Image_Belkdigital_faso6e.webp' }
     ]
   },
   homeJournal: {

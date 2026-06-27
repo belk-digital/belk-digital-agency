@@ -1340,10 +1340,10 @@ terms: {
     cardView: 'Voir',
     hint: 'Cliquez sur le projet pour voir les détails',
     items: [
-      { title: 'Colors Structure', year: '2024', tags: ['Motion CGI', 'Stratégie', 'Design'], image: '/images/projects/colors stucture.png' },
-      { title: 'Belk Body Lab', year: '2024', tags: ['3D Viz', 'Identité Visuelle', 'Produit'], image: '/images/projects/belk-body-lab.png' },
-      { title: '99PurityPeptides', year: '2023', tags: ['Photographie', 'UI/UX', 'Art'], image: '/images/projects/project-image-1.png' },
-      { title: 'FilmFluence', year: '2024', tags: ['Branding', 'Print', 'Digital'], image: '/images/projects/project-image-2.png' }
+      { title: 'BelkBodyLab', year: '2024', tags: ['Motion CGI', 'Stratégie', 'Design'], image: 'https://res.cloudinary.com/denskvdyt/image/upload/v1778902049/Screenshot_2026-05-16_085527_xl6rkv.png' },
+      { title: 'BodybyBrad Fitness', year: '2024', tags: ['Branding', 'Print', 'Digital'], image: 'https://res.cloudinary.com/dgrrovta3/image/upload/v1782530464/Body_By_Brad_Project_Image_Belkdigital_fxy9rh.webp' },
+      { title: '99purity Peptides', year: '2023', tags: ['Photographie', 'UI/UX', 'Art'], image: 'https://res.cloudinary.com/dgrrovta3/image/upload/v1782530656/99_Purity_Peptides_Project_Image_Belkdigital_qfvjrc.webp' },
+      { title: 'Sparta Labs', year: '2024', tags: ['3D Viz', 'Identité Visuelle', 'Produit'], image: 'https://res.cloudinary.com/dgrrovta3/image/upload/v1782530465/Sparta_Labs_Project_Image_Belkdigital_faso6e.webp' }
     ]
   },
   homeJournal: {
