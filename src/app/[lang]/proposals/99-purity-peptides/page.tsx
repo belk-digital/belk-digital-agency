@@ -1,0 +1,16 @@
+import { PeptideProposal } from '@/screens/PeptideProposal';
+import { constructMetadata } from '@/lib/seo';
+import type { Metadata } from 'next';
+
+export async function generateMetadata(): Promise<Metadata> {
+    return constructMetadata({
+        title: 'Digital Growth Proposal — 99 Purity Peptides × Belk Digital',
+        description: 'A complete digital growth proposal for 99 Purity Peptides: RUO storefront, telehealth platform, SEO retainers, and AI lead generation.',
+        path: '/proposals/99-purity-peptides',
+        noIndex: true,
+    });
+}
+
+export default function PeptideProposalPage() {
+    return <PeptideProposal />;
+}
