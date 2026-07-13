@@ -12,6 +12,7 @@ export function Footer() {
     { href: `/${language}`, label: 'Home' },
     { href: `/${language}/about`, label: 'About' },
     { href: `/${language}/work`, label: 'Our Work' },
+    { href: `/${language}/proposals`, label: 'Proposals' },
     { href: `/${language}/faq`, label: 'FAQ' },
     { href: `/${language}/contact`, label: 'Contact' },
   ];

@@ -7,7 +7,6 @@ export async function generateMetadata(): Promise<Metadata> {
         title: 'Digital Growth Proposal — 99 Purity Peptides × Belk Digital',
         description: 'A complete digital growth proposal for 99 Purity Peptides: RUO storefront, telehealth platform, SEO retainers, and AI lead generation.',
         path: '/proposals/99-purity-peptides',
-        noIndex: true,
     });
 }
 

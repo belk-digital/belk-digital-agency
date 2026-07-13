@@ -255,7 +255,7 @@ function SectionHead({ badge, title, lead, center }: { badge: string; title: Rea
     >
       <SectionBadge>{badge}</SectionBadge>
       <h2 className={cn(
-        "text-[2.4rem] sm:text-[3.2rem] md:text-[4rem] font-sans font-[600] tracking-tight leading-[1.1] text-white mt-6",
+        "text-[1.9rem] sm:text-[2.8rem] md:text-[3.6rem] font-sans font-[600] tracking-tight leading-[1.1] text-white mt-6",
         center ? "max-w-3xl" : "max-w-2xl"
       )}>
         {title}
@@ -400,10 +400,9 @@ export const PeptideProposal = () => {
                 </span>
               </div>
 
-              <h1 className="text-[3rem] sm:text-[4.2rem] md:text-[5.5rem] font-sans font-[600] tracking-tight leading-[1.06] text-white">
+              <h1 className="text-[2.2rem] sm:text-[3.4rem] md:text-[4.8rem] lg:text-[5.5rem] font-sans font-[600] tracking-tight leading-[1.06] text-white">
                 Belk Digital{' '}
-                <span className="text-white/30">×</span>
-                <br />
+                <span className="text-white/30">×</span>{' '}
                 <span className="font-serif italic font-normal">99 Purity Peptides</span>
               </h1>
 
@@ -431,7 +430,7 @@ export const PeptideProposal = () => {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-              className="border-l border-white/[0.10] pl-8 flex flex-col gap-6"
+              className="hidden lg:flex border-l border-white/[0.10] pl-8 flex-col gap-6"
             >
               {[
                 { k: 'Prepared By', v: 'Belk Digital' },
@@ -520,13 +519,13 @@ export const PeptideProposal = () => {
           />
 
           {/* Tab bar */}
-          <div className="flex gap-1 p-1 bg-white/[0.03] border border-white/[0.08] rounded-2xl mb-10 w-fit">
+          <div className="flex gap-1 p-1 bg-white/[0.03] border border-white/[0.08] rounded-2xl mb-10 overflow-x-auto" style={{ WebkitOverflowScrolling: 'touch' } as React.CSSProperties}>
             {OFFERING_TABS.map((tab, i) => (
               <button
                 key={i}
                 onClick={() => setActiveTab(i)}
                 className={cn(
-                  "px-5 py-2.5 rounded-xl text-sm font-sans font-medium transition-all duration-300",
+                  "flex-shrink-0 px-5 py-2.5 rounded-xl text-sm font-sans font-medium transition-all duration-300",
                   activeTab === i
                     ? "bg-white text-black shadow-sm"
                     : "text-white/45 hover:text-white/70"
