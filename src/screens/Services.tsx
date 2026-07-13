@@ -368,6 +368,49 @@ const Services = () => {
           </section>
         )}
 
+        {/* Proposal Spotlight — telehealth only */}
+        {serviceSlug === 'telehealth-development' && (
+          <section className="py-20 bg-[#0A0A0A]">
+            <div className="container-wide">
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
+                <p className="text-xs font-bold tracking-[0.4em] uppercase text-white/30 mb-6 text-center">
+                  Real-World Application
+                </p>
+                <Link
+                  href={`/${language}/proposals/99-purity-peptides`}
+                  className="group relative flex flex-col md:flex-row md:items-center md:justify-between gap-8 rounded-3xl bg-white/[0.03] border border-white/[0.08] hover:border-blue-400/30 hover:bg-white/[0.05] transition-all duration-300 p-8 md:p-12 overflow-hidden max-w-4xl mx-auto"
+                >
+                  <div className="absolute -top-32 -right-32 w-[400px] h-[400px] bg-blue-500/[0.06] blur-[100px] rounded-full pointer-events-none group-hover:bg-blue-500/[0.10] transition-all duration-500" />
+
+                  <div className="relative z-10 flex flex-col gap-4 max-w-lg">
+                    <span className="inline-flex items-center gap-2 w-fit px-3 py-1 rounded-full bg-blue-500/[0.10] border border-blue-400/20 text-blue-400 text-[10px] font-sans font-semibold tracking-widest uppercase">
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                      Live Proposal
+                    </span>
+                    <h3 className="text-2xl md:text-3xl font-sans font-[600] text-white leading-snug">
+                      99 Purity Peptides{' '}
+                      <span className="font-serif italic font-normal text-white/60">× Belk Digital</span>
+                    </h3>
+                    <p className="text-white/45 text-sm leading-relaxed">
+                      See how we packaged a full telehealth platform, RUO storefront, SEO retainers, and AI lead generation into one complete growth proposal for a peptide brand.
+                    </p>
+                  </div>
+
+                  <div className="relative z-10 flex-shrink-0 flex items-center gap-3 text-blue-400 font-sans font-medium text-sm group-hover:gap-4 transition-all duration-300">
+                    View Proposal
+                    <ArrowRight className="w-4 h-4" />
+                  </div>
+                </Link>
+              </motion.div>
+            </div>
+          </section>
+        )}
+
         <CTASection
           title={replacePlaceholders(t.services.common?.ctaTitle, service.title)}
           subtitle={t.services.common?.ctaSubtitle}
