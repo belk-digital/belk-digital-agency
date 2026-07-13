@@ -577,6 +577,48 @@ const Services = () => {
       )}
 
 
+      {/* Proposals Spotlight */}
+      <section className="py-24 bg-black">
+        <div className="w-full max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+          >
+            <Link
+              href={`/${language}/proposals`}
+              className="group relative flex flex-col md:flex-row md:items-center md:justify-between gap-8 rounded-3xl bg-white/[0.03] border border-white/[0.08] hover:border-blue-400/30 hover:bg-white/[0.05] transition-all duration-300 p-8 md:p-12 overflow-hidden"
+            >
+              {/* Glow */}
+              <div className="absolute -top-32 -right-32 w-[400px] h-[400px] bg-blue-500/[0.06] blur-[100px] rounded-full pointer-events-none group-hover:bg-blue-500/[0.10] transition-all duration-500" />
+
+              {/* Left */}
+              <div className="relative z-10 flex flex-col gap-4 max-w-lg">
+                <span className="inline-flex items-center gap-2 w-fit px-3 py-1 rounded-full bg-blue-500/[0.10] border border-blue-400/20 text-blue-400 text-[10px] font-sans font-semibold tracking-widest uppercase">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                  Client Proposals
+                </span>
+                <h2 className="text-2xl md:text-3xl font-sans font-[600] text-white leading-snug">
+                  See how we plan{' '}
+                  <span className="font-serif italic font-normal text-white/70">full digital strategies</span>{' '}
+                  for real clients.
+                </h2>
+                <p className="text-white/45 text-sm leading-relaxed">
+                  Our proposals go deep — covering design, development, SEO retainers, and AI growth systems tailored to each client's market and goals.
+                </p>
+              </div>
+
+              {/* Right */}
+              <div className="relative z-10 flex-shrink-0 flex items-center gap-3 text-blue-400 font-sans font-medium text-sm group-hover:gap-4 transition-all duration-300">
+                View Proposals
+                <ArrowRight className="w-4 h-4" />
+              </div>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
       <CTASection
         title={t.services.cta?.title}
         subtitle={t.services.cta?.subtitle}
