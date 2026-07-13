@@ -102,9 +102,9 @@ export function Footer() {
           </p>
           <div className="flex items-center gap-6 text-[10px] uppercase tracking-widest">
             <div className="flex gap-4 items-center">
-              <a href="#" className="hover:text-[#3ca2fa] transition-colors"><Linkedin size={15} /></a>
-              <a href="#" className="hover:text-[#3ca2fa] transition-colors"><Twitter size={15} /></a>
-              <a href="#" className="hover:text-[#3ca2fa] transition-colors"><Instagram size={15} /></a>
+              <a href="https://www.linkedin.com/company/belk-digital/" target="_blank" rel="noopener noreferrer" className="hover:text-[#3ca2fa] transition-colors"><Linkedin size={15} /></a>
+              <a href="https://x.com/belkdigital?s=11" target="_blank" rel="noopener noreferrer" className="hover:text-[#3ca2fa] transition-colors"><Twitter size={15} /></a>
+              <a href="https://www.instagram.com/belkdigital_official?igsh=MTFyZ2NkZ3Z5NmZuYQ%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="hover:text-[#3ca2fa] transition-colors"><Instagram size={15} /></a>
             </div>
           </div>
         </div>
