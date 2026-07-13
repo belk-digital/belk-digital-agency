@@ -465,6 +465,41 @@
         ],
         growthSupport: 'A custom CMS gives you the flexibility and control that off-the-shelf solutions cannot match, enabling unique digital experiences.'
       },
+      {
+        shortTitle: 'Telehealth',
+        title: 'Telehealth Platform Development',
+        description: 'Custom telehealth platforms connecting patients and providers through compliant, scalable digital infrastructure.',
+        slug: 'telehealth-development',
+        detailTitle: 'Telehealth Platform Development for Modern Healthcare',
+        detailSubtitle: 'We engineer custom telehealth platforms for healthcare brands, peptide companies, and wellness businesses — built for compliance, scalability, and seamless patient experience.',
+        whoFor: ['Healthcare Startups', 'Peptide & Wellness Brands', 'Medical Clinics', 'Health-Tech Founders'],
+        includes: [
+          'Custom patient intake & registration flows',
+          'Provider scheduling & calendar system',
+          'Secure messaging & video consultation',
+          'Prescription & order management',
+          'HIPAA-aware architecture'
+        ],
+        benefits: [
+          'Faster patient onboarding',
+          'Scalable clinical infrastructure',
+          'Compliance-aware by design',
+          'Integrated billing & payments'
+        ],
+        whyChoose: [
+          { title: 'Built for compliance', description: 'HIPAA-aware architecture designed from the ground up.' },
+          { title: 'Custom, not templated', description: 'Every workflow engineered to your clinical model.' },
+          { title: 'Scales with demand', description: 'Infrastructure designed for high-volume patient load.' },
+          { title: 'End-to-end delivery', description: 'From patient intake to provider dashboard in one build.' }
+        ],
+        process: [
+          { title: 'Clinical Discovery', description: 'Mapping your patient and provider workflows.' },
+          { title: 'Architecture & Design', description: 'Structuring compliant, scalable systems.' },
+          { title: 'Development & Integration', description: 'Building and connecting all platform layers.' },
+          { title: 'Launch & Support', description: 'Going live and maintaining operational health.' }
+        ],
+        growthSupport: 'A well-engineered telehealth platform removes friction from care delivery — enabling you to serve more patients, expand into new markets, and build a defensible digital health brand.'
+      },
     ],
     viewAll: 'View All Services',
     learnMore: 'Learn More',

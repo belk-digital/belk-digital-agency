@@ -7,7 +7,7 @@ import { useParams } from 'next/navigation';
 
 import { useLanguage } from '@/i18n/LanguageContext';
 import { cn } from '@/lib/utils';
-import { ArrowRight, Palette, RefreshCw, Fingerprint, Layout, Code, Search, Wrench, ShoppingBag, Database, Check, Target, Zap, Shield, Lightbulb, Globe as GlobeIcon } from 'lucide-react';
+import { ArrowRight, Palette, RefreshCw, Fingerprint, Layout, Code, Search, Wrench, ShoppingBag, Database, Check, Target, Zap, Shield, Lightbulb, Globe as GlobeIcon, HeartPulse } from 'lucide-react';
 import { CTASection } from '@/components/home/CTASection';
 import { ExpertiseSection } from '@/components/home/ExpertiseSection';
 import { InfiniteMovingCards } from '@/components/ui/infinite-moving-cards';
@@ -22,6 +22,7 @@ const serviceIcons: Record<string, any> = {
   'maintenance': Wrench,
   'shopify-development': ShoppingBag,
   'custom-cms': Database,
+  'telehealth-development': HeartPulse,
 };
 
 const GLOBE_CONFIG = {

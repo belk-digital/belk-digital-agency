@@ -465,6 +465,41 @@ const translations = {
         ],
         growthSupport: 'Un CMS personalizado le brinda flexibilidad y control inigualables.'
       },
+      {
+        shortTitle: 'Telesalud',
+        title: 'Desarrollo de Plataformas de Telesalud',
+        description: 'Plataformas de telesalud personalizadas que conectan pacientes y proveedores a través de infraestructura digital escalable y conforme.',
+        slug: 'telehealth-development',
+        detailTitle: 'Desarrollo de Plataformas de Telesalud para la Salud Moderna',
+        detailSubtitle: 'Desarrollamos plataformas de telesalud personalizadas para marcas de salud, empresas de péptidos y negocios de bienestar — construidas para el cumplimiento, la escalabilidad y la experiencia del paciente.',
+        whoFor: ['Startups de Salud', 'Marcas de Péptidos y Bienestar', 'Clínicas Médicas', 'Emprendedores de Salud Digital'],
+        includes: [
+          'Flujos personalizados de registro de pacientes',
+          'Sistema de programación para proveedores',
+          'Mensajería segura y consulta por video',
+          'Gestión de recetas y pedidos',
+          'Arquitectura compatible con HIPAA'
+        ],
+        benefits: [
+          'Incorporación más rápida de pacientes',
+          'Infraestructura clínica escalable',
+          'Diseño conforme por definición',
+          'Facturación y pagos integrados'
+        ],
+        whyChoose: [
+          { title: 'Construido para el cumplimiento', description: 'Arquitectura compatible con HIPAA desde el inicio.' },
+          { title: 'Personalizado, no de plantilla', description: 'Cada flujo de trabajo diseñado para su modelo clínico.' },
+          { title: 'Escala con la demanda', description: 'Infraestructura diseñada para alto volumen de pacientes.' },
+          { title: 'Entrega integral', description: 'Desde el registro del paciente hasta el panel del proveedor.' }
+        ],
+        process: [
+          { title: 'Descubrimiento Clínico', description: 'Mapeo de flujos de trabajo de pacientes y proveedores.' },
+          { title: 'Arquitectura y Diseño', description: 'Estructuración de sistemas escalables y conformes.' },
+          { title: 'Desarrollo e Integración', description: 'Construyendo y conectando todas las capas de la plataforma.' },
+          { title: 'Lanzamiento y Soporte', description: 'Puesta en marcha y mantenimiento operacional.' }
+        ],
+        growthSupport: 'Una plataforma de telesalud bien construida elimina la fricción en la atención médica, permitiéndole atender a más pacientes y expandirse a nuevos mercados.'
+      },
     ],
     viewAll: 'Ver Todos los Servicios',
     learnMore: 'Aprender Más',

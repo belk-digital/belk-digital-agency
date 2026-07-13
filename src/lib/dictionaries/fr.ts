@@ -457,6 +457,41 @@ services: {
       ],
       growthSupport: 'Un CMS personnalisé vous donne la flexibilité et le contrôle que les solutions prêtes à l\'emploi ne peuvent pas égaler, permettant des expériences numériques uniques.'
     },
+    {
+      shortTitle: 'Télésanté',
+      title: 'Développement de Plateformes de Télésanté',
+      description: 'Plateformes de télésanté sur mesure reliant patients et prestataires via une infrastructure numérique évolutive et conforme.',
+      slug: 'telehealth-development',
+      detailTitle: 'Développement de Plateformes de Télésanté pour la Santé Moderne',
+      detailSubtitle: 'Nous développons des plateformes de télésanté personnalisées pour les marques de santé, les entreprises de peptides et les entreprises de bien-être — conçues pour la conformité, l\'évolutivité et l\'expérience patient.',
+      whoFor: ['Startups de Santé', 'Marques Bien-être & Peptides', 'Cliniques Médicales', 'Fondateurs HealthTech'],
+      includes: [
+        'Flux d\'admission et d\'enregistrement patients personnalisés',
+        'Système de planification des prestataires',
+        'Messagerie sécurisée et consultation vidéo',
+        'Gestion des ordonnances et commandes',
+        'Architecture compatible HIPAA'
+      ],
+      benefits: [
+        'Intégration plus rapide des patients',
+        'Infrastructure clinique évolutive',
+        'Conception conforme dès la conception',
+        'Facturation et paiements intégrés'
+      ],
+      whyChoose: [
+        { title: 'Conçu pour la conformité', description: 'Architecture compatible HIPAA dès le départ.' },
+        { title: 'Sur mesure, pas de modèle', description: 'Chaque flux conçu pour votre modèle clinique.' },
+        { title: 'Évolue avec la demande', description: 'Infrastructure pour un volume élevé de patients.' },
+        { title: 'Livraison de bout en bout', description: 'De l\'admission patient au tableau de bord prestataire.' }
+      ],
+      process: [
+        { title: 'Découverte Clinique', description: 'Cartographie des flux patients et prestataires.' },
+        { title: 'Architecture & Conception', description: 'Structuration de systèmes conformes et évolutifs.' },
+        { title: 'Développement & Intégration', description: 'Construction et connexion de toutes les couches.' },
+        { title: 'Lancement & Support', description: 'Mise en ligne et maintien opérationnel.' }
+      ],
+      growthSupport: 'Une plateforme de télésanté bien conçue élimine les frictions dans la prestation de soins, vous permettant de servir plus de patients et d\'étendre votre présence sur de nouveaux marchés.'
+    },
   ],
   viewAll: 'Voir Tous les Services',
   learnMore: 'En savoir plus',

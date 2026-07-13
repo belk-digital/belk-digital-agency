@@ -484,6 +484,41 @@ services: {
       ],
       growthSupport: 'Ein individuelles CMS bietet die Flexibilität und Kontrolle, die Standardlösungen nicht bieten können, und ermöglicht einzigartige digitale Erlebnisse.'
     },
+    {
+      shortTitle: 'Telemedizin',
+      title: 'Telemedizin-Plattform-Entwicklung',
+      description: 'Maßgeschneiderte Telemedizin-Plattformen, die Patienten und Anbieter über konforme, skalierbare digitale Infrastruktur verbinden.',
+      slug: 'telehealth-development',
+      detailTitle: 'Telemedizin-Plattform-Entwicklung für moderne Gesundheitsversorgung',
+      detailSubtitle: 'Wir entwickeln maßgeschneiderte Telemedizin-Plattformen für Gesundheitsmarken, Peptid-Unternehmen und Wellness-Betriebe — gebaut für Compliance, Skalierbarkeit und Patientenerlebnis.',
+      whoFor: ['Gesundheits-Startups', 'Peptid- & Wellness-Marken', 'Medizinische Kliniken', 'HealthTech-Gründer'],
+      includes: [
+        'Individuelle Patientenaufnahme & Registrierungsabläufe',
+        'Anbieter-Terminplanung & Kalendersystem',
+        'Sichere Nachrichtenübermittlung & Videokonsultation',
+        'Rezept- & Bestellverwaltung',
+        'HIPAA-konforme Architektur'
+      ],
+      benefits: [
+        'Schnelleres Onboarding von Patienten',
+        'Skalierbare klinische Infrastruktur',
+        'Compliance-bewusstes Design',
+        'Integrierte Abrechnung & Zahlungen'
+      ],
+      whyChoose: [
+        { title: 'Compliance-orientiert', description: 'HIPAA-konforme Architektur von Grund auf.' },
+        { title: 'Maßgeschneidert, nicht vorlagenbasiert', description: 'Jeder Workflow für Ihr klinisches Modell entwickelt.' },
+        { title: 'Skaliert mit der Nachfrage', description: 'Infrastruktur für hohes Patientenaufkommen.' },
+        { title: 'End-to-End-Lieferung', description: 'Von der Patientenaufnahme bis zum Anbieter-Dashboard.' }
+      ],
+      process: [
+        { title: 'Klinische Entdeckung', description: 'Mapping der Patienten- und Anbieter-Workflows.' },
+        { title: 'Architektur & Design', description: 'Strukturierung konformer, skalierbarer Systeme.' },
+        { title: 'Entwicklung & Integration', description: 'Aufbau und Verbindung aller Plattformschichten.' },
+        { title: 'Start & Support', description: 'Live-Schaltung und Betriebswartung.' }
+      ],
+      growthSupport: 'Eine gut entwickelte Telemedizin-Plattform beseitigt Reibungsverluste in der Versorgung — und ermöglicht es Ihnen, mehr Patienten zu versorgen und neue Märkte zu erschließen.'
+    },
   ],
   learnMore: 'Mehr erfahren',
   includes: 'Was ist enthalten',
