@@ -86,7 +86,7 @@ function ServiceContent({
 
 export function ExpertiseSection() {
     const { language, t, isRTL } = useLanguage();
-    const services = t.services.items;
+    const services = t.services.items.slice(0, 5);
 
     // Compute node positions: evenly spaced, alternating left/right
     // Each node y is the center of its row (1/(2n), 3/(2n), 5/(2n)…)
