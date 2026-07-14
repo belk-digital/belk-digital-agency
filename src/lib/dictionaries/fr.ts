@@ -492,6 +492,256 @@ services: {
       ],
       growthSupport: 'Une plateforme de télésanté bien conçue élimine les frictions dans la prestation de soins, vous permettant de servir plus de patients et d\'étendre votre présence sur de nouveaux marchés.'
     },
+    {
+      shortTitle: 'eCommerce',
+      title: 'Développement eCommerce',
+      description: 'Des boutiques construites pour vendre — de Shopify au commerce headless avec un paiement sans friction.',
+      slug: 'ecommerce-development',
+      detailTitle: 'Développement eCommerce pour des Boutiques en Ligne à Fort Taux de Conversion',
+      detailSubtitle: 'Nous construisons des plateformes eCommerce personnalisées pour les marques aux États-Unis, en Europe, dans le CCG et en Australie.',
+      whoFor: ['Marques DTC & Consommateurs', 'Commerces de Détail', 'Produits par Abonnement', 'Marketplaces Multi-Vendeurs'],
+      includes: ['Design et développement de boutique personnalisé', 'Paiement sécurisé et passerelles de paiement', 'Gestion des stocks et commandes', 'Systèmes d\'abonnement et fidélité', 'Expérience d\'achat mobile-first'],
+      benefits: ['Taux de conversion plus élevés', 'Opérations de commandes rationalisées', 'Catalogue produits évolutif', 'Croissance des clients récurrents'],
+      whyChoose: [
+        { title: 'Builds axés sur la conversion', description: 'Chaque page conçue pour maximiser les revenus.' },
+        { title: 'Agnostique de plateforme', description: 'Shopify, WooCommerce ou headless.' },
+        { title: 'Mobile-first', description: 'Optimisé pour les acheteurs sur mobile.' },
+        { title: 'Propriété complète', description: 'Design jusqu\'au déploiement en une seule équipe.' }
+      ],
+      process: [
+        { title: 'Découverte & planification', description: 'Cartographier votre catalogue et flux utilisateur.' },
+        { title: 'Design & construction', description: 'Créer votre boutique axée sur la conversion.' },
+        { title: 'Intégration & tests', description: 'Paiements, livraison et assurance qualité.' },
+        { title: 'Lancement & optimisation', description: 'En ligne, suivi et amélioré continuellement.' }
+      ],
+      growthSupport: 'Une boutique bien conçue prend de la valeur au fil du temps — meilleurs taux de conversion, coûts d\'acquisition plus faibles et une plateforme prête à évoluer.',
+      tags: ['Shopify', 'WooCommerce', 'Next.js Commerce', 'Headless', 'Abonnements', 'Paiements']
+    },
+    {
+      shortTitle: 'IA',
+      title: 'Solutions IA & Automatisation',
+      description: 'Des systèmes intelligents qui répondent, assistent et automatisent — intégrés directement dans vos opérations.',
+      slug: 'ai-solutions',
+      detailTitle: 'Solutions IA & Automatisation pour les Entreprises Avant-Gardistes',
+      detailSubtitle: 'Nous construisons des systèmes IA personnalisés pour les entreprises aux États-Unis, en Europe, dans le CCG et en Australie.',
+      whoFor: ['Entreprises Face aux Clients', 'Entreprises à Fortes Opérations', 'Santé & Finance', 'Équipes en Croissance'],
+      includes: ['Chatbots IA & assistants virtuels', 'Systèmes de réceptionniste IA', 'Automatisation des flux de travail', 'Intégration LLM (OpenAI, Claude, Gemini)', 'Pipelines de données & rapports intelligents'],
+      benefits: ['Charge opérationnelle réduite', 'Engagement client automatisé 24/7', 'Temps de réponse plus rapides', 'Évolutif sans croissance des effectifs'],
+      whyChoose: [
+        { title: 'Expertise multi-modèle', description: 'OpenAI, Claude, Gemini — nous maîtrisons la stack.' },
+        { title: 'Personnalisé, pas un plugin', description: 'Construit pour vos flux de travail exacts.' },
+        { title: 'Intégrations sécurisées', description: 'Gestion des données de niveau entreprise.' },
+        { title: 'ROI mesurable', description: 'Automatisation liée aux métriques business.' }
+      ],
+      process: [
+        { title: 'Audit des processus', description: 'Trouver les meilleures opportunités d\'automatisation.' },
+        { title: 'Conception d\'architecture', description: 'Mapper le système IA à vos flux.' },
+        { title: 'Construire & former', description: 'Développer et affiner la solution.' },
+        { title: 'Déployer & surveiller', description: 'En production avec optimisation continue.' }
+      ],
+      growthSupport: 'L\'automatisation IA crée une efficacité composée — chaque processus rationalisé libère votre équipe pour un travail à plus haute valeur.',
+      tags: ['Chatbots IA', 'Réceptionnistes IA', 'Automatisation', 'OpenAI', 'Claude', 'Gemini']
+    },
+    {
+      shortTitle: 'Génération',
+      title: 'Génération de Leads IA',
+      description: 'Des pipelines automatisés qui trouvent, qualifient et réservent des prospects pendant que votre équipe se concentre sur la clôture.',
+      slug: 'ai-lead-generation',
+      detailTitle: 'Génération de Leads IA qui Remplit Votre Pipeline',
+      detailSubtitle: 'Nous construisons des systèmes automatisés de génération de leads pour les entreprises aux États-Unis, en Europe, dans le CCG et en Australie.',
+      whoFor: ['Entreprises de Services B2B', 'Entreprises axées sur les Ventes', 'Startups en Croissance', 'Équipes de Vente Enterprise'],
+      includes: ['Séquences de contact automatisées', 'Systèmes d\'email froid', 'Automatisation de prospection LinkedIn', 'Qualification de leads par IA', 'Intégration CRM & prise de rendez-vous'],
+      benefits: ['Flux de pipeline constant', 'Coût par lead réduit', 'Ciblage de prospects de meilleure qualité', 'Équipe de vente concentrée sur la clôture'],
+      whyChoose: [
+        { title: 'Ciblage IA-first', description: 'Prospection de précision avec filtrage intelligent.' },
+        { title: 'Portée multicanal', description: 'Email, LinkedIn et plus — coordonnés.' },
+        { title: 'Totalement conforme', description: 'Contact respectueux du RGPD et CAN-SPAM.' },
+        { title: 'Natif CRM', description: 'Se connecte directement à votre flux de vente.' }
+      ],
+      process: [
+        { title: 'Définition ICP', description: 'Définir précisément votre profil client idéal.' },
+        { title: 'Construction du système', description: 'Configurer séquences et automatisation.' },
+        { title: 'Lancement de campagne', description: 'En ligne avec tests contrôlés.' },
+        { title: 'Optimiser & scaler', description: 'Itérer sur ce qui convertit.' }
+      ],
+      growthSupport: 'Un moteur de génération de leads bien construit crée un pipeline prévisible et évolutif — la cohérence dont votre entreprise a besoin pour croître mois après mois.',
+      tags: ['Contact Automatisé', 'Email Froid', 'Prospection LinkedIn', 'Prise de Rendez-vous', 'Entonnoirs de Vente']
+    },
+    {
+      shortTitle: 'Marketing',
+      title: 'Marketing à la Performance',
+      description: 'Médias payants gérés pour le profit, pas les métriques de vanité — suivis du clic aux revenus.',
+      slug: 'performance-marketing',
+      detailTitle: 'Marketing à la Performance qui Génère de Vrais Revenus',
+      detailSubtitle: 'Nous gérons des campagnes de médias payants pour les entreprises aux États-Unis, en Europe, dans le CCG et en Australie.',
+      whoFor: ['Marques eCommerce & DTC', 'Entreprises de Génération de Leads', 'Entreprises SaaS', 'Marques Locales & Nationales'],
+      includes: ['Google Search & Shopping Ads', 'Meta (Facebook & Instagram) Ads', 'LinkedIn & Reddit Ads', 'Suivi des conversions & attribution', 'Remarketing & segmentation d\'audience'],
+      benefits: ['Retour mesurable sur les dépenses publicitaires', 'Coût d\'acquisition client réduit', 'Croissance prévisible des revenus', 'Visibilité de l\'entonnoir complet'],
+      whyChoose: [
+        { title: 'Axé sur les revenus', description: 'Chaque campagne liée aux résultats business.' },
+        { title: 'Couverture entonnoir complet', description: 'De la notoriété à la conversion.' },
+        { title: 'Rapports transparents', description: 'De vrais chiffres, pas des métriques de vanité.' },
+        { title: 'Respectueux des règles', description: 'Annonces conformes aux politiques des plateformes.' }
+      ],
+      process: [
+        { title: 'Audit & stratégie', description: 'Examiner les performances actuelles et les objectifs.' },
+        { title: 'Architecture de campagne', description: 'Construire les structures de compte et d\'annonces.' },
+        { title: 'Lancer & tester', description: 'Exécuter des expériences contrôlées.' },
+        { title: 'Optimiser & scaler', description: 'Miser sur ce qui fonctionne.' }
+      ],
+      growthSupport: 'Le marketing à la performance ajoute du carburant immédiat à la croissance — la bonne stratégie payante accélère l\'acquisition pendant que les canaux organiques se consolident.',
+      tags: ['Google Ads', 'Meta Ads', 'LinkedIn Ads', 'Reddit Ads', 'Remarketing', 'Suivi des Conversions']
+    },
+    {
+      shortTitle: 'Social & UGC',
+      title: 'Réseaux Sociaux & UGC',
+      description: 'Gestion sociale complète avec du contenu style créateur authentique qui construit la communauté et génère des ventes.',
+      slug: 'social-media-ugc',
+      detailTitle: 'Gestion des Réseaux Sociaux & Création de Contenu UGC',
+      detailSubtitle: 'Nous gérons la présence sociale et produisons du contenu de créateurs pour les marques aux États-Unis, en Europe, dans le CCG et en Australie.',
+      whoFor: ['Marques de Consommation & Style de Vie', 'Entreprises eCommerce', 'Marques Personnelles', 'Entreprises en Croissance'],
+      includes: ['Stratégie et gestion des réseaux sociaux', 'Création et sourcing de contenu UGC', 'Production de vidéo courte', 'Calendriers de contenu et planification', 'Engagement et modération de communauté'],
+      benefits: ['Voix de marque authentique', 'Taux d\'engagement plus élevés', 'Contenu qui convertit en ventes', 'Cadence de publication cohérente'],
+      whyChoose: [
+        { title: 'Approche native créateur', description: 'Contenu qui semble natif, pas de marque.' },
+        { title: 'Spécialistes plateformes', description: 'Instagram, TikTok, LinkedIn, YouTube.' },
+        { title: 'Réseau UGC', description: 'Accès à des talents créateurs authentiques.' },
+        { title: 'Contenu data-driven', description: 'Stratégie soutenue par la performance.' }
+      ],
+      process: [
+        { title: 'Audit de marque', description: 'Comprendre votre voix et audience.' },
+        { title: 'Stratégie & calendrier', description: 'Planifier le contenu sur les plateformes.' },
+        { title: 'Production', description: 'Créer et sourcer du contenu.' },
+        { title: 'Publier & engager', description: 'Publier, répondre et grandir.' }
+      ],
+      growthSupport: 'Les réseaux sociaux et l\'UGC créent un volant — le contenu authentique instaure la confiance, ce qui génère des conversions, ce qui alimente la croissance.',
+      tags: ['Gestion Sociale', 'Contenu UGC', 'Calendriers', 'Sourcing Créateurs', 'Vidéo Courte']
+    },
+    {
+      shortTitle: 'GEO',
+      title: 'Optimisation des Moteurs Génératifs',
+      description: 'Faites citer votre marque par ChatGPT, Claude, Gemini et les Aperçus IA de Google.',
+      slug: 'geo-optimization',
+      detailTitle: 'Optimisation des Moteurs Génératifs pour l\'Ère de la Recherche IA',
+      detailSubtitle: 'Nous optimisons les marques pour être citées dans les réponses IA — en faisant de votre entreprise la référence que ChatGPT, Claude et Gemini utilisent en premier.',
+      whoFor: ['Marques pour Acheteurs IA', 'Prestataires de Services B2B', 'Marques de Leadership d\'Opinion', 'Entreprises Enterprise'],
+      includes: ['Optimisation d\'entité et graphe de connaissance', 'Stratégie de ciblage dans les Aperçus IA', 'Surveillance de la visibilité LLM', 'Architecture de contenu sémantique', 'Construction de signaux d\'autorité de marque'],
+      benefits: ['Cité dans les réponses et résumés IA', 'Avantage concurrentiel dans les résultats IA', 'Présence de recherche pérenne', 'Signaux d\'autorité de marque plus élevés'],
+      whyChoose: [
+        { title: 'Pionniers du GEO', description: 'En avance sur la recherche IA.' },
+        { title: 'Pensée entité-d\'abord', description: 'Construire des marques en lesquelles les modèles IA font confiance.' },
+        { title: 'Couverture multi-moteur', description: 'ChatGPT, Claude, Gemini, Perplexity.' },
+        { title: 'Couplé avec le SEO', description: 'GEO et SEO travaillant ensemble.' }
+      ],
+      process: [
+        { title: 'Audit d\'entité de marque', description: 'Évaluer votre base de visibilité IA.' },
+        { title: 'Architecture de connaissance', description: 'Structurer votre graphe d\'entité.' },
+        { title: 'Optimisation de contenu', description: 'Créer du contenu sémantiquement riche.' },
+        { title: 'Surveiller & adapter', description: 'Suivre les citations et affiner.' }
+      ],
+      growthSupport: 'Alors que la recherche pilotée par IA capte davantage du parcours acheteur, le GEO assure que votre marque est la réponse que l\'IA délivre.',
+      tags: ['Optimisation d\'Entité', 'Graphes de Connaissance', 'Aperçus IA', 'Visibilité LLM', 'Optimisation Sémantique']
+    },
+    {
+      shortTitle: 'AEO',
+      title: 'Optimisation des Moteurs de Réponse',
+      description: 'Contenu structuré conçu pour gagner des extraits vedettes, des résultats vocaux et des citations IA.',
+      slug: 'aeo-optimization',
+      detailTitle: 'Optimisation des Moteurs de Réponse — Gagnez Snippets, Voix & Citations IA',
+      detailSubtitle: 'Nous concevons votre contenu pour être la réponse — capturant extraits vedettes, résultats vocaux et boîtes de réponses IA.',
+      whoFor: ['Sites Web Riches en Contenu', 'Pages de Questions eCommerce', 'Santé & Services Professionnels', 'Marques B2B à Haute Intention'],
+      includes: ['Ciblage d\'extraits vedettes', 'Schéma FAQ & données structurées', 'Optimisation de la recherche vocale', 'Couverture "Les gens demandent aussi"', 'Cadres de contenu pour citations IA'],
+      benefits: ['Visibilité zéro-clic', 'Autorité de recherche vocale', 'CTR plus élevé des résultats enrichis', 'Citations dans les moteurs de réponses IA'],
+      whyChoose: [
+        { title: 'Ingénierie de snippets', description: 'Contenu conçu pour dominer les boîtes de réponses.' },
+        { title: 'Spécialistes du schéma', description: 'Données structurées que les moteurs comprennent.' },
+        { title: 'Stratégie voix-d\'abord', description: 'Optimisé pour comment les gens demandent vraiment.' },
+        { title: 'Couplé avec SEO & GEO', description: 'Une solution de présence de recherche complète.' }
+      ],
+      process: [
+        { title: 'Recherche d\'intention', description: 'Trouver les questions de votre audience.' },
+        { title: 'Architecture de contenu', description: 'Structurer les réponses que préfèrent les moteurs.' },
+        { title: 'Implémentation de schéma', description: 'Balisage technique pour résultats enrichis.' },
+        { title: 'Surveiller & étendre', description: 'Suivre les victoires et en capturer plus.' }
+      ],
+      growthSupport: 'L\'AEO capture les moments zéro-clic et les requêtes vocales — la part de recherche à la croissance la plus rapide — mettant votre marque en avant avant que les concurrents ne chargent.',
+      tags: ['Extraits Vedettes', 'Recherche Vocale', 'Les Gens Demandent Aussi', 'Optimisation FAQ', 'Citations IA']
+    },
+    {
+      shortTitle: 'Mobile',
+      title: 'Développement d\'Applications Mobiles',
+      description: 'Des applications natives et multiplateformes qui semblent rapides, paraissent polies et sont livrées à temps.',
+      slug: 'mobile-development',
+      detailTitle: 'Développement d\'Applications Mobiles pour iOS, Android & Multiplateforme',
+      detailSubtitle: 'Nous construisons des applications mobiles performantes pour les entreprises aux États-Unis, en Europe, dans le CCG et en Australie.',
+      whoFor: ['Entreprises de Produits Grand Public', 'Plateformes SaaS B2B', 'Santé & Fintech', 'Entreprises Marketplace'],
+      includes: ['Développement iOS & Android', 'Builds React Native & Flutter', 'Design UI/UX mobile', 'Soumission App Store & optimisation', 'Notifications push & fonctionnalités temps réel'],
+      benefits: ['Performance et sensation native', 'Efficacité de code multiplateforme', 'Présence App Store', 'Engagement utilisateur plus élevé'],
+      whyChoose: [
+        { title: 'Natif ou multiplateforme', description: 'Nous recommandons la bonne approche pour vos besoins.' },
+        { title: 'Développement design-first', description: 'Des apps belles qui fonctionnent parfaitement.' },
+        { title: 'Livraison de bout en bout', description: 'Concept jusqu\'à l\'App Store en une seule équipe.' },
+        { title: 'Support continu', description: 'Mises à jour, fonctionnalités et optimisation post-lancement.' }
+      ],
+      process: [
+        { title: 'Découverte & architecture', description: 'Définir fonctionnalités et stack technique.' },
+        { title: 'Design & prototype', description: 'Design UI mobile haute fidélité.' },
+        { title: 'Développement & QA', description: 'Construire et tester sur vrais appareils.' },
+        { title: 'Lancement & support', description: 'Soumission, en ligne et itération.' }
+      ],
+      growthSupport: 'Une application mobile crée un canal direct et persistant avec vos utilisateurs — le point de contact à plus fort engagement pour la rétention, l\'upsell et la communauté.',
+      tags: ['iOS', 'Android', 'Flutter', 'React Native', 'PWAs']
+    },
+    {
+      shortTitle: 'APIs',
+      title: 'API & Intégrations',
+      description: 'Des APIs robustes et intégrations tierces qui connectent toute votre stack en un seul système.',
+      slug: 'api-integrations',
+      detailTitle: 'Développement d\'API & Intégrations Système pour Entreprises Connectées',
+      detailSubtitle: 'Nous architecturons et construisons des APIs et intégrations pour les entreprises aux États-Unis, en Europe, dans le CCG et en Australie.',
+      whoFor: ['Entreprises Multi-Plateformes', 'Entreprises SaaS', 'Opérations Enterprise', 'Marques eCommerce'],
+      includes: ['Développement API REST & GraphQL', 'Intégrations de plateformes tierces', 'APIs de paiement & authentification', 'Systèmes webhook & event-driven', 'Documentation & versionnement d\'API'],
+      benefits: ['Données unifiées entre plateformes', 'Flux de travail automatisés entre systèmes', 'Saisie manuelle de données réduite', 'Architecture d\'intégration évolutive'],
+      whyChoose: [
+        { title: 'Agnostique de protocole', description: 'REST, GraphQL, gRPC — nous utilisons ce qui convient.' },
+        { title: 'Sécurité d\'abord', description: 'OAuth, JWT et authentification niveau entreprise.' },
+        { title: 'Bien documenté', description: 'Des APIs que votre équipe peut comprendre et étendre.' },
+        { title: 'Toute plateforme', description: 'Stripe, HubSpot, Salesforce et plus.' }
+      ],
+      process: [
+        { title: 'Cartographie des exigences', description: 'Définir ce qui se connecte à quoi et pourquoi.' },
+        { title: 'Conception d\'architecture', description: 'Planifier la couche d\'intégration.' },
+        { title: 'Développement & tests', description: 'Construire et valider chaque endpoint.' },
+        { title: 'Documentation & déploiement', description: 'Livrer des APIs propres et documentées.' }
+      ],
+      growthSupport: 'Les systèmes intégrés éliminent les frictions et créent de l\'effet de levier — chaque connexion que vous établissez multiplie l\'efficacité et l\'intelligence de toute votre opération.',
+      tags: ['APIs REST', 'GraphQL', 'APIs de Paiement', 'Authentification', 'APIs d\'Automatisation']
+    },
+    {
+      shortTitle: 'Cloud',
+      title: 'Cloud & Infrastructure',
+      description: 'Déploiement, hébergement et infrastructure conçus pour la disponibilité, la sécurité et la vitesse mondiale.',
+      slug: 'cloud-infrastructure',
+      detailTitle: 'Infrastructure Cloud & DevOps pour des Opérations Numériques Fiables',
+      detailSubtitle: 'Nous architecturons et gérons l\'infrastructure cloud pour les entreprises aux États-Unis, en Europe, dans le CCG et en Australie.',
+      whoFor: ['Applications à Fort Trafic', 'Plateformes SaaS', 'Opérations Enterprise', 'Marques eCommerce Mondiales'],
+      includes: ['Conception d\'architecture cloud (AWS, GCP, Azure)', 'Déploiement Vercel & Cloudflare', 'Configuration de pipeline CI/CD', 'Gestion et mise à l\'échelle de base de données', 'Renforcement de la sécurité & surveillance'],
+      benefits: ['Disponibilité et fiabilité maximales', 'Performance CDN mondiale', 'Auto-scaling à la demande', 'Réduction des coûts d\'infrastructure'],
+      whyChoose: [
+        { title: 'Expertise multi-cloud', description: 'AWS, GCP, Vercel, Cloudflare et plus.' },
+        { title: 'Meilleures pratiques DevOps', description: 'CI/CD, IaC et déploiements automatisés.' },
+        { title: 'Sécurité d\'abord', description: 'Configurations renforcées dès le premier jour.' },
+        { title: 'Optimisé en coûts', description: 'Ressources dimensionnées pour vos besoins réels.' }
+      ],
+      process: [
+        { title: 'Audit d\'infrastructure', description: 'Évaluer la configuration actuelle et les lacunes.' },
+        { title: 'Conception d\'architecture', description: 'Planifier la stack cloud optimale.' },
+        { title: 'Déploiement & migration', description: 'Configurer et déplacer en toute sécurité.' },
+        { title: 'Surveiller & optimiser', description: 'Gestion continue des performances et coûts.' }
+      ],
+      growthSupport: 'Une infrastructure solide est la fondation sur laquelle est construit chaque entreprise numérique — la bonne configuration signifie que vous ne rencontrerez jamais de plafond quand la croissance arrive.',
+      tags: ['AWS', 'Vercel', 'Cloudflare', 'Supabase', 'Firebase', 'DigitalOcean']
+    },
   ],
   viewAll: 'Voir Tous les Services',
   learnMore: 'En savoir plus',

@@ -7,9 +7,9 @@ import { useParams } from 'next/navigation';
 
 import { useLanguage } from '@/i18n/LanguageContext';
 import { cn } from '@/lib/utils';
-import { ArrowRight, Palette, RefreshCw, Fingerprint, Layout, Code, Search, Wrench, ShoppingBag, Database, Check, Target, Zap, Shield, Lightbulb, Globe as GlobeIcon, HeartPulse } from 'lucide-react';
+import { ArrowRight, Palette, RefreshCw, Fingerprint, Layout, Code, Search, Wrench, ShoppingBag, Database, Check, Target, Zap, Shield, Lightbulb, Globe as GlobeIcon, Brain, TrendingUp, MessageCircle, Sparkles, Smartphone, GitBranch, Cloud, Stethoscope, CheckSquare } from 'lucide-react';
 import { CTASection } from '@/components/home/CTASection';
-import { ExpertiseSection } from '@/components/home/ExpertiseSection';
+import { ServicesGrid } from '@/components/services/ServicesGrid';
 import { InfiniteMovingCards } from '@/components/ui/infinite-moving-cards';
 
 const serviceIcons: Record<string, any> = {
@@ -22,7 +22,17 @@ const serviceIcons: Record<string, any> = {
   'maintenance': Wrench,
   'shopify-development': ShoppingBag,
   'custom-cms': Database,
-  'telehealth-development': HeartPulse,
+  'telehealth-development': Stethoscope,
+  'ecommerce-development': ShoppingBag,
+  'ai-solutions': Brain,
+  'ai-lead-generation': Target,
+  'performance-marketing': TrendingUp,
+  'social-media-ugc': MessageCircle,
+  'geo-optimization': Sparkles,
+  'aeo-optimization': CheckSquare,
+  'mobile-development': Smartphone,
+  'api-integrations': GitBranch,
+  'cloud-infrastructure': Cloud,
 };
 
 const GLOBE_CONFIG = {
@@ -474,7 +484,7 @@ const Services = () => {
         </motion.div>
       </section>
 
-      <ExpertiseSection />
+      <ServicesGrid />
 
       {/* What We Cover — Values-style */}
       {t.services.whatWeCover && (() => {

@@ -519,6 +519,256 @@ services: {
       ],
       growthSupport: 'Eine gut entwickelte Telemedizin-Plattform beseitigt Reibungsverluste in der Versorgung — und ermöglicht es Ihnen, mehr Patienten zu versorgen und neue Märkte zu erschließen.'
     },
+    {
+      shortTitle: 'eCommerce',
+      title: 'eCommerce-Entwicklung',
+      description: 'Shops, die verkaufen — von Shopify bis zu vollständigem Headless-Commerce mit nahtlosem Checkout.',
+      slug: 'ecommerce-development',
+      detailTitle: 'eCommerce-Entwicklung für hochkonvertierende Online-Shops',
+      detailSubtitle: 'Wir bauen maßgeschneiderte eCommerce-Plattformen für Marken in den USA, Europa, den GCC-Staaten und Australien.',
+      whoFor: ['DTC- & Verbrauchermarken', 'Einzelhandelsunternehmen', 'Abonnementprodukte', 'Multi-Vendor-Marktplätze'],
+      includes: ['Individuelles Shop-Design & Entwicklung', 'Sicherer Checkout & Zahlungsgateways', 'Bestands- & Auftragsverwaltung', 'Abonnement- & Treueprogramme', 'Mobile-first Commerce-Erlebnis'],
+      benefits: ['Höhere Konversionsraten', 'Optimierte Auftragsprozesse', 'Skalierbarer Produktkatalog', 'Wachstum wiederkehrender Kunden'],
+      whyChoose: [
+        { title: 'Konversionsorientierte Builds', description: 'Jede Seite für maximale Einnahmen optimiert.' },
+        { title: 'Plattformunabhängig', description: 'Shopify, WooCommerce oder vollständig Headless.' },
+        { title: 'Mobile-first', description: 'Optimiert für die Mehrheit, die mobil einkauft.' },
+        { title: 'Vollständige Eigenverantwortung', description: 'Design bis Deployment in einem Team.' }
+      ],
+      process: [
+        { title: 'Entdeckung & Planung', description: 'Ihren Katalog und Benutzerfluss kartieren.' },
+        { title: 'Design & Aufbau', description: 'Ihren konversionsorientierten Shop erstellen.' },
+        { title: 'Integration & Tests', description: 'Zahlungen, Versand und Qualitätssicherung.' },
+        { title: 'Start & Optimierung', description: 'Live, überwacht und kontinuierlich verbessert.' }
+      ],
+      growthSupport: 'Ein gut entwickelter Shop nimmt im Laufe der Zeit an Wert zu — bessere Konversionsraten, niedrigere Akquisitionskosten und eine skalierungsfertige Plattform.',
+      tags: ['Shopify', 'WooCommerce', 'Next.js Commerce', 'Headless', 'Abonnements', 'Zahlungen']
+    },
+    {
+      shortTitle: 'KI',
+      title: 'KI-Lösungen & Automatisierung',
+      description: 'Intelligente Systeme, die antworten, unterstützen und automatisieren — direkt in Ihre Abläufe integriert.',
+      slug: 'ai-solutions',
+      detailTitle: 'KI-Lösungen & Automatisierung für zukunftsorientierte Unternehmen',
+      detailSubtitle: 'Wir bauen maßgeschneiderte KI-Systeme für Unternehmen in den USA, Europa, den GCC-Staaten und Australien.',
+      whoFor: ['Kundenorientierte Unternehmen', 'Betriebsintensive Unternehmen', 'Gesundheit & Finanzen', 'Wachstumsteams'],
+      includes: ['Individuelle KI-Chatbots & virtuelle Assistenten', 'KI-Rezeptionisten & Terminsysteme', 'Workflow- & Prozessautomatisierung', 'LLM-Integration (OpenAI, Claude, Gemini)', 'Datenpipelines & intelligente Berichte'],
+      benefits: ['Geringerer Betriebsaufwand', 'Automatisierte Kundenbindung 24/7', 'Schnellere Reaktionszeiten', 'Skalierbar ohne Personalwachstum'],
+      whyChoose: [
+        { title: 'Multi-Modell-Expertise', description: 'OpenAI, Claude, Gemini — wir beherrschen den Stack.' },
+        { title: 'Maßgeschneidert, kein Plugin', description: 'Für Ihre genauen Workflows gebaut.' },
+        { title: 'Sichere Integrationen', description: 'Datenverwaltung auf Unternehmensebene.' },
+        { title: 'Messbarer ROI', description: 'Automatisierung an Geschäftsmetriken gebunden.' }
+      ],
+      process: [
+        { title: 'Prozessaudit', description: 'Die wertvollsten Automatisierungsmöglichkeiten finden.' },
+        { title: 'Architekturdesign', description: 'Das KI-System auf Ihre Workflows abbilden.' },
+        { title: 'Aufbauen & Trainieren', description: 'Die Lösung entwickeln und verfeinern.' },
+        { title: 'Einsetzen & Überwachen', description: 'Live mit kontinuierlicher Optimierung.' }
+      ],
+      growthSupport: 'KI-Automatisierung schafft zusammengesetzte Effizienz — jeder optimierte Prozess befreit Ihr Team für höherwertige Arbeit.',
+      tags: ['KI-Chatbots', 'KI-Rezeptionisten', 'Automatisierung', 'OpenAI', 'Claude', 'Gemini']
+    },
+    {
+      shortTitle: 'Lead-Gen',
+      title: 'KI-Lead-Generierung',
+      description: 'Automatisierte Pipelines, die Interessenten finden, qualifizieren und buchen, während Ihr Team sich auf den Abschluss konzentriert.',
+      slug: 'ai-lead-generation',
+      detailTitle: 'KI-gestützte Lead-Generierung, die Ihre Pipeline füllt',
+      detailSubtitle: 'Wir bauen automatisierte Lead-Generierungssysteme für Unternehmen in den USA, Europa, den GCC-Staaten und Australien.',
+      whoFor: ['B2B-Dienstleistungsunternehmen', 'Vertriebsorientierte Unternehmen', 'Wachstums-Startups', 'Enterprise-Vertriebsteams'],
+      includes: ['Automatisierte Kontaktsequenzen', 'Cold-Email-Systeme', 'LinkedIn-Prospecting-Automatisierung', 'KI-gestützte Lead-Qualifizierung', 'CRM-Integration & Terminvereinbarung'],
+      benefits: ['Konstanter Pipeline-Fluss', 'Niedrigere Kosten pro Lead', 'Hochwertigeres Prospect-Targeting', 'Vertriebsteam auf Abschlüsse fokussiert'],
+      whyChoose: [
+        { title: 'KI-first-Targeting', description: 'Präzises Prospecting mit intelligenter Filterung.' },
+        { title: 'Mehrkanalreichweite', description: 'E-Mail, LinkedIn und mehr — koordiniert.' },
+        { title: 'Vollständig konform', description: 'DSGVO- und CAN-SPAM-bewusste Kontaktaufnahme.' },
+        { title: 'CRM-nativ', description: 'Verbindet sich direkt mit Ihrem Vertriebsworkflow.' }
+      ],
+      process: [
+        { title: 'ICP-Definition', description: 'Ihr ideales Kundenprofil präzise definieren.' },
+        { title: 'Systemaufbau', description: 'Outreach-Sequenzen und Automatisierung konfigurieren.' },
+        { title: 'Kampagnenstart', description: 'Live mit kontrollierten Tests.' },
+        { title: 'Optimieren & Skalieren', description: 'Iterieren, was konvertiert.' }
+      ],
+      growthSupport: 'Ein gut aufgebauter Lead-Generierungsmotor schafft eine vorhersehbare, skalierbare Pipeline — die Konsistenz, die Ihr Unternehmen braucht, um Monat für Monat zu wachsen.',
+      tags: ['Automatisierter Kontakt', 'Cold Emails', 'LinkedIn-Outreach', 'Terminvereinbarung', 'Verkaufstrichter']
+    },
+    {
+      shortTitle: 'Marketing',
+      title: 'Performance Marketing',
+      description: 'Bezahlte Medien für Gewinn verwaltet, nicht für Eitelkeitsmetriken — vom Klick bis zum Umsatz verfolgt.',
+      slug: 'performance-marketing',
+      detailTitle: 'Performance Marketing, das echten Umsatz generiert',
+      detailSubtitle: 'Wir verwalten Paid-Media-Kampagnen für Unternehmen in den USA, Europa, den GCC-Staaten und Australien.',
+      whoFor: ['eCommerce- & DTC-Marken', 'Lead-Generierungsunternehmen', 'SaaS-Unternehmen', 'Lokale & nationale Marken'],
+      includes: ['Google Search & Shopping Ads', 'Meta (Facebook & Instagram) Ads', 'LinkedIn & Reddit Ads', 'Conversion-Tracking & Attribution', 'Remarketing & Zielgruppensegmentierung'],
+      benefits: ['Messbarer Return on Ad Spend', 'Geringere Kundenakquisitionskosten', 'Vorhersehbares Umsatzwachstum', 'Vollständige Trichtersichtbarkeit'],
+      whyChoose: [
+        { title: 'Umsatzorientiert', description: 'Jede Kampagne an Geschäftsergebnisse gebunden.' },
+        { title: 'Vollständige Trichterabdeckung', description: 'Von der Bekanntheit bis zur Konversion.' },
+        { title: 'Transparente Berichte', description: 'Echte Zahlen, keine Eitelkeitsmetriken.' },
+        { title: 'Regelkonform', description: 'Anzeigen innerhalb der Plattformrichtlinien.' }
+      ],
+      process: [
+        { title: 'Audit & Strategie', description: 'Aktuelle Leistung und Ziele überprüfen.' },
+        { title: 'Kampagnenarchitektur', description: 'Konto- und Anzeigenstrukturen aufbauen.' },
+        { title: 'Starten & Testen', description: 'Kontrollierte Experimente durchführen.' },
+        { title: 'Optimieren & Skalieren', description: 'Auf das setzen, was funktioniert.' }
+      ],
+      growthSupport: 'Performance Marketing fügt unmittelbaren Wachstumstreibstoff hinzu — die richtige bezahlte Strategie beschleunigt die Akquisition, während organische Kanäle sich verfestigen.',
+      tags: ['Google Ads', 'Meta Ads', 'LinkedIn Ads', 'Reddit Ads', 'Remarketing', 'Conversion-Tracking']
+    },
+    {
+      shortTitle: 'Social & UGC',
+      title: 'Social Media & UGC',
+      description: 'Vollständiges Social-Management mit authentischem Creator-Content, der Gemeinschaft aufbaut und Verkäufe antreibt.',
+      slug: 'social-media-ugc',
+      detailTitle: 'Social-Media-Management & UGC-Content-Erstellung',
+      detailSubtitle: 'Wir verwalten Social-Präsenz und produzieren Creator-Content für Marken in den USA, Europa, den GCC-Staaten und Australien.',
+      whoFor: ['Konsum- & Lifestyle-Marken', 'eCommerce-Unternehmen', 'Persönliche Marken', 'Wachstumsunternehmen'],
+      includes: ['Social-Media-Strategie & -Management', 'UGC-Content-Erstellung & -Beschaffung', 'KurzvideoProduktion', 'Content-Kalender & Planung', 'Community-Engagement & Moderation'],
+      benefits: ['Authentische Markenstimme', 'Höhere Engagement-Raten', 'Content, der zu Verkäufen konvertiert', 'Konsistente Veröffentlichungskadenz'],
+      whyChoose: [
+        { title: 'Creator-nativer Ansatz', description: 'Content, der sich nativ anfühlt, nicht gebrandet.' },
+        { title: 'Plattformspezialisten', description: 'Instagram, TikTok, LinkedIn, YouTube.' },
+        { title: 'UGC-Netzwerk', description: 'Zugang zu authentischen Creator-Talenten.' },
+        { title: 'Datengesteuerter Content', description: 'Strategie durch Performance gestützt.' }
+      ],
+      process: [
+        { title: 'Markenaudit', description: 'Ihre Stimme und Zielgruppe verstehen.' },
+        { title: 'Strategie & Kalender', description: 'Content plattformübergreifend planen.' },
+        { title: 'Produktion', description: 'Content erstellen und beschaffen.' },
+        { title: 'Veröffentlichen & Engagieren', description: 'Posten, antworten und wachsen.' }
+      ],
+      growthSupport: 'Social Media und UGC schaffen ein Schwungrad — authentischer Content schafft Vertrauen, was Konversionen antreibt, was Wachstum und Community-Erweiterung befeuert.',
+      tags: ['Social-Management', 'UGC-Content', 'Kalender', 'Creator-Beschaffung', 'Kurzvideos']
+    },
+    {
+      shortTitle: 'GEO',
+      title: 'Generative Engine Optimization',
+      description: 'Lassen Sie Ihre Marke von ChatGPT, Claude, Gemini und KI-Übersichten von Google zitieren.',
+      slug: 'geo-optimization',
+      detailTitle: 'Generative Engine Optimization für das KI-First-Suchzeitalter',
+      detailSubtitle: 'Wir optimieren Marken für Zitierungen in KI-Antworten — sodass Ihr Unternehmen die Referenz ist, die ChatGPT, Claude und Gemini als erstes verwenden.',
+      whoFor: ['Marken für KI-versierte Käufer', 'B2B-Dienstleistungsanbieter', 'Thought-Leadership-Marken', 'Enterprise-Unternehmen'],
+      includes: ['Entitäts- & Wissensgraph-Optimierung', 'KI-Übersichten-Targeting-Strategie', 'LLM-Sichtbarkeitsüberwachung', 'Semantische Content-Architektur', 'Aufbau von Markenautorisierungssignalen'],
+      benefits: ['In KI-Antworten und Zusammenfassungen zitiert', 'Wettbewerbsvorteil in KI-Ergebnissen', 'Zukunftssichere Suchpräsenz', 'Höhere Markenautorisierungssignale'],
+      whyChoose: [
+        { title: 'GEO-Pioniere', description: 'Der KI-Suche voraus.' },
+        { title: 'Entitäts-zuerst-Denken', description: 'Marken aufbauen, denen KI-Modelle vertrauen.' },
+        { title: 'Multi-Engine-Abdeckung', description: 'ChatGPT, Claude, Gemini, Perplexity.' },
+        { title: 'Mit SEO gepaart', description: 'GEO und SEO arbeiten zusammen.' }
+      ],
+      process: [
+        { title: 'Markenentitäts-Audit', description: 'Ihre KI-Sichtbarkeits-Baseline bewerten.' },
+        { title: 'Wissensarchitektur', description: 'Ihren Entitätsgraphen strukturieren.' },
+        { title: 'Content-Optimierung', description: 'Semantisch reichen Content erstellen, dem KI vertraut.' },
+        { title: 'Überwachen & Anpassen', description: 'Zitierungen verfolgen und verfeinern.' }
+      ],
+      growthSupport: 'Da KI-gesteuerte Suche mehr der Käuferreise erfasst, stellt GEO sicher, dass Ihre Marke die Antwort ist, die KI liefert — ein sich aufbauender Wettbewerbsgraben.',
+      tags: ['Entitätsoptimierung', 'Wissensgraphen', 'KI-Übersichten', 'LLM-Sichtbarkeit', 'Semantische Optimierung']
+    },
+    {
+      shortTitle: 'AEO',
+      title: 'Answer Engine Optimization',
+      description: 'Strukturierter Content, der für Featured Snippets, Sprachresultate und KI-Zitierungen optimiert ist.',
+      slug: 'aeo-optimization',
+      detailTitle: 'Answer Engine Optimization — Snippets, Sprache & KI-Zitierungen gewinnen',
+      detailSubtitle: 'Wir gestalten Ihren Content als die Antwort — und erfassen Featured Snippets, Sprachresultate und KI-generierte Antwortboxen.',
+      whoFor: ['Content-reiche Websites', 'eCommerce-Frageseiten', 'Gesundheit & professionelle Dienste', 'Hochintentionale B2B-Marken'],
+      includes: ['Featured-Snippet-Targeting', 'FAQ-Schema & strukturierte Daten', 'Sprachsuche-Optimierung', '"Nutzer fragen auch"-Abdeckung', 'KI-Zitierungs-Content-Frameworks'],
+      benefits: ['Zero-Click-Sichtbarkeit', 'Sprachsuche-Autorität', 'Höhere CTR bei Rich Results', 'KI-Antwortmaschinen-Zitierungen'],
+      whyChoose: [
+        { title: 'Snippet-Engineering', description: 'Content für die Dominanz in Antwortboxen.' },
+        { title: 'Schema-Spezialisten', description: 'Strukturierte Daten, die Suchmaschinen verstehen.' },
+        { title: 'Sprache-zuerst-Strategie', description: 'Optimiert für die Art, wie Menschen wirklich fragen.' },
+        { title: 'Mit SEO & GEO gepaart', description: 'Eine vollständige Suchpräsenzlösung.' }
+      ],
+      process: [
+        { title: 'Absichtsrecherche', description: 'Die Fragen Ihrer Zielgruppe finden.' },
+        { title: 'Content-Architektur', description: 'Antworten strukturieren, die Suchmaschinen bevorzugen.' },
+        { title: 'Schema-Implementierung', description: 'Technisches Markup für Rich Results.' },
+        { title: 'Überwachen & Erweitern', description: 'Erfolge verfolgen und mehr erfassen.' }
+      ],
+      growthSupport: 'AEO erfasst Zero-Click-Momente und Sprachanfragen — den am schnellsten wachsenden Anteil der Suche — und stellt Ihre Marke in den Vordergrund, bevor Wettbewerber laden.',
+      tags: ['Featured Snippets', 'Sprachsuche', 'Nutzer fragen auch', 'FAQ-Optimierung', 'KI-Zitierungen']
+    },
+    {
+      shortTitle: 'Mobil',
+      title: 'Mobile-App-Entwicklung',
+      description: 'Native und plattformübergreifende Apps, die sich schnell anfühlen, poliert aussehen und pünktlich geliefert werden.',
+      slug: 'mobile-development',
+      detailTitle: 'Mobile-App-Entwicklung für iOS, Android & plattformübergreifend',
+      detailSubtitle: 'Wir bauen leistungsstarke mobile Anwendungen für Unternehmen in den USA, Europa, den GCC-Staaten und Australien.',
+      whoFor: ['Verbraucherproduktunternehmen', 'B2B-SaaS-Plattformen', 'Gesundheit & Fintech', 'Marktplatz-Unternehmen'],
+      includes: ['iOS- & Android-Entwicklung', 'React Native & Flutter Builds', 'UI/UX-Design für Mobil', 'App-Store-Einreichung & Optimierung', 'Push-Benachrichtigungen & Echtzeit-Funktionen'],
+      benefits: ['Native Leistung & Gefühl', 'Plattformübergreifende Code-Effizienz', 'App-Store-Präsenz', 'Höheres Benutzer-Engagement'],
+      whyChoose: [
+        { title: 'Nativ oder plattformübergreifend', description: 'Wir empfehlen den richtigen Ansatz für Ihre Bedürfnisse.' },
+        { title: 'Design-getriebene Entwicklung', description: 'Schöne Apps, die tadellos funktionieren.' },
+        { title: 'End-to-End-Lieferung', description: 'Konzept bis App Store in einem Team.' },
+        { title: 'Fortlaufende Unterstützung', description: 'Updates, Funktionen und Optimierung nach dem Launch.' }
+      ],
+      process: [
+        { title: 'Entdeckung & Architektur', description: 'Funktionen und Tech-Stack definieren.' },
+        { title: 'Design & Prototyp', description: 'High-Fidelity-Mobil-UI-Design.' },
+        { title: 'Entwicklung & QA', description: 'Auf echten Geräten bauen und testen.' },
+        { title: 'Launch & Support', description: 'Einreichung, live und Iteration.' }
+      ],
+      growthSupport: 'Eine mobile App schafft einen direkten, dauerhaften Kanal zu Ihren Nutzern — den Berührungspunkt mit dem höchsten Engagement für Retention, Upsell und Community-Aufbau.',
+      tags: ['iOS', 'Android', 'Flutter', 'React Native', 'PWAs']
+    },
+    {
+      shortTitle: 'APIs',
+      title: 'API & Integrationen',
+      description: 'Robuste APIs und Drittanbieter-Integrationen, die Ihren gesamten Stack zu einem System verbinden.',
+      slug: 'api-integrations',
+      detailTitle: 'API-Entwicklung & Systemintegrationen für vernetzte Unternehmen',
+      detailSubtitle: 'Wir entwerfen und bauen APIs und Integrationen für Unternehmen in den USA, Europa, den GCC-Staaten und Australien.',
+      whoFor: ['Multi-Plattform-Unternehmen', 'SaaS-Unternehmen', 'Enterprise-Betrieb', 'eCommerce-Marken'],
+      includes: ['REST- & GraphQL-API-Entwicklung', 'Drittanbieter-Plattform-Integrationen', 'Zahlungs- & Authentifizierungs-APIs', 'Webhook- & event-driven Systeme', 'API-Dokumentation & Versionierung'],
+      benefits: ['Vereinheitlichte Daten über Plattformen', 'Automatisierte systemübergreifende Workflows', 'Reduzierte manuelle Dateneingabe', 'Skalierbare Integrationsarchitektur'],
+      whyChoose: [
+        { title: 'Protokollunabhängig', description: 'REST, GraphQL, gRPC — wir nutzen, was passt.' },
+        { title: 'Sicherheit zuerst', description: 'OAuth, JWT und unternehmensweite Authentifizierung.' },
+        { title: 'Gut dokumentiert', description: 'APIs, die Ihr Team verstehen und erweitern kann.' },
+        { title: 'Jede Plattform', description: 'Stripe, HubSpot, Salesforce und mehr.' }
+      ],
+      process: [
+        { title: 'Anforderungskartierung', description: 'Definieren, was sich womit verbindet und warum.' },
+        { title: 'Architekturdesign', description: 'Die Integrationsschicht planen.' },
+        { title: 'Entwicklung & Tests', description: 'Jeden Endpoint bauen und validieren.' },
+        { title: 'Dokumentation & Deployment', description: 'Saubere, dokumentierte APIs liefern.' }
+      ],
+      growthSupport: 'Integrierte Systeme beseitigen Reibung und schaffen Hebelwirkung — jede Verbindung, die Sie herstellen, multipliziert die Effizienz Ihrer gesamten digitalen Operation.',
+      tags: ['REST APIs', 'GraphQL', 'Zahlungs-APIs', 'Authentifizierung', 'Automatisierungs-APIs']
+    },
+    {
+      shortTitle: 'Cloud',
+      title: 'Cloud & Infrastruktur',
+      description: 'Deployment, Hosting und Infrastruktur für maximale Verfügbarkeit, Sicherheit und globale Geschwindigkeit.',
+      slug: 'cloud-infrastructure',
+      detailTitle: 'Cloud-Infrastruktur & DevOps für zuverlässige digitale Operationen',
+      detailSubtitle: 'Wir entwerfen und verwalten Cloud-Infrastruktur für Unternehmen in den USA, Europa, den GCC-Staaten und Australien.',
+      whoFor: ['Hochfrequentierte Anwendungen', 'SaaS-Plattformen', 'Enterprise-Betrieb', 'Globale eCommerce-Marken'],
+      includes: ['Cloud-Architekturdesign (AWS, GCP, Azure)', 'Vercel & Cloudflare Deployment', 'CI/CD-Pipeline-Einrichtung', 'Datenbankverwaltung & Skalierung', 'Sicherheitshärtung & Überwachung'],
+      benefits: ['Maximale Verfügbarkeit & Zuverlässigkeit', 'Globale CDN-Leistung', 'Automatische Skalierung bei Bedarf', 'Reduzierte Infrastrukturkosten'],
+      whyChoose: [
+        { title: 'Multi-Cloud-Expertise', description: 'AWS, GCP, Vercel, Cloudflare und mehr.' },
+        { title: 'DevOps Best Practices', description: 'CI/CD, IaC und automatisierte Deployments.' },
+        { title: 'Sicherheit zuerst', description: 'Gehärtete Konfigurationen vom ersten Tag an.' },
+        { title: 'Kostenoptimiert', description: 'Ressourcen passend zu Ihren tatsächlichen Bedürfnissen.' }
+      ],
+      process: [
+        { title: 'Infrastruktur-Audit', description: 'Aktuelle Einrichtung und Lücken bewerten.' },
+        { title: 'Architekturdesign', description: 'Den optimalen Cloud-Stack planen.' },
+        { title: 'Deployment & Migration', description: 'Sicher einrichten und migrieren.' },
+        { title: 'Überwachen & Optimieren', description: 'Laufendes Leistungs- und Kostenmanagement.' }
+      ],
+      growthSupport: 'Felsenfeste Infrastruktur ist das Fundament, auf dem jedes digitale Unternehmen aufgebaut wird — das richtige Setup bedeutet, dass Sie nie an eine Decke stoßen, wenn Wachstum kommt.',
+      tags: ['AWS', 'Vercel', 'Cloudflare', 'Supabase', 'Firebase', 'DigitalOcean']
+    },
   ],
   learnMore: 'Mehr erfahren',
   includes: 'Was ist enthalten',

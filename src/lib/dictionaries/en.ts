@@ -500,6 +500,256 @@
         ],
         growthSupport: 'A well-engineered telehealth platform removes friction from care delivery — enabling you to serve more patients, expand into new markets, and build a defensible digital health brand.'
       },
+      {
+        shortTitle: 'eCommerce',
+        title: 'eCommerce Development',
+        description: 'Storefronts built to sell — from Shopify to fully headless commerce with seamless checkout.',
+        slug: 'ecommerce-development',
+        detailTitle: 'eCommerce Development for High-Converting Online Stores',
+        detailSubtitle: 'We build custom eCommerce platforms for brands in the US, Europe, GCC, and Australia — engineered for conversion, scalability, and seamless customer experience.',
+        whoFor: ['DTC & Consumer Brands', 'Retail Businesses', 'Subscription Products', 'Multi-Vendor Marketplaces'],
+        includes: ['Custom storefront design & development', 'Secure checkout & payment gateways', 'Inventory & order management', 'Subscription & loyalty systems', 'Mobile-first commerce experience'],
+        benefits: ['Higher conversion rates', 'Streamlined order operations', 'Scalable product catalog', 'Repeat customer growth'],
+        whyChoose: [
+          { title: 'Conversion-first builds', description: 'Every page engineered to maximize revenue.' },
+          { title: 'Platform-agnostic', description: 'Shopify, WooCommerce, or fully headless.' },
+          { title: 'Mobile-first', description: 'Optimized for the majority who shop on mobile.' },
+          { title: 'Full-stack ownership', description: 'Design through deployment in one team.' }
+        ],
+        process: [
+          { title: 'Discovery & Planning', description: 'Mapping your catalog, goals, and user flow.' },
+          { title: 'Design & Build', description: 'Creating your conversion-focused storefront.' },
+          { title: 'Integration & Testing', description: 'Payments, shipping, and QA.' },
+          { title: 'Launch & Optimize', description: 'Live, monitored, and continually improved.' }
+        ],
+        growthSupport: 'A well-engineered storefront compounds in value — better conversion rates, lower acquisition costs, and a platform ready to scale with your catalog.',
+        tags: ['Shopify', 'WooCommerce', 'Next.js Commerce', 'Headless', 'Subscriptions', 'Payment Gateways']
+      },
+      {
+        shortTitle: 'AI',
+        title: 'AI Solutions & Automation',
+        description: 'Intelligent systems that answer, assist, and automate — integrated directly into your operations.',
+        slug: 'ai-solutions',
+        detailTitle: 'AI Solutions & Automation for Forward-Thinking Businesses',
+        detailSubtitle: 'We build custom AI systems for businesses in the US, Europe, GCC, and Australia — from intelligent chatbots to full workflow automation.',
+        whoFor: ['Customer-Facing Businesses', 'Operations-Heavy Companies', 'Healthcare & Finance', 'Scale-Up Teams'],
+        includes: ['Custom AI chatbots & virtual assistants', 'AI receptionist & appointment systems', 'Workflow & process automation', 'LLM integration (OpenAI, Claude, Gemini)', 'Data pipelines & intelligent reporting'],
+        benefits: ['Reduced operational overhead', '24/7 automated customer engagement', 'Faster response times', 'Scalable without headcount growth'],
+        whyChoose: [
+          { title: 'Multi-model expertise', description: 'OpenAI, Claude, Gemini — we know the stack.' },
+          { title: 'Custom, not plug-in', description: 'Built to your exact workflows and data.' },
+          { title: 'Secure integrations', description: 'Enterprise-grade data handling.' },
+          { title: 'Measurable ROI', description: 'Automation tied to business metrics.' }
+        ],
+        process: [
+          { title: 'Process Audit', description: 'Finding the highest-value automation opportunities.' },
+          { title: 'Architecture Design', description: 'Mapping the AI system to your workflows.' },
+          { title: 'Build & Train', description: 'Developing and fine-tuning the solution.' },
+          { title: 'Deploy & Monitor', description: 'Going live with ongoing optimization.' }
+        ],
+        growthSupport: 'AI automation creates compounding efficiency — every process streamlined frees your team to focus on higher-value work and accelerates your growth ceiling.',
+        tags: ['AI Chatbots', 'AI Receptionists', 'Workflow Automation', 'OpenAI', 'Claude', 'Gemini']
+      },
+      {
+        shortTitle: 'Lead Gen',
+        title: 'AI Lead Generation',
+        description: 'Automated pipelines that find, qualify, and book prospects while your team focuses on closing.',
+        slug: 'ai-lead-generation',
+        detailTitle: 'AI-Powered Lead Generation That Fills Your Pipeline',
+        detailSubtitle: 'We build automated lead generation systems for businesses in the US, Europe, GCC, and Australia — targeting, qualifying, and booking prospects at scale.',
+        whoFor: ['B2B Service Businesses', 'Sales-Led Companies', 'Growth-Stage Startups', 'Enterprise Sales Teams'],
+        includes: ['Automated outreach sequences', 'Cold email systems & warming', 'LinkedIn prospecting automation', 'AI-powered lead qualification', 'CRM integration & appointment setting'],
+        benefits: ['Consistent pipeline flow', 'Lower cost-per-lead', 'Higher-quality prospect targeting', 'Sales team focused on closing'],
+        whyChoose: [
+          { title: 'AI-first targeting', description: 'Precision prospecting with intelligent filtering.' },
+          { title: 'Multi-channel reach', description: 'Email, LinkedIn, and beyond — coordinated.' },
+          { title: 'Fully compliant', description: 'GDPR and CAN-SPAM aware outreach.' },
+          { title: 'CRM-native', description: 'Plugs directly into your sales workflow.' }
+        ],
+        process: [
+          { title: 'ICP Definition', description: 'Defining your ideal customer profile precisely.' },
+          { title: 'System Build', description: 'Configuring outreach sequences and automation.' },
+          { title: 'Campaign Launch', description: 'Going live with controlled testing.' },
+          { title: 'Optimize & Scale', description: 'Iterating on what converts.' }
+        ],
+        growthSupport: 'A well-built lead generation engine creates a predictable, scalable pipeline — giving your business the consistency and fuel it needs to grow month over month.',
+        tags: ['Automated Outreach', 'Cold Email Systems', 'LinkedIn Outreach', 'Appointment Setting', 'Sales Funnels']
+      },
+      {
+        shortTitle: 'Paid Media',
+        title: 'Performance Marketing',
+        description: 'Paid media managed for profit, not vanity metrics — tracked end-to-end from click to revenue.',
+        slug: 'performance-marketing',
+        detailTitle: 'Performance Marketing That Drives Real Revenue',
+        detailSubtitle: 'We manage paid media campaigns for businesses in the US, Europe, GCC, and Australia — engineered for conversion, not just clicks.',
+        whoFor: ['eCommerce & DTC Brands', 'Lead Generation Businesses', 'SaaS Companies', 'Local & National Brands'],
+        includes: ['Google Search & Shopping Ads', 'Meta (Facebook & Instagram) Ads', 'LinkedIn & Reddit Ads', 'Conversion tracking & attribution', 'Remarketing & audience segmentation'],
+        benefits: ['Measurable return on ad spend', 'Lower customer acquisition cost', 'Predictable revenue growth', 'Full-funnel visibility'],
+        whyChoose: [
+          { title: 'Revenue-focused', description: 'Every campaign tied to business outcomes.' },
+          { title: 'Full-funnel coverage', description: 'Awareness through conversion.' },
+          { title: 'Transparent reporting', description: 'Real numbers, not vanity metrics.' },
+          { title: 'Compliance-aware', description: 'Ads built within platform policies.' }
+        ],
+        process: [
+          { title: 'Audit & Strategy', description: 'Reviewing current performance and goals.' },
+          { title: 'Campaign Architecture', description: 'Building account and ad structures.' },
+          { title: 'Launch & Test', description: 'Running controlled experiments.' },
+          { title: 'Optimize & Scale', description: 'Doubling down on what works.' }
+        ],
+        growthSupport: 'Performance marketing adds immediate fuel to growth — the right paid strategy accelerates acquisition while organic channels compound in the background.',
+        tags: ['Google Ads', 'Meta Ads', 'LinkedIn Ads', 'Reddit Ads', 'Remarketing', 'Conversion Tracking']
+      },
+      {
+        shortTitle: 'Social & UGC',
+        title: 'Social Media & UGC',
+        description: 'Full-service social management with authentic creator-style content that builds community and drives sales.',
+        slug: 'social-media-ugc',
+        detailTitle: 'Social Media Management & UGC Content Creation',
+        detailSubtitle: 'We manage social presence and produce creator-driven content for brands in the US, Europe, GCC, and Australia — building community and fueling conversions.',
+        whoFor: ['Consumer & Lifestyle Brands', 'eCommerce Businesses', 'Personal Brands', 'Growth-Stage Companies'],
+        includes: ['Social media strategy & management', 'UGC content creation & sourcing', 'Short-form video production', 'Content calendars & scheduling', 'Community engagement & moderation'],
+        benefits: ['Authentic brand voice', 'Higher engagement rates', 'Content that converts to sales', 'Consistent publishing cadence'],
+        whyChoose: [
+          { title: 'Creator-native approach', description: 'Content that feels native, not branded.' },
+          { title: 'Platform specialists', description: 'Instagram, TikTok, LinkedIn, YouTube.' },
+          { title: 'UGC network', description: 'Access to authentic creator talent.' },
+          { title: 'Data-driven content', description: 'Strategy backed by performance.' }
+        ],
+        process: [
+          { title: 'Brand Audit', description: 'Understanding your voice and audience.' },
+          { title: 'Strategy & Calendaring', description: 'Planning content across platforms.' },
+          { title: 'Production', description: 'Creating and sourcing content.' },
+          { title: 'Publish & Engage', description: 'Posting, responding, and growing.' }
+        ],
+        growthSupport: 'Social media and UGC create a flywheel — authentic content builds trust, which drives conversions, which fuels growth and community expansion.',
+        tags: ['Social Media Management', 'UGC Content', 'Content Calendars', 'Creator Sourcing', 'Short-Form Video']
+      },
+      {
+        shortTitle: 'GEO',
+        title: 'Generative Engine Optimization',
+        description: 'Get your brand cited by ChatGPT, Claude, Gemini, and AI Overviews — the new front page of search.',
+        slug: 'geo-optimization',
+        detailTitle: 'Generative Engine Optimization for the AI-First Search Era',
+        detailSubtitle: 'We optimize brands for citation in AI answers — making your business the reference that ChatGPT, Claude, Gemini, and AI Overviews reach for first.',
+        whoFor: ['Brands Targeting AI-Savvy Buyers', 'B2B Service Providers', 'Thought Leadership Brands', 'Enterprise Businesses'],
+        includes: ['Entity & knowledge graph optimization', 'AI Overview targeting strategy', 'LLM visibility monitoring', 'Semantic content architecture', 'Brand authority signal building'],
+        benefits: ['Cited in AI answers & summaries', 'Invisible to competitors in AI results', 'Future-proof search presence', 'Higher brand authority signals'],
+        whyChoose: [
+          { title: 'GEO pioneers', description: 'Ahead of the curve on AI search.' },
+          { title: 'Entity-first thinking', description: 'Building brands AI models trust.' },
+          { title: 'Cross-engine coverage', description: 'ChatGPT, Claude, Gemini, Perplexity.' },
+          { title: 'Paired with SEO', description: 'GEO and SEO working together.' }
+        ],
+        process: [
+          { title: 'Brand Entity Audit', description: 'Assessing your AI visibility baseline.' },
+          { title: 'Knowledge Architecture', description: 'Structuring your entity graph.' },
+          { title: 'Content Optimization', description: 'Creating semantically rich content AI trusts.' },
+          { title: 'Monitor & Adapt', description: 'Tracking citations and refining.' }
+        ],
+        growthSupport: 'As AI-driven search captures more of the buyer journey, GEO ensures your brand is the answer AI delivers — a compounding competitive moat.',
+        tags: ['Entity Optimization', 'Knowledge Graphs', 'AI Overviews', 'LLM Visibility', 'Semantic Optimization']
+      },
+      {
+        shortTitle: 'AEO',
+        title: 'Answer Engine Optimization',
+        description: 'Structured content engineered to win featured snippets, voice results, and AI citations.',
+        slug: 'aeo-optimization',
+        detailTitle: 'Answer Engine Optimization — Win Snippets, Voice & AI Citations',
+        detailSubtitle: 'We engineer your content to be the answer — capturing featured snippets, voice results, and AI-generated answer boxes across every major search surface.',
+        whoFor: ['Content-Rich Websites', 'eCommerce Question Pages', 'Healthcare & Professional Services', 'High-Intent B2B Brands'],
+        includes: ['Featured snippet targeting', 'FAQ schema & structured data', 'Voice search optimization', 'People Also Ask coverage', 'AI citation content frameworks'],
+        benefits: ['Zero-click visibility', 'Voice search authority', 'Higher click-through from rich results', 'AI answer engine citations'],
+        whyChoose: [
+          { title: 'Snippet engineering', description: 'Content crafted to own answer boxes.' },
+          { title: 'Schema specialists', description: 'Structured data that search engines understand.' },
+          { title: 'Voice-first strategy', description: 'Optimized for how people actually ask.' },
+          { title: 'Paired with SEO & GEO', description: 'A complete search presence solution.' }
+        ],
+        process: [
+          { title: 'Intent Research', description: 'Finding the questions your audience asks.' },
+          { title: 'Content Architecture', description: 'Structuring answers search engines prefer.' },
+          { title: 'Schema Implementation', description: 'Technical markup for rich results.' },
+          { title: 'Monitor & Expand', description: 'Tracking wins and capturing more.' }
+        ],
+        growthSupport: 'AEO captures zero-click moments and voice queries — the fastest-growing share of search — putting your brand front and center before competitors load.',
+        tags: ['Featured Snippets', 'Voice Search', 'People Also Ask', 'FAQ Optimization', 'AI Citations']
+      },
+      {
+        shortTitle: 'Mobile',
+        title: 'Mobile App Development',
+        description: 'Native and cross-platform apps that feel fast, look polished, and ship on time.',
+        slug: 'mobile-development',
+        detailTitle: 'Mobile App Development for iOS, Android & Cross-Platform',
+        detailSubtitle: 'We build performant, polished mobile applications for businesses in the US, Europe, GCC, and Australia — native and cross-platform.',
+        whoFor: ['Consumer Product Companies', 'B2B SaaS Platforms', 'Healthcare & Fintech', 'Marketplace Businesses'],
+        includes: ['iOS & Android development', 'React Native & Flutter builds', 'UI/UX design for mobile', 'App Store submission & optimization', 'Push notifications & real-time features'],
+        benefits: ['Native performance & feel', 'Cross-platform code efficiency', 'App Store presence', 'Higher user engagement'],
+        whyChoose: [
+          { title: 'Native or cross-platform', description: 'We recommend the right approach for your needs.' },
+          { title: 'Design-led development', description: 'Beautiful apps that function flawlessly.' },
+          { title: 'End-to-end delivery', description: 'Concept to App Store in one team.' },
+          { title: 'Ongoing support', description: 'Updates, features, and optimization post-launch.' }
+        ],
+        process: [
+          { title: 'Discovery & Architecture', description: 'Defining features and tech stack.' },
+          { title: 'Design & Prototype', description: 'High-fidelity mobile UI design.' },
+          { title: 'Development & QA', description: 'Building and testing on real devices.' },
+          { title: 'Launch & Support', description: 'Submission, live, and iteration.' }
+        ],
+        growthSupport: 'A mobile app creates a direct, persistent channel with your users — the highest-engagement touchpoint for retention, upsell, and community building.',
+        tags: ['iOS', 'Android', 'Flutter', 'React Native', 'PWAs']
+      },
+      {
+        shortTitle: 'APIs',
+        title: 'API & Integrations',
+        description: 'Robust APIs and third-party integrations that connect your entire stack into one system.',
+        slug: 'api-integrations',
+        detailTitle: 'API Development & System Integrations for Connected Businesses',
+        detailSubtitle: 'We architect and build APIs and integrations for businesses in the US, Europe, GCC, and Australia — connecting your tools, platforms, and data into one coherent system.',
+        whoFor: ['Multi-Platform Businesses', 'SaaS Companies', 'Enterprise Operations', 'eCommerce Brands'],
+        includes: ['REST & GraphQL API development', 'Third-party platform integrations', 'Payment & authentication APIs', 'Webhook & event-driven systems', 'API documentation & versioning'],
+        benefits: ['Unified data across platforms', 'Automated cross-system workflows', 'Reduced manual data entry', 'Scalable integration architecture'],
+        whyChoose: [
+          { title: 'Protocol-agnostic', description: 'REST, GraphQL, gRPC — we use what fits.' },
+          { title: 'Security-first', description: 'OAuth, JWT, and enterprise-grade auth.' },
+          { title: 'Well-documented', description: 'APIs your team can understand and extend.' },
+          { title: 'Any platform', description: 'Stripe, HubSpot, Salesforce, and beyond.' }
+        ],
+        process: [
+          { title: 'Requirements Mapping', description: 'Defining what connects to what and why.' },
+          { title: 'Architecture Design', description: 'Planning the integration layer.' },
+          { title: 'Development & Testing', description: 'Building and validating each endpoint.' },
+          { title: 'Documentation & Deploy', description: 'Shipping clean, documented APIs.' }
+        ],
+        growthSupport: 'Integrated systems eliminate friction and create leverage — every connection you make compounds the efficiency and intelligence of your entire digital operation.',
+        tags: ['REST APIs', 'GraphQL', 'Payment APIs', 'Authentication', 'Automation APIs']
+      },
+      {
+        shortTitle: 'Cloud',
+        title: 'Cloud & Infrastructure',
+        description: 'Deployment, hosting, and infrastructure engineered for uptime, security, and global speed.',
+        slug: 'cloud-infrastructure',
+        detailTitle: 'Cloud Infrastructure & DevOps for Reliable Digital Operations',
+        detailSubtitle: 'We architect and manage cloud infrastructure for businesses in the US, Europe, GCC, and Australia — built for global performance, security, and scale.',
+        whoFor: ['High-Traffic Applications', 'SaaS Platforms', 'Enterprise Operations', 'Global eCommerce Brands'],
+        includes: ['Cloud architecture design (AWS, GCP, Azure)', 'Vercel & Cloudflare deployment', 'CI/CD pipeline setup', 'Database management & scaling', 'Security hardening & monitoring'],
+        benefits: ['Maximum uptime & reliability', 'Global CDN performance', 'Auto-scaling on demand', 'Reduced infrastructure costs'],
+        whyChoose: [
+          { title: 'Multi-cloud expertise', description: 'AWS, GCP, Vercel, Cloudflare, and more.' },
+          { title: 'DevOps best practices', description: 'CI/CD, IaC, and automated deployments.' },
+          { title: 'Security-first', description: 'Hardened configurations from day one.' },
+          { title: 'Cost-optimized', description: 'Right-sized resources for your actual needs.' }
+        ],
+        process: [
+          { title: 'Infrastructure Audit', description: 'Assessing current setup and gaps.' },
+          { title: 'Architecture Design', description: 'Planning the optimal cloud stack.' },
+          { title: 'Deployment & Migration', description: 'Setting up and moving safely.' },
+          { title: 'Monitor & Optimize', description: 'Ongoing performance and cost management.' }
+        ],
+        growthSupport: 'Rock-solid infrastructure is the foundation every digital business is built on — the right setup means you never hit a ceiling when growth arrives.',
+        tags: ['AWS', 'Vercel', 'Cloudflare', 'Supabase', 'Firebase', 'DigitalOcean']
+      },
     ],
     viewAll: 'View All Services',
     learnMore: 'Learn More',
