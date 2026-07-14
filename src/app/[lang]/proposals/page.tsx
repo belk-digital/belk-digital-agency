@@ -1,6 +1,11 @@
 import { Proposals } from '@/screens/Proposals';
 import { constructMetadata } from '@/lib/seo';
+import { i18n } from '@/lib/i18n-config';
 import type { Metadata } from 'next';
+
+export function generateStaticParams() {
+    return i18n.locales.map((lang) => ({ lang }));
+}
 
 export async function generateMetadata(): Promise<Metadata> {
     return constructMetadata({
