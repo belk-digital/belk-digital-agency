@@ -12,6 +12,7 @@ import { CTASection } from '@/components/home/CTASection';
 import { ServicesGrid } from '@/components/services/ServicesGrid';
 import { InfiniteMovingCards } from '@/components/ui/infinite-moving-cards';
 import { US_STATES } from '@/lib/states';
+import { getPSEOTemplates } from '@/lib/pseo-templates';
 
 const serviceIcons: Record<string, any> = {
   'custom-web-design': Palette,
@@ -74,20 +75,24 @@ const Services = () => {
   if (serviceSlug) {
     let service = t.services.items.find((s: any) => s.slug === serviceSlug) as any;
     const Icon = serviceIcons[serviceSlug] || Palette;
+    let pSEO: any = null;
 
     if (service && stateSlug && US_STATES[stateSlug]) {
       const stateName = US_STATES[stateSlug];
+      pSEO = getPSEOTemplates(language, serviceSlug, service.title, stateSlug, stateName);
+      
       service = {
         ...service,
         title: `${service.title} in ${stateName}`,
-        detailTitle: `${service.detailTitle || service.title} in ${stateName}`,
+        detailTitle: pSEO.detailTitle,
+        detailSubtitle: pSEO.detailSubtitle,
+        whoFor: pSEO.whoFor,
+        includes: pSEO.includes,
+        benefits: pSEO.benefits,
+        whyChoose: pSEO.whyChoose,
+        process: pSEO.process,
+        growthSupport: pSEO.growthSupport
       };
-      if (service.detailSubtitle) {
-        service.detailSubtitle = service.detailSubtitle.replace(
-          'in the US, Europe, GCC, and Australia',
-          `in ${stateName} and across the United States`
-        );
-      }
     }
 
     if (!service) {
@@ -439,8 +444,8 @@ const Services = () => {
         )}
 
         <CTASection
-          title={replacePlaceholders(t.services.common?.ctaTitle, service.title)}
-          subtitle={t.services.common?.ctaSubtitle}
+          title={pSEO ? pSEO.ctaTitle : replacePlaceholders(t.services.common?.ctaTitle, service.title)}
+          subtitle={pSEO ? pSEO.ctaSubtitle : t.services.common?.ctaSubtitle}
         />
       </div>
     );

@@ -5,18 +5,43 @@ import { Locale, i18n } from '@/lib/i18n-config';
 import { Metadata } from 'next';
 import PageJsonLd from '@/components/seo/PageJsonLd';
 import { US_STATES } from '@/lib/states';
+import { getPSEOTemplates } from '@/lib/pseo-templates';
 import { notFound } from 'next/navigation';
+
+const SERVICE_SLUGS = [
+    'custom-web-design',
+    'website-redesign',
+    'branding',
+    'ui-ux-design',
+    'web-development',
+    'seo-optimization',
+    'maintenance',
+    'shopify-development',
+    'custom-cms',
+    'telehealth-development',
+    'ecommerce-development',
+    'ai-solutions',
+    'ai-lead-generation',
+    'performance-marketing',
+    'social-media-ugc',
+    'geo-optimization',
+    'aeo-optimization',
+    'mobile-development',
+    'api-integrations',
+    'cloud-infrastructure'
+];
 
 export async function generateStaticParams() {
     const states = Object.keys(US_STATES);
-    const slug = 'custom-web-design';
 
     return i18n.locales.flatMap((lang) =>
-        states.map((state) => ({
-            lang,
-            slug,
-            state,
-        }))
+        SERVICE_SLUGS.flatMap((slug) =>
+            states.map((state) => ({
+                lang,
+                slug,
+                state,
+            }))
+        )
     );
 }
 
@@ -27,22 +52,29 @@ export async function generateMetadata({
 }): Promise<Metadata> {
     const { lang, slug, state } = await params;
 
-    if (slug !== 'custom-web-design' || !US_STATES[state]) {
+    if (!SERVICE_SLUGS.includes(slug) || !US_STATES[state]) {
         return {};
     }
 
     const dict = await getDictionary(lang as Locale);
     const service = dict.services?.items?.find((item: any) => item.slug === slug);
-    const stateName = US_STATES[state];
+    if (!service) {
+        return {};
+    }
 
-    const baseTitle = service ? service.title : dict.seo.services.title;
-    const serviceTitle = service?.detailTitle || baseTitle;
-    const title = `${serviceTitle} in ${stateName} - Belk Digital`;
-    const description = `We provide ${serviceTitle} in ${stateName} and across the United States, focused on performance, scalability, and measurable results.`;
+    const stateName = US_STATES[state];
+    const pSEO = getPSEOTemplates(lang, slug, service.title, state, stateName);
+
+    const title = `${pSEO.detailTitle} | Belk Digital`;
+    const description = pSEO.detailSubtitle;
+
+    // Soft-clamp metadata lengths to SEO recommended character guidelines
+    const optimizedTitle = title.length > 60 ? title.substring(0, 57) + '...' : title;
+    const optimizedDescription = description.length > 160 ? description.substring(0, 157) + '...' : description;
 
     return constructMetadata({
-        title,
-        description,
+        title: optimizedTitle,
+        description: optimizedDescription,
         path: `/services/${slug}/${state}`,
     });
 }
@@ -54,18 +86,21 @@ export default async function ServiceStateDetailPage({
 }) {
     const { lang, slug, state } = await params;
 
-    if (slug !== 'custom-web-design' || !US_STATES[state]) {
+    if (!SERVICE_SLUGS.includes(slug) || !US_STATES[state]) {
         notFound();
     }
 
     const dict = await getDictionary(lang as Locale);
     const service = dict.services?.items?.find((item: any) => item.slug === slug);
-    const stateName = US_STATES[state];
+    if (!service) {
+        notFound();
+    }
 
-    const baseTitle = service ? service.title : dict.seo.services.title;
-    const serviceTitle = service?.detailTitle || baseTitle;
-    const title = `${serviceTitle} in ${stateName} - Belk Digital`;
-    const description = `We provide ${serviceTitle} in ${stateName} and across the United States, focused on performance, scalability, and measurable results.`;
+    const stateName = US_STATES[state];
+    const pSEO = getPSEOTemplates(lang, slug, service.title, state, stateName);
+
+    const title = `${pSEO.detailTitle} | Belk Digital`;
+    const description = pSEO.detailSubtitle;
 
     return (
         <>
@@ -74,8 +109,14 @@ export default async function ServiceStateDetailPage({
                 name={title}
                 description={description}
                 url={`https://belkdigital.com/${lang}/services/${slug}/${state}`}
-                serviceType={service?.title}
+                serviceType={service?.title || 'Custom Web Design & UI/UX'}
                 areaServed={[stateName, 'United States']}
+                breadcrumb={[
+                    { name: 'Home', url: `https://belkdigital.com/${lang}` },
+                    { name: 'Services', url: `https://belkdigital.com/${lang}/services` },
+                    { name: service?.title || 'Custom Web Design & UI/UX', url: `https://belkdigital.com/${lang}/services/${slug}` },
+                    { name: `${service?.title || 'Service'} in ${stateName}`, url: `https://belkdigital.com/${lang}/services/${slug}/${state}` },
+                ]}
             />
             <Services />
         </>
