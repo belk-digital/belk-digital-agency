@@ -11,6 +11,7 @@ import { ArrowRight, Palette, RefreshCw, Fingerprint, Layout, Code, Search, Wren
 import { CTASection } from '@/components/home/CTASection';
 import { ServicesGrid } from '@/components/services/ServicesGrid';
 import { InfiniteMovingCards } from '@/components/ui/infinite-moving-cards';
+import { US_STATES } from '@/lib/states';
 
 const serviceIcons: Record<string, any> = {
   'custom-web-design': Palette,
@@ -64,14 +65,30 @@ const GLOBE_CONFIG = {
 };
 
 const Services = () => {
-  const { slug } = useParams();
+  const { slug, state } = useParams();
   const { language, t, isRTL } = useLanguage();
 
   const serviceSlug = Array.isArray(slug) ? slug[0] : slug;
+  const stateSlug = Array.isArray(state) ? state[0] : state;
 
   if (serviceSlug) {
-    const service = t.services.items.find((s: any) => s.slug === serviceSlug) as any;
+    let service = t.services.items.find((s: any) => s.slug === serviceSlug) as any;
     const Icon = serviceIcons[serviceSlug] || Palette;
+
+    if (service && stateSlug && US_STATES[stateSlug]) {
+      const stateName = US_STATES[stateSlug];
+      service = {
+        ...service,
+        title: `${service.title} in ${stateName}`,
+        detailTitle: `${service.detailTitle || service.title} in ${stateName}`,
+      };
+      if (service.detailSubtitle) {
+        service.detailSubtitle = service.detailSubtitle.replace(
+          'in the US, Europe, GCC, and Australia',
+          `in ${stateName} and across the United States`
+        );
+      }
+    }
 
     if (!service) {
       return (
