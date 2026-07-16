@@ -192,7 +192,7 @@
         slug: 'website-redesign',
         detailTitle: 'Website Redesign & Optimization Services for Modern Brands',
         detailSubtitle: 'We revitalize websites for businesses in the US, Europe, GCC, and Australia, focusing on modern aesthetics and improved conversion rates.',
-        whoFor: ['Legacy Businesses', 'Rebranding Comepanies', 'Low-performance Sites', 'Growing Startups'],
+        whoFor: ['Legacy Businesses', 'Rebranding Companies', 'Low-performance Sites', 'Growing Startups'],
         includes: [
           'Full UI/UX audit',
           'Modern visual overhaul',
