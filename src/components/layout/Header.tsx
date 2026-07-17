@@ -47,6 +47,7 @@ export function Header() {
     { href: `/${language}/work`, label: t.nav.work },
     { href: `/${language}/locations`, label: t.nav.locations },
     { href: `/${language}/blog`, label: t.nav.blog },
+    { href: `/${language}/areas-we-serve`, label: t.nav.areasWeServe },
   ];
 
   const isActiveLink = (href: string) => {

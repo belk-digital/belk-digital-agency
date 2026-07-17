@@ -54,6 +54,7 @@ nav: {
   work: 'Unsere Arbeit',
   locations: 'Standorte',
   blog: 'Blog',
+  areasWeServe: 'Einsatzgebiete',
   contact: 'Kontakt',
   faq: 'FAQ',
   bookCall: 'Gespräch vereinbaren',
@@ -1651,6 +1652,15 @@ terms: {
       { country: 'Australien', code: 'AU', cities: ['Sydney', 'Melbourne'], slug: 'australia' },
       { country: 'Indien', code: 'IN', cities: ['Mumbai', 'Bangalore', 'Delhi'], slug: '' }
     ]
+  },
+  areasWeServePage: {
+    badge: 'Nationale Abdeckung',
+    title: 'Einsatzgebiete',
+    titleItalic: 'In den gesamten USA',
+    subtitle: 'Belk Digital bietet digitale Dienstleistungen für Unternehmen in allen 50 US-Bundesstaaten an. Erkunden Sie Ihren Bundesstaat, um die für Ihre Region verfügbaren Services zu entdecken.',
+    dropdownButton: 'Unsere Dienstleistungen',
+    ctaTitle: 'Bereit, Ihre Marke landesweit zu transformieren?',
+    ctaSubtitle: 'Lassen Sie uns eine maßgeschneiderte digitale Lösung, eine leistungsstarke Website oder eine auf Ihren lokalen Markt zugeschnittene SEO-Kampagne erstellen.'
   }
 };
 
