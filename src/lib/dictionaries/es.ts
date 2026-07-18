@@ -49,6 +49,7 @@ const translations = {
     work: 'Nuestro Trabajo',
     locations: 'Ubicaciones',
     blog: 'Blog',
+    areasWeServe: 'Áreas de Servicio',
     contact: 'Contacto',
     faq: 'Preguntas Frecuentes',
     bookCall: 'Reservar Llamada',
@@ -1433,6 +1434,15 @@ const translations = {
         description: "Siempre disponibles para ayudarle."
       }
     ]
+  },
+  areasWeServePage: {
+    badge: 'Cobertura Nacional',
+    title: 'Áreas de Servicio',
+    titleItalic: 'En todo Estados Unidos',
+    subtitle: 'Belk Digital ofrece servicios digitales para empresas en los 50 estados de EE. UU. Explore su estado para descubrir los servicios disponibles para su región.',
+    dropdownButton: 'Nuestros Servicios',
+    ctaTitle: '¿Listo para transformar su marca a nivel nacional?',
+    ctaSubtitle: 'Construyamos una solución digital a la medida, un sitio web de alto rendimiento o una campaña de SEO adaptada a su mercado local.'
   }
 };
 

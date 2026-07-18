@@ -45,6 +45,7 @@ nav: {
   work: 'Nos Travaux',
   locations: 'Localisations',
   blog: 'Blog',
+  areasWeServe: 'Zones Desservies',
   contact: 'Contact',
   faq: 'FAQ',
   bookCall: 'Réserver un Appel',
@@ -1658,6 +1659,15 @@ terms: {
       { country: 'Australie', code: 'AU', cities: ['Sydney', 'Melbourne'], slug: 'australia' },
       { country: 'Inde', code: 'IN', cities: ['Mumbai', 'Bangalore', 'Delhi'], slug: '' }
     ]
+  },
+  areasWeServePage: {
+    badge: 'Couverture Nationale',
+    title: 'Zones Desservies',
+    titleItalic: 'À travers les États-Unis',
+    subtitle: 'Belk Digital fournit des services numériques pour les entreprises dans les 50 États américains. Explorez votre État pour découvrir les services disponibles pour votre région.',
+    dropdownButton: 'Nos Services',
+    ctaTitle: 'Prêt à transformer votre marque à l\'échelle nationale ?',
+    ctaSubtitle: 'Construisons une solution numérique sur mesure, un site Web haute performance ou une campagne SEO adaptée à votre marché local.'
   }
 };
 

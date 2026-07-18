@@ -47,6 +47,7 @@ export const translations = {
       work: 'Our Work',
       locations: 'Locations',
       blog: 'Blog',
+      areasWeServe: 'Areas We Serve',
       contact: 'Contact',
       faq: 'FAQ',
       bookCall: 'Book a Call',
@@ -1331,6 +1332,15 @@ export const translations = {
         title: 'Governing Law',
         description: 'These Terms and Conditions are governed by and construed in accordance with the laws of the jurisdiction in which Belk Digital operates. Any disputes relating to these terms will be subject to the exclusive jurisdiction of the courts in that jurisdiction.',
         description2: 'By using our services, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions. If you have any questions, please contact our legal team.'
+      },
+      areasWeServePage: {
+        badge: 'National Coverage',
+        title: 'Areas We Serve',
+        titleItalic: 'Across the United States',
+        subtitle: 'Belk Digital provides premium digital services for businesses across all 50 U.S. states. Explore your state to discover the services available for your region.',
+        dropdownButton: 'Our Services',
+        ctaTitle: 'Ready to transform your brand nationwide?',
+        ctaSubtitle: "Let's build a bespoke digital solution, high-performance website, or SEO campaign tailored to your local market."
       }
     },
   },
@@ -1381,6 +1391,7 @@ export const translations = {
       // work: 'أعمالنا',
       // locations: 'مواقعنا',
       blog: 'المدونة',
+      areasWeServe: 'مناطق الخدمة',
       contact: 'اتصل بنا',
       faq: 'الأسئلة الشائعة',
       bookCall: 'احجز مكالمة',
@@ -2606,6 +2617,15 @@ export const translations = {
       // aboutBtn: 'عن Belk Digital',
       teamBtn: 'قابل الفريق',
     },
+    areasWeServePage: {
+      badge: 'تغطية وطنية',
+      title: 'مناطق الخدمة',
+      titleItalic: 'في جميع أنحاء الولايات المتحدة',
+      subtitle: 'تقدم بيلك ديجيتال خدمات رقمية للشركات في جميع الولايات الأمريكية الخمسين. استكشف ولايتك لمعرفة الخدمات المتاحة لمنطقتك.',
+      dropdownButton: 'خدماتنا',
+      ctaTitle: 'جاهز لتطوير علامتك التجارية على مستوى الدولة؟',
+      ctaSubtitle: 'لنقم ببناء حل رقمي مخصص، أو موقع ويب عالي الأداء، أو حملة تحسين محركات البحث مصممة خصيصًا لسوقك المحلي.'
+    }
   },
   fr: {
     seo: {
@@ -2654,6 +2674,7 @@ export const translations = {
       work: 'Nos Travaux',
       locations: 'Localisations',
       blog: 'Blog',
+      areasWeServe: 'Zones Desservies',
       contact: 'Contact',
       faq: 'FAQ',
       bookCall: 'Réserver un Appel',
@@ -3878,6 +3899,15 @@ export const translations = {
       aboutBtn: 'À propos de Belk Digital',
       teamBtn: 'Rencontrez l\'équipe',
     },
+    areasWeServePage: {
+      badge: 'Couverture Nationale',
+      title: 'Zones Desservies',
+      titleItalic: 'À travers les États-Unis',
+      subtitle: 'Belk Digital fournit des services numériques pour les entreprises dans les 50 États américains. Explorez votre État pour découvrir les services disponibles pour votre région.',
+      dropdownButton: 'Nos Services',
+      ctaTitle: 'Prêt à transformer votre marque à l\'échelle nationale ?',
+      ctaSubtitle: 'Construisons une solution numérique sur mesure, un site Web haute performance ou une campagne SEO adaptée à votre marché local.'
+    }
   },
   de: {
     seo: {
@@ -3935,6 +3965,7 @@ export const translations = {
       work: 'Unsere Arbeit',
       locations: 'Standorte',
       blog: 'Blog',
+      areasWeServe: 'Einsatzgebiete',
       contact: 'Kontakt',
       faq: 'FAQ',
       bookCall: 'Gespräch vereinbaren',
@@ -5141,6 +5172,15 @@ export const translations = {
         title: 'Anwendbares Recht',
         description: 'Diese Allgemeinen Geschäftsbedingungen unterliegen den Gesetzen der Gerichtsbarkeit, in der Belk Digital tätig ist, und werden nach diesen ausgelegt. Alle Streitigkeiten im Zusammenhang mit diesen Bedingungen unterliegen der ausschließlichen Zuständigkeit der Gerichte dieser Gerichtsbarkeit.',
         description2: 'Durch die Nutzung unserer Dienste bestätigen Sie, dass Sie diese Allgemeinen Geschäftsbedingungen gelesen, verstanden und sich verpflichtet haben, an sie gebunden zu sein. Bei Fragen wenden Sie sich bitte an unser Rechtsteam.'
+      },
+      areasWeServePage: {
+        badge: 'Nationale Abdeckung',
+        title: 'Einsatzgebiete',
+        titleItalic: 'In den gesamten USA',
+        subtitle: 'Belk Digital bietet digitale Dienstleistungen für Unternehmen in allen 50 US-Bundesstaaten an. Erkunden Sie Ihren Bundesstaat, um die für Ihre Region verfügbaren Services zu entdecken.',
+        dropdownButton: 'Unsere Dienstleistungen',
+        ctaTitle: 'Bereit, Ihre Marke landesweit zu transformieren?',
+        ctaSubtitle: 'Lassen Sie uns eine maßgeschneiderte digitale Lösung, eine leistungsstarke Website oder eine auf Ihren lokalen Markt zugeschnittene SEO-Kampagne erstellen.'
       }
     },
   },

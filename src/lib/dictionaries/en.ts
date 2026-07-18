@@ -1,4 +1,4 @@
-﻿const translations = {
+const translations = {
   seo: {
     home: {
       title: 'Belk Digital | Premium Web Design & Strategic Search',
@@ -49,6 +49,7 @@
     work: 'Our Work',
     locations: 'Locations',
     blog: 'Blog',
+    areasWeServe: 'Areas We Serve',
     contact: 'Contact',
     faq: 'FAQ',
     bookCall: 'Book a Call',
@@ -1740,6 +1741,15 @@
         description: "We are always available to help you with your needs."
       }
     ]
+  },
+  areasWeServePage: {
+    badge: 'National Coverage',
+    title: 'Areas We Serve',
+    titleItalic: 'Across the United States',
+    subtitle: 'Belk Digital provides premium digital services for businesses across all 50 U.S. states. Explore your state to discover the services available for your region.',
+    dropdownButton: 'Our Services',
+    ctaTitle: 'Ready to transform your brand nationwide?',
+    ctaSubtitle: "Let's build a bespoke digital solution, high-performance website, or SEO campaign tailored to your local market."
   }
 };
 
