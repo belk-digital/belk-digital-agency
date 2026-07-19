@@ -54,33 +54,24 @@ export function AreasWeServe() {
   };
 
   return (
-    <div className="bg-black min-h-screen text-white">
+    <div className="bg-[#0A0A0A] min-h-screen text-white">
       {/* ── Hero Section ── */}
-      <section className="relative w-full flex flex-col justify-end overflow-hidden pt-40 md:pt-48 pb-20 border-b border-white/[0.06]">
-        {/* Subtle U.S. theme background pattern */}
-        <div className="absolute inset-0 z-0 flex items-center justify-center opacity-[0.03] pointer-events-none select-none">
-          <svg
-            className="w-full max-w-4xl h-auto"
-            viewBox="0 0 1000 600"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-          >
-            {/* Minimal stylized representation of U.S. Map Grid */}
-            <path d="M150,150 L250,120 L350,130 L450,110 L550,120 L650,100 L750,130 L850,110 L900,160 L880,300 L890,380 L800,430 L780,480 L700,500 L650,450 L580,470 L520,440 L450,490 L380,450 L300,470 L250,400 L180,380 L140,320 L100,280 L110,200 Z" />
-            <circle cx="200" cy="180" r="3" fill="currentColor" />
-            <circle cx="350" cy="220" r="3" fill="currentColor" />
-            <circle cx="500" cy="280" r="3" fill="currentColor" />
-            <circle cx="750" cy="240" r="3" fill="currentColor" />
-            <circle cx="820" cy="200" r="3" fill="currentColor" />
-            <circle cx="600" cy="380" r="3" fill="currentColor" />
-          </svg>
+      <section className="relative pt-44 pb-32 overflow-hidden">
+        {/* Background Image & Overlays */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/hero/about-bg.webp"
+            alt="Hero Background"
+            fill
+            className="object-cover opacity-40"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A] via-transparent to-[#0A0A0A] z-10" />
+          <div className="absolute inset-0 bg-black/40 z-10" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_70%_20%,rgba(59,130,246,0.12),transparent)] z-10" />
         </div>
 
-        {/* CSS glow background matching the rest of the site */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_500px_at_50%_-100px,rgba(59,130,246,0.12),transparent)] pointer-events-none" />
-
-        <div className="relative z-10 w-full max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16 flex flex-col items-center text-center">
+        <div className="relative z-20 w-full max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16 flex flex-col items-center text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -170,7 +161,11 @@ export function AreasWeServe() {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
                       transition={{ duration: 0.2, ease: "easeOut" }}
-                      className="absolute left-0 right-0 top-full mt-2 z-50 p-2 bg-neutral-950/95 border border-white/[0.08] rounded-2xl shadow-2xl backdrop-blur-md max-h-[280px] overflow-y-auto"
+                      data-lenis-prevent="true"
+                      data-lenis-prevent-touch="true"
+                      onWheel={(e) => e.stopPropagation()}
+                      onTouchMove={(e) => e.stopPropagation()}
+                      className="absolute left-0 right-0 top-full mt-2 z-50 p-2 bg-neutral-950/95 border border-white/[0.08] rounded-2xl shadow-2xl backdrop-blur-md max-h-[280px] overflow-y-auto overscroll-contain touch-pan-y"
                     >
                       <ul className="flex flex-col gap-1" role="menu">
                         {services.map((service: any) => (
