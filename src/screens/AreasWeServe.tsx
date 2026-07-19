@@ -161,7 +161,11 @@ export function AreasWeServe() {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
                       transition={{ duration: 0.2, ease: "easeOut" }}
-                      className="absolute left-0 right-0 top-full mt-2 z-50 p-2 bg-neutral-950/95 border border-white/[0.08] rounded-2xl shadow-2xl backdrop-blur-md max-h-[280px] overflow-y-auto"
+                      data-lenis-prevent="true"
+                      data-lenis-prevent-touch="true"
+                      onWheel={(e) => e.stopPropagation()}
+                      onTouchMove={(e) => e.stopPropagation()}
+                      className="absolute left-0 right-0 top-full mt-2 z-50 p-2 bg-neutral-950/95 border border-white/[0.08] rounded-2xl shadow-2xl backdrop-blur-md max-h-[280px] overflow-y-auto overscroll-contain touch-pan-y"
                     >
                       <ul className="flex flex-col gap-1" role="menu">
                         {services.map((service: any) => (
