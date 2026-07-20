@@ -9,6 +9,8 @@ import internationalSeoImg from '@/assets/blog/international-seo.png';
 import performanceRevenueImg from '@/assets/blog/performance-revenue.png';
 import coreWebVitalsImg from '@/assets/blog/core-web-vitals.png';
 import seoFirstDigitalImg from '@/assets/blog/seo-first-digital.png';
+import geoGuideImg from '@/assets/blog/geo-guide.jpg';
+import headlessCmsImg from '@/assets/blog/headless-cms.jpg';
 
 export interface BlogPost {
     slug: string;
@@ -461,7 +463,7 @@ export const blogPostsEN: BlogPost[] = [
         slug: 'generative-engine-optimization-geo-guide',
         title: 'Generative Engine Optimization (GEO): The Enterprise Guide for AI Search Visibility',
         excerpt: 'AI search engine discovery is reshaping how users find businesses online. Learn how Generative Engine Optimization (GEO) & AEO secure direct citations across ChatGPT, Perplexity, and Google AI Overviews.',
-        image: seoStrategyImg,
+        image: geoGuideImg,
         category: 'seo',
         author: 'Belk Digital Team',
         date: '2026-07-21',
@@ -527,7 +529,7 @@ export const blogPostsEN: BlogPost[] = [
         slug: 'nextjs-headless-cms-enterprise-playbook',
         title: 'Next.js & Headless CMS: The Enterprise Playbook for Speed, Security, and Scalability',
         excerpt: 'Decoupling frontend rendering from backend content management accelerates performance, eliminates security vulnerabilities, and lowers long-term total cost of ownership (TCO).',
-        image: businessGrowthImg,
+        image: headlessCmsImg,
         category: 'business',
         author: 'Belk Digital Team',
         date: '2026-07-21',
