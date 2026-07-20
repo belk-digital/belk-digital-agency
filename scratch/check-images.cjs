@@ -20,11 +20,27 @@ async function main() {
   const regex = /([a-zA-Z0-9'-]+):\s*'([^']+)'/g;
   let match;
   const urls = [];
+  const urlMap = new Map();
+  const duplicates = [];
+
   while ((match = regex.exec(content)) !== null) {
-    urls.push({ state: match[1], url: match[2] });
+    const state = match[1];
+    const url = match[2];
+    urls.push({ state, url });
+    if (urlMap.has(url)) {
+      duplicates.push({ state1: urlMap.get(url), state2: state, url });
+    } else {
+      urlMap.set(url, state);
+    }
   }
 
   console.log(`Extracted ${urls.length} URLs to check.`);
+  console.log(`Duplicate URLs count: ${duplicates.length}`);
+  if (duplicates.length > 0) {
+    console.log('Duplicates:', JSON.stringify(duplicates, null, 2));
+  } else {
+    console.log('All 50 image URLs are 100% unique!');
+  }
   
   const promises = urls.map(({ state, url }) => checkUrl(state, url));
   const results = await Promise.all(promises);
@@ -35,7 +51,7 @@ async function main() {
   if (broken.length > 0) {
     console.log('Broken details:', JSON.stringify(broken, null, 2));
   } else {
-    console.log('All URLs returned 200 OK!');
+    console.log('All 50 URLs returned 200 OK!');
   }
 }
 
