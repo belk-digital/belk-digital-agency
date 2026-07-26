@@ -124,7 +124,7 @@ const Contact = () => {
         if (widgetIdRef.current !== null) return;
         try {
           widgetIdRef.current = window.grecaptcha.render(captchaRef.current, {
-            'sitekey': '6Lf7lGIsAAAAAPOMz9WpdbBQjzVc-9MJSoprK0bb',
+            'sitekey': '6Lca_2YtAAAAALvhEyU47A1Unoo3oPCniK-DcnPl',
             'size': 'invisible',
             'callback': (token: string) => onCaptchaResolvedRef.current(token)
           });
