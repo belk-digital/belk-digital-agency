@@ -305,6 +305,7 @@ export function LiquidMetalButton({
           </div>
 
           <button
+            suppressHydrationWarning
             ref={buttonRef}
             onClick={handleClick}
             onMouseEnter={handleMouseEnter}

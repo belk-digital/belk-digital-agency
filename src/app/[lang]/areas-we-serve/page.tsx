@@ -25,7 +25,7 @@ export default async function AreasWeServePage({ params }: { params: Promise<{ l
     const { lang } = await params;
     const dict = await getDictionary(lang as Locale);
 
-    const baseUrl = 'https://belkdigital.com';
+    const baseUrl = 'https://www.belkdigital.com';
     const pageUrl = `${baseUrl}/${lang}/areas-we-serve`;
 
     // 1. CollectionPage Schema

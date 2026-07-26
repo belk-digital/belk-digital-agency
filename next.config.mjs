@@ -34,6 +34,50 @@ const nextConfig = {
     experimental: {
         cpus: 4,
     },
+    async redirects() {
+        return [
+            {
+                source: '/pricing',
+                destination: '/en/contact',
+                permanent: true,
+            },
+            {
+                source: '/clients',
+                destination: '/en/work',
+                permanent: true,
+            },
+            {
+                source: '/signup',
+                destination: '/en/contact',
+                permanent: true,
+            },
+            {
+                source: '/login',
+                destination: '/en/contact',
+                permanent: true,
+            },
+            {
+                source: '/forgot-password',
+                destination: '/en/contact',
+                permanent: true,
+            },
+            {
+                source: '/studio',
+                destination: '/en',
+                permanent: true,
+            },
+            {
+                source: '/cookie-policy',
+                destination: '/en/privacy',
+                permanent: true,
+            },
+            {
+                source: '/products',
+                destination: '/en/services',
+                permanent: true,
+            },
+        ];
+    },
 };
 
 export default nextConfig;

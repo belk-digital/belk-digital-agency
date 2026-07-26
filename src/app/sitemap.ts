@@ -3,7 +3,7 @@ import { getDictionary } from '@/lib/i18n';
 import { i18n, Locale } from '@/lib/i18n-config';
 import { blogPostsEN } from '@/i18n/blogPosts';
 
-const baseUrl = 'https://belkdigital.com';
+const baseUrl = 'https://www.belkdigital.com';
 
 // Location city/region slugs that have dedicated pages
 const locationSlugs = [

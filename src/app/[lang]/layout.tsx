@@ -11,7 +11,7 @@ import Script from 'next/script';
 import JsonLd from '@/components/seo/JsonLd';
 
 export const metadata: Metadata = {
-    metadataBase: new URL('https://belkdigital.com'),
+    metadataBase: new URL('https://www.belkdigital.com'),
     title: {
         default: 'Belk Digital | Premium Web Design & Digital Agency',
         template: '%s | Belk Digital',
