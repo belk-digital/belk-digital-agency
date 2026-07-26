@@ -1,4 +1,4 @@
-const BASE_URL = 'https://belkdigital.com';
+const BASE_URL = 'https://www.belkdigital.com';
 
 interface NeighborhoodMeta {
     name: string;

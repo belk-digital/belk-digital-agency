@@ -145,6 +145,7 @@ export function Header() {
             {/* ... (Language Selector remains the same) */}
             <div className="relative" ref={langMenuRef}>
               <button
+                suppressHydrationWarning
                 onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
                 className={cn(
                   "flex items-center gap-2 px-3 py-2 rounded-full text-sm font-medium transition-colors hover:text-white hover:bg-white/10",
@@ -204,6 +205,7 @@ export function Header() {
 
           {/* ... (Mobile Menu Button remains same) */}
           <button
+            suppressHydrationWarning
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className={cn(
               "lg:hidden relative z-50 p-2 rounded-lg transition-colors",

@@ -17,6 +17,6 @@ export default function robots(): MetadataRoute.Robots {
             { userAgent: 'Applebot', allow: '/' },
             { userAgent: 'Amazonbot', allow: '/' },
         ],
-        sitemap: 'https://belkdigital.com/sitemap.xml',
+        sitemap: 'https://www.belkdigital.com/sitemap.xml',
     };
 }

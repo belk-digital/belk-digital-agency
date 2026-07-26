@@ -1,6 +1,6 @@
 import { languages } from '@/lib/i18n-config';
 
-const BASE_URL = 'https://belkdigital.com';
+const BASE_URL = 'https://www.belkdigital.com';
 const OG_IMAGE = '/assets/og (1).png';
 
 export function getHreflang(path: string = ''): {

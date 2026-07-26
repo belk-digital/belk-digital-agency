@@ -1,4 +1,4 @@
-const BASE_URL = 'https://belkdigital.com';
+const BASE_URL = 'https://www.belkdigital.com';
 
 export default function CharlestonJsonLd() {
     const localBusiness = {
