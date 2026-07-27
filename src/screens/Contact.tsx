@@ -62,36 +62,42 @@ const Contact = () => {
         website: validated.website,
         service: validated.service,
         message: validated.message,
-        'g-recaptcha-response': token,
       };
 
-      await Promise.all([
-        emailjs.send(
-          process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-          process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ADMIN_ID!,
-          {
-            from_name: validated.name,
-            from_email: validated.email,
-            name: validated.name,
-            email: validated.email,
-            reply_to: validated.email,
-            ...commonParams
-          },
-          process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
-        ),
-        emailjs.send(
-          process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-          process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_USER_ID!,
-          {
-            to_name: validated.name,
-            to_email: validated.email,
-            name: validated.name,
-            email: validated.email,
-            ...commonParams
-          },
-          process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
-        )
-      ]);
+      // 1) Send main Admin notification email
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ADMIN_ID!,
+        {
+          from_name: validated.name,
+          from_email: validated.email,
+          name: validated.name,
+          email: validated.email,
+          reply_to: validated.email,
+          ...commonParams
+        },
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+      );
+
+      // 2) Try sending User confirmation email (non-fatal if user template ID is unconfigured or disabled)
+      try {
+        if (process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_USER_ID) {
+          await emailjs.send(
+            process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+            process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_USER_ID!,
+            {
+              to_name: validated.name,
+              to_email: validated.email,
+              name: validated.name,
+              email: validated.email,
+              ...commonParams
+            },
+            process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+          );
+        }
+      } catch (userEmailError) {
+        console.warn("User auto-reply email failed (non-fatal):", userEmailError);
+      }
 
       toast({
         title: "Message sent!",
@@ -99,13 +105,20 @@ const Contact = () => {
       });
 
       setFormData({ name: '', email: '', website: '', service: '', message: '' });
-      if (widgetIdRef.current !== null) grecaptcha.reset(widgetIdRef.current);
+      if (widgetIdRef.current !== null && window.grecaptcha) {
+        try {
+          window.grecaptcha.reset(widgetIdRef.current);
+        } catch (e) {
+          console.error("Reset error:", e);
+        }
+      }
 
     } catch (error: any) {
       console.error('EmailJS Error:', error);
+      const errorMessage = error?.text || error?.message || (typeof error === 'string' ? error : "Failed to send message. Please try again later.");
       toast({
-        title: "Error",
-        description: error?.text || error?.message || "Failed to send message. Please try again later.",
+        title: "Error Sending Message",
+        description: `EmailJS Error: ${errorMessage}`,
         variant: "destructive",
       });
     } finally {
@@ -119,19 +132,43 @@ const Contact = () => {
   });
 
   useEffect(() => {
+    let isMounted = true;
+
     const loadCaptcha = () => {
-      if (window.grecaptcha && window.grecaptcha.render && captchaRef.current) {
+      if (!isMounted || !window.grecaptcha || !captchaRef.current) return;
+
+      window.grecaptcha.ready(() => {
+        if (!isMounted || !captchaRef.current) return;
         if (widgetIdRef.current !== null) return;
         try {
+          // Prevent 'reCAPTCHA has already been rendered in this element' in React StrictMode
+          captchaRef.current.innerHTML = '';
+          const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '6Lca_2YtAAAAALvhEyU47A1Unoo3oPCniK-DcnPI';
           widgetIdRef.current = window.grecaptcha.render(captchaRef.current, {
-            'sitekey': '6Lca_2YtAAAAALvhEyU47A1Unoo3oPCniK-DcnPI',
+            'sitekey': siteKey,
             'size': 'invisible',
-            'callback': (token: string) => onCaptchaResolvedRef.current(token)
+            'callback': (token: string) => {
+              if (isMounted) onCaptchaResolvedRef.current(token);
+            },
+            'error-callback': () => {
+              console.error("Recaptcha error-callback triggered");
+              setIsSubmitting(false);
+              toast({
+                title: "Security Check Failed",
+                description: "Google reCAPTCHA check failed. Check your internet connection or domain permissions.",
+                variant: "destructive",
+              });
+            },
+            'expired-callback': () => {
+              if (widgetIdRef.current !== null && window.grecaptcha) {
+                window.grecaptcha.reset(widgetIdRef.current);
+              }
+            }
           });
         } catch (e) {
           console.error("Recaptcha render error:", e);
         }
-      }
+      });
     };
 
     if (window.grecaptcha && window.grecaptcha.render) {
@@ -143,8 +180,15 @@ const Contact = () => {
           loadCaptcha();
         }
       }, 500);
-      return () => clearInterval(interval);
+      return () => {
+        isMounted = false;
+        clearInterval(interval);
+      };
     }
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -152,8 +196,36 @@ const Contact = () => {
     try {
       console.log('Submitting form...');
       contactSchema.parse(formData);
-      if (widgetIdRef.current !== null) {
-        grecaptcha.execute(widgetIdRef.current);
+
+      if (widgetIdRef.current !== null && window.grecaptcha) {
+        window.grecaptcha.execute(widgetIdRef.current);
+      } else if (window.grecaptcha && window.grecaptcha.render && captchaRef.current) {
+        // Fallback: if widgetId was not rendered yet, render on-the-fly and execute
+        try {
+          captchaRef.current.innerHTML = '';
+          const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '6Lca_2YtAAAAALvhEyU47A1Unoo3oPCniK-DcnPI';
+          widgetIdRef.current = window.grecaptcha.render(captchaRef.current, {
+            'sitekey': siteKey,
+            'size': 'invisible',
+            'callback': (token: string) => onCaptchaResolvedRef.current(token),
+            'error-callback': () => {
+              setIsSubmitting(false);
+              toast({
+                title: "Security Check Failed",
+                description: "Google reCAPTCHA verification failed. Check domain permissions in Google reCAPTCHA Console.",
+                variant: "destructive",
+              });
+            }
+          });
+          window.grecaptcha.execute(widgetIdRef.current);
+        } catch (fallbackError) {
+          console.error("Fallback Recaptcha render error:", fallbackError);
+          toast({
+            title: "Error",
+            description: "Security check failed to load. Please refresh the page.",
+            variant: "destructive",
+          });
+        }
       } else {
         toast({
           title: "Error",
