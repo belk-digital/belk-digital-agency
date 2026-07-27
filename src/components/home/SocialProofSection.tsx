@@ -1,14 +1,15 @@
 "use client";
 
 import React, { useEffect, useRef } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const brands = [
-  { name: 'Vortex', letter: 'V' },
-  { name: 'Nimbus', letter: 'N' },
-  { name: 'Prysma', letter: 'P' },
-  { name: 'Cirrus', letter: 'C' },
-  { name: 'Kynder', letter: 'K' },
-  { name: 'Halcyn', letter: 'H' },
+  { name: 'The Looksmaxxing Lab', logo: '/images/projects/looksmaxxing-logo.png', url: 'https://www.thelooksmaxxinglab.com/' },
+  { name: 'Sparta Labs', logo: '/images/projects/sparta-labs-logo.png', url: 'https://www.spartalabs.shop' },
+  { name: 'Body By Brad', logo: '/images/projects/bodybybrad-logo.png', url: 'https://bodybybradfitness.com/' },
+  { name: '99Purity Peptides', logo: '/images/projects/99puritypeptides-logo.png', url: 'https://99puritypeptides.com/' },
+  { name: 'Belk Body Lab', logo: '/images/projects/belk-body-lab-logo.png', url: 'https://belkbodylab.com/' },
 ];
 
 export function SocialProofSection() {
@@ -89,14 +90,23 @@ export function SocialProofSection() {
             <div className="flex shrink-0 animate-marquee gap-16 min-w-[200%] sm:min-w-full">
               {/* Duplicated for seamless scrolling */}
               {[...brands, ...brands, ...brands, ...brands].map((brand: any, i: number) => (
-                <div key={i} className="flex items-center gap-3">
-                  <div className="liquid-glass w-6 h-6 rounded-lg flex items-center justify-center text-xs font-semibold text-foreground/80 shrink-0">
-                    {brand.letter}
+                <Link
+                  key={i}
+                  href={brand.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center shrink-0 hover:scale-105 transition-transform duration-200"
+                >
+                  <div className="relative w-32 h-10 md:w-36 md:h-12">
+                    <Image
+                      src={brand.logo}
+                      alt={brand.name}
+                      fill
+                      sizes="(max-width: 768px) 128px, 144px"
+                      className="object-contain filter brightness-0 invert opacity-50 hover:opacity-100 transition-all duration-300"
+                    />
                   </div>
-                  <span className="text-base font-semibold text-foreground font-sans">
-                    {brand.name}
-                  </span>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
