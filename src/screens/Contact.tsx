@@ -62,6 +62,7 @@ const Contact = () => {
         website: validated.website,
         service: validated.service,
         message: validated.message,
+        'g-recaptcha-response': token,
       };
 
       // 1) Send main Admin notification email
