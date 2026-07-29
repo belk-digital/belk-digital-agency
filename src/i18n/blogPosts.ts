@@ -785,7 +785,7 @@ export const blogPostsEN: BlogPost[] = [
     },
     {
         slug: 'biotech-website-development-boston',
-        title: 'Biotech Website Development: Boston (2026)',
+        title: 'The Boston Biotech Blueprint: Speed, Security, and AI-Ready Web Design',
         excerpt: 'Build a secure, investor-ready biotech website in Boston: Next.js edge architecture, candidate pipelines, data rooms, and SEO from Belk Digital.',
         image: bostonBiotechImg,
         category: 'seo',
@@ -1550,7 +1550,7 @@ export const blogPostsES: BlogPost[] = [
     },
     {
         slug: 'biotech-website-development-boston',
-        title: 'Desarrollo de Sitios Web de Biotecnología: Boston (2026)',
+        title: 'El plano biotecnológico de Boston: velocidad, seguridad y diseño web preparado para la IA',
         excerpt: 'Cree un sitio web de biotecnología seguro y listo para inversores en Boston: arquitectura Next.js, pipelines interactivos y SEO de Belk Digital.',
         image: bostonBiotechImg,
         category: 'seo',
@@ -2205,7 +2205,7 @@ export const blogPostsFR: BlogPost[] = [
     },
     {
         slug: 'biotech-website-development-boston',
-        title: 'Développement de Site Web Biotech : Boston (2026)',
+        title: 'Le schéma directeur biotech de Boston : vitesse, sécurité et design web prêt pour l\'IA',
         excerpt: 'Créez un site de biotechnologie sécurisé à Boston : architecture edge Next.js, pipelines de candidats interactifs et SEO par Belk Digital.',
         image: bostonBiotechImg,
         category: 'seo',
@@ -2860,7 +2860,7 @@ export const blogPostsDE: BlogPost[] = [
     },
     {
         slug: 'biotech-website-development-boston',
-        title: 'Biotech-Website-Entwicklung: Boston (2026)',
+        title: 'Das Bostoner Biotech-Blueprint: Geschwindigkeit, Sicherheit und KI-bereites Webdesign',
         excerpt: 'Bauen Sie eine sichere, investorenbereite Biotech-Website in Boston: Next.js Edge-Architektur, interaktive Pipelines und SEO von Belk Digital.',
         image: bostonBiotechImg,
         category: 'seo',
