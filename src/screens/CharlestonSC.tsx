@@ -8,48 +8,352 @@ import { CTASection } from '@/components/home/CTASection';
 import { TracingBeam } from '@/components/ui/tracing-beam';
 import { useParams } from 'next/navigation';
 
-const NEIGHBORHOODS = [
-  { slug: 'downtown', label: 'Downtown Charleston', description: 'Historic business district and hospitality hub' },
-  { slug: 'mount-pleasant', label: 'Mount Pleasant', description: "Charleston's fastest-growing suburb" },
-  { slug: 'north-charleston', label: 'North Charleston', description: 'Commerce, logistics & industrial corridor' },
-  { slug: 'west-ashley', label: 'West Ashley', description: 'Retail, healthcare & residential growth area' },
-  { slug: 'james-island', label: 'James Island', description: 'Close-knit community & small business hub' },
-  { slug: 'johns-island', label: "Johns Island", description: 'Agriculture, agri-tourism & local enterprise' },
-  { slug: 'daniel-island', label: 'Daniel Island', description: 'Master-planned corporate & residential district' },
-  { slug: 'summerville', label: 'Summerville', description: 'Rapidly expanding suburbs north of Charleston' },
-];
-
-const SERVICES = [
-  { title: 'Custom Web Design & UI/UX', description: 'Conversion-focused websites built for the Lowcountry market.' },
-  { title: 'Website Redesign & Optimization', description: 'Modernize your existing site for speed, SEO, and leads.' },
-  { title: 'Web & SaaS Development', description: 'Scalable web applications for Charleston businesses.' },
-  { title: 'Local SEO (Charleston, SC)', description: 'Rank in Google Maps and local search for Charleston-area queries.' },
-  { title: 'Digital Marketing & Growth', description: 'PPC, social ads, and content strategies targeting SC customers.' },
-  { title: 'Website Maintenance & Support', description: 'Ongoing care so your site stays fast, secure, and up to date.' },
-];
-
-const WHY_CHOOSE = [
-  {
-    title: 'Deep knowledge of the Charleston market',
-    description: 'We understand the Lowcountry business landscape—tourism, hospitality, healthcare, and real estate—and build digital strategies that speak to local buyers.',
+const CHARLESTON_DATA: Record<string, {
+  allLocations: string;
+  badge: string;
+  heroTitle1: string;
+  heroTitle2: string;
+  heroSubtitle: string;
+  ctaButton: string;
+  commitmentTag: string;
+  commitmentTitle1: string;
+  commitmentTitle2: string;
+  commitmentBody: string;
+  stats: Array<{ value: string; label: string }>;
+  whyUsTag: string;
+  whyUsTitle1: string;
+  whyUsTitle2: string;
+  reasonPrefix: string;
+  whyChoose: Array<{ title: string; description: string }>;
+  offerTag: string;
+  offerTitle1: string;
+  offerTitle2: string;
+  services: Array<{ title: string; description: string }>;
+  areasTag: string;
+  areasTitle1: string;
+  areasTitle2: string;
+  areasSubtitle: string;
+  viewServices: string;
+  neighborhoods: Array<{ slug: string; label: string; description: string }>;
+  workWithTitle1: string;
+  workWithTitle2: string;
+  industries: string[];
+}> = {
+  en: {
+    allLocations: 'All Locations',
+    badge: 'Charleston, SC',
+    heroTitle1: 'Web Design & Digital Marketing Agency in ',
+    heroTitle2: 'Charleston, SC',
+    heroSubtitle: 'Belk Digital helps Charleston, SC businesses grow online with custom web design, local SEO, and digital marketing strategies built for the Lowcountry market.',
+    ctaButton: 'Get a Free Consultation',
+    commitmentTag: 'Our Commitment',
+    commitmentTitle1: 'Delivering Digital Excellence in ',
+    commitmentTitle2: 'Charleston, SC',
+    commitmentBody: "Charleston is one of the Southeast's most dynamic markets—hospitality, real estate, healthcare, and technology are all booming. We help local businesses stand out online with high-performance websites and data-driven marketing that connects you with customers across every Charleston neighborhood, from downtown to the outer islands.",
+    stats: [
+      { value: '50+', label: 'Projects Delivered' },
+      { value: '98%', label: 'Client Satisfaction' },
+      { value: '10+', label: 'Years Combined Experience' },
+    ],
+    whyUsTag: 'Why Us',
+    whyUsTitle1: 'Why Charleston Businesses Choose ',
+    whyUsTitle2: 'Belk Digital',
+    reasonPrefix: 'Reason',
+    whyChoose: [
+      {
+        title: 'Deep knowledge of the Charleston market',
+        description: 'We understand the Lowcountry business landscape—tourism, hospitality, healthcare, and real estate—and build digital strategies that speak to local buyers.',
+      },
+      {
+        title: 'Local SEO that puts you on the map',
+        description: 'From Google Business Profile optimization to location-specific landing pages, we help you capture "near me" searches across every Charleston neighborhood.',
+      },
+      {
+        title: 'Performance-first development',
+        description: 'Every site we build is optimized for Core Web Vitals, mobile speed, and accessibility—the foundations Google rewards with higher rankings.',
+      },
+      {
+        title: 'Transparent, long-term partnerships',
+        description: 'No lock-in contracts. No disappearing agencies. We build lasting relationships with Charleston business owners who want consistent growth.',
+      },
+    ],
+    offerTag: 'What We Offer',
+    offerTitle1: 'Digital Services for ',
+    offerTitle2: 'Charleston Businesses',
+    services: [
+      { title: 'Custom Web Design & UI/UX', description: 'Conversion-focused websites built for the Lowcountry market.' },
+      { title: 'Website Redesign & Optimization', description: 'Modernize your existing site for speed, SEO, and leads.' },
+      { title: 'Web & SaaS Development', description: 'Scalable web applications for Charleston businesses.' },
+      { title: 'Local SEO (Charleston, SC)', description: 'Rank in Google Maps and local search for Charleston-area queries.' },
+      { title: 'Digital Marketing & Growth', description: 'PPC, social ads, and content strategies targeting SC customers.' },
+      { title: 'Website Maintenance & Support', description: 'Ongoing care so your site stays fast, secure, and up to date.' },
+    ],
+    areasTag: 'Service Areas',
+    areasTitle1: 'Charleston Neighborhoods & ',
+    areasTitle2: 'Areas We Serve',
+    areasSubtitle: 'From the historic peninsula to the surrounding communities, we help businesses across the entire Charleston metro area compete online.',
+    viewServices: 'View services',
+    neighborhoods: [
+      { slug: 'downtown', label: 'Downtown Charleston', description: 'Historic business district and hospitality hub' },
+      { slug: 'mount-pleasant', label: 'Mount Pleasant', description: "Charleston's fastest-growing suburb" },
+      { slug: 'north-charleston', label: 'North Charleston', description: 'Commerce, logistics & industrial corridor' },
+      { slug: 'west-ashley', label: 'West Ashley', description: 'Retail, healthcare & residential growth area' },
+      { slug: 'james-island', label: 'James Island', description: 'Close-knit community & small business hub' },
+      { slug: 'johns-island', label: "Johns Island", description: 'Agriculture, agri-tourism & local enterprise' },
+      { slug: 'daniel-island', label: 'Daniel Island', description: 'Master-planned corporate & residential district' },
+      { slug: 'summerville', label: 'Summerville', description: 'Rapidly expanding suburbs north of Charleston' },
+    ],
+    workWithTitle1: 'Who We Work With in ',
+    workWithTitle2: 'Charleston, SC',
+    industries: [
+      'Restaurants & Hospitality',
+      'Real Estate & Property',
+      'Healthcare & Medical Practices',
+      'Law Firms & Professional Services',
+      'E-commerce & Retail',
+      'Tourism & Travel Businesses',
+      'Contractors & Home Services',
+      'Startups & Tech Companies',
+    ],
   },
-  {
-    title: 'Local SEO that puts you on the map',
-    description: 'From Google Business Profile optimization to location-specific landing pages, we help you capture "near me" searches across every Charleston neighborhood.',
+  es: {
+    allLocations: 'Todas las Ubicaciones',
+    badge: 'Charleston, SC',
+    heroTitle1: 'Agencia de Diseño Web y Marketing Digital en ',
+    heroTitle2: 'Charleston, SC',
+    heroSubtitle: 'Belk Digital ayuda a las empresas de Charleston, SC a crecer con diseño web a medida, SEO local y estrategias de marketing digital optimizadas para el mercado local.',
+    ctaButton: 'Obtener Consulta Gratuita',
+    commitmentTag: 'Nuestro Compromiso',
+    commitmentTitle1: 'Excelencia Digital en ',
+    commitmentTitle2: 'Charleston, SC',
+    commitmentBody: 'Charleston es uno de los mercados más dinámicos del sureste. Ayudamos a las empresas locales a destacar con sitios web de alto rendimiento y marketing basado en datos para conectar con clientes en todos los vecindarios de Charleston.',
+    stats: [
+      { value: '50+', label: 'Proyectos Entregados' },
+      { value: '98%', label: 'Satisfacción del Cliente' },
+      { value: '10+', label: 'Años de Experiencia Combinada' },
+    ],
+    whyUsTag: 'Por Qué Elegirnos',
+    whyUsTitle1: 'Por Qué las Empresas de Charleston Eligen ',
+    whyUsTitle2: 'Belk Digital',
+    reasonPrefix: 'Razón',
+    whyChoose: [
+      {
+        title: 'Profundo conocimiento del mercado de Charleston',
+        description: 'Comprendemos el entorno empresarial local (turismo, hospitalidad, salud y bienes raíces) y creamos estrategias digitales que conectan con los clientes.',
+      },
+      {
+        title: 'SEO local que te posiciona en el mapa',
+        description: 'Desde Google Business Profile hasta páginas de destino locales, te ayudamos a captar búsquedas de proximidad en cada vecindario.',
+      },
+      {
+        title: 'Desarrollo enfocado en rendimiento',
+        description: 'Optimizamos cada sitio para Core Web Vitals, velocidad móvil y accesibilidad para maximizar tus clasificaciones en Google.',
+      },
+      {
+        title: 'Colaboraciones transparentes a largo plazo',
+        description: 'Sin contratos restrictivos. Construimos relaciones duraderas con dueños de negocios que buscan un crecimiento sólido.',
+      },
+    ],
+    offerTag: 'Lo Que Ofrecemos',
+    offerTitle1: 'Servicios Digitales para ',
+    offerTitle2: 'Empresas en Charleston',
+    services: [
+      { title: 'Diseño Web Personalizado & UI/UX', description: 'Sitios web enfocados en conversiones para el mercado de Charleston.' },
+      { title: 'Rediseño y Optimización de Sitios Web', description: 'Moderniza tu sitio web para velocidad, SEO y generación de leads.' },
+      { title: 'Desarrollo Web & SaaS', description: 'Aplicaciones web escalables para empresas en crecimiento.' },
+      { title: 'SEO Local (Charleston, SC)', description: 'Posiciónate en Google Maps y búsquedas locales en toda la región.' },
+      { title: 'Marketing Digital & Crecimiento', description: 'Estrategias de PPC, redes sociales y contenido dirigidas a clientes locales.' },
+      { title: 'Mantenimiento y Soporte Web', description: 'Cuidado continuo para que tu sitio web sea rápido, seguro y actualizado.' },
+    ],
+    areasTag: 'Áreas de Servicio',
+    areasTitle1: 'Vecindarios de Charleston y ',
+    areasTitle2: 'Áreas de Cobertura',
+    areasSubtitle: 'Desde la península histórica hasta las comunidades periféricas, impulsamos la presencia digital en todo el área metropolitana de Charleston.',
+    viewServices: 'Ver servicios',
+    neighborhoods: [
+      { slug: 'downtown', label: 'Downtown Charleston', description: 'Distrito comercial histórico y centro gastronómico' },
+      { slug: 'mount-pleasant', label: 'Mount Pleasant', description: 'El suburbio de más rápido crecimiento en Charleston' },
+      { slug: 'north-charleston', label: 'North Charleston', description: 'Corredor comercial, logístico e industrial' },
+      { slug: 'west-ashley', label: 'West Ashley', description: 'Área comercial, médica y residencial en expansión' },
+      { slug: 'james-island', label: 'James Island', description: 'Comunidad unida y núcleo de pequeños negocios' },
+      { slug: 'johns-island', label: 'Johns Island', description: 'Agricultura, agroturismo y empresa local' },
+      { slug: 'daniel-island', label: 'Daniel Island', description: 'Distrito corporativo y residencial planificado' },
+      { slug: 'summerville', label: 'Summerville', description: 'Suburbios en rápida expansión al norte de Charleston' },
+    ],
+    workWithTitle1: 'Con Quién Trabajamos en ',
+    workWithTitle2: 'Charleston, SC',
+    industries: [
+      'Restaurantes y Hospitalidad',
+      'Bienes Raíces y Propiedades',
+      'Salud y Clínicas Médicas',
+      'Bufetes de Abogados y Servicios Profesionales',
+      'Comercio Electrónico y Retail',
+      'Turismo y Viajes',
+      'Contratistas y Servicios para el Hogar',
+      'Startups y Empresas Tecnológicas',
+    ],
   },
-  {
-    title: 'Performance-first development',
-    description: 'Every site we build is optimized for Core Web Vitals, mobile speed, and accessibility—the foundations Google rewards with higher rankings.',
+  fr: {
+    allLocations: 'Toutes les Localisations',
+    badge: 'Charleston, SC',
+    heroTitle1: 'Agence de Design Web & Marketing Digital à ',
+    heroTitle2: 'Charleston, SC',
+    heroSubtitle: 'Belk Digital aide les entreprises de Charleston, SC à se développer en ligne avec des sites web sur mesure, du SEO local et du marketing ciblé.',
+    ctaButton: 'Obtenir une Consultation Gratuite',
+    commitmentTag: 'Notre Engagement',
+    commitmentTitle1: 'Excellence Numérique à ',
+    commitmentTitle2: 'Charleston, SC',
+    commitmentBody: "Charleston est un marché dynamique. Nous aidons les entreprises locales à briller grâce à des sites web performants et un marketing axé sur les données pour capter des clients dans chaque quartier de la métropole.",
+    stats: [
+      { value: '50+', label: 'Projets Livrés' },
+      { value: '98%', label: 'Satisfaction Client' },
+      { value: '10+', label: "Années d'Expérience Cumulée" },
+    ],
+    whyUsTag: 'Pourquoi Nous',
+    whyUsTitle1: 'Pourquoi les Entreprises de Charleston Choisissent ',
+    whyUsTitle2: 'Belk Digital',
+    reasonPrefix: 'Raison',
+    whyChoose: [
+      {
+        title: 'Connaissance approfondie du marché de Charleston',
+        description: 'Nous comprenons le tissu économique local (tourisme, hôtellerie, santé, immobilier) et concevons des stratégies qui résonnent auprès des clients.',
+      },
+      {
+        title: 'SEO local qui vous place en tête',
+        description: 'Optimisation de fiche Google et pages locales pour capter les recherches de proximité dans chaque secteur de la ville.',
+      },
+      {
+        title: 'Développement axé sur la performance',
+        description: 'Chaque site est optimisé pour les Core Web Vitals, la vitesse mobile et l\'accessibilité, récompensés par Google.',
+      },
+      {
+        title: 'Partenariats transparents et pérennes',
+        description: 'Pas de contrat contraignant. Nous bâtissons des relations durables avec des dirigeants axés sur la croissance.',
+      },
+    ],
+    offerTag: 'Nos Prestations',
+    offerTitle1: 'Services Numériques pour les ',
+    offerTitle2: 'Entreprises de Charleston',
+    services: [
+      { title: 'Design Web Sur Mesure & UI/UX', description: 'Sites web optimisés pour la conversion et adaptés au marché de Charleston.' },
+      { title: 'Refonte & Optimisation de Sites', description: 'Modernisez votre site pour la vitesse, le SEO et la génération de leads.' },
+      { title: 'Développement Web & SaaS', description: 'Applications web évolutives pour les entreprises en croissance.' },
+      { title: 'SEO Local (Charleston, SC)', description: 'Positionnez-vous sur Google Maps et dans les recherches locales.' },
+      { title: 'Marketing Digital & Croissance', description: 'Campagnes publicitaires, réseaux sociaux et contenu ciblant la Caroline du Sud.' },
+      { title: 'Maintenance & Support Web', description: 'Accompagnement continu pour un site sécurisé, rapide et à jour.' },
+    ],
+    areasTag: 'Secteurs Desservis',
+    areasTitle1: 'Quartiers de Charleston & ',
+    areasTitle2: 'Zones d\'Intervention',
+    areasSubtitle: 'De la péninsule historique aux localités environnantes, nous accompagnons les entreprises de toute l\'agglomération.',
+    viewServices: 'Voir les services',
+    neighborhoods: [
+      { slug: 'downtown', label: 'Downtown Charleston', description: 'Quartier historique d\'affaires et pôle de restauration' },
+      { slug: 'mount-pleasant', label: 'Mount Pleasant', description: 'La banlieue la plus dynamique de Charleston' },
+      { slug: 'north-charleston', label: 'North Charleston', description: 'Centre d\'affaires, logistique et industriel' },
+      { slug: 'west-ashley', label: 'West Ashley', description: 'Zone commerciale, médicale et résidentielle' },
+      { slug: 'james-island', label: 'James Island', description: 'Communauté soudée et pôle d\'artisans et commerces' },
+      { slug: 'johns-island', label: 'Johns Island', description: 'Agriculture, agrotourisme et entreprises locales' },
+      { slug: 'daniel-island', label: 'Daniel Island', description: 'District résidentiel et d\'affaires haut de gamme' },
+      { slug: 'summerville', label: 'Summerville', description: 'Banlieues en forte expansion au nord de Charleston' },
+    ],
+    workWithTitle1: 'Avec Qui Nous Travaillons à ',
+    workWithTitle2: 'Charleston, SC',
+    industries: [
+      'Restaurants & Hôtellerie',
+      'Immobilier & Gestion de Biens',
+      'Santé & Cabinets Médicaux',
+      'Avocats & Cabinets de Conseil',
+      'E-commerce & Commerce de Détail',
+      'Tourisme & Agences de Voyage',
+      'Artisans & Services à Domicile',
+      'Startups & Entreprises Technologiques',
+    ],
   },
-  {
-    title: 'Transparent, long-term partnerships',
-    description: 'No lock-in contracts. No disappearing agencies. We build lasting relationships with Charleston business owners who want consistent growth.',
+  de: {
+    allLocations: 'Alle Standorte',
+    badge: 'Charleston, SC',
+    heroTitle1: 'Agentur für Webdesign & Digitales Marketing in ',
+    heroTitle2: 'Charleston, SC',
+    heroSubtitle: 'Belk Digital unterstützt Unternehmen in Charleston, SC mit maßgeschneidertem Webdesign, lokalem SEO und digitalen Marketingstrategien.',
+    ctaButton: 'Kostenlose Beratung anfordern',
+    commitmentTag: 'Unser Engagement',
+    commitmentTitle1: 'Digitale Exzellenz in ',
+    commitmentTitle2: 'Charleston, SC',
+    commitmentBody: 'Charleston ist ein dynamischer Wachstumsmarkt. Wir helfen lokalen Unternehmen, mit schnellen Websites und datenbasiertem Marketing in allen Stadtteilen von Charleston Kunden zu gewinnen.',
+    stats: [
+      { value: '50+', label: 'Realisierte Projekte' },
+      { value: '98%', label: 'Kundenzufriedenheit' },
+      { value: '10+', label: 'Jahre Gesamterfahrung' },
+    ],
+    whyUsTag: 'Warum Wir',
+    whyUsTitle1: 'Warum Unternehmen in Charleston ',
+    whyUsTitle2: 'Belk Digital wählen',
+    reasonPrefix: 'Grund',
+    whyChoose: [
+      {
+        title: 'Tiefes Verständnis des lokalen Marktes',
+        description: 'Wir kennen die Branchenlandschaft in Charleston (Tourismus, Gastgewerbe, Gesundheit, Immobilien) und schaffen wirksame Strategien.',
+      },
+      {
+        title: 'Lokales SEO für Spitzenplatzierungen',
+        description: 'Google Business Profile-Optimierung und lokale Landingpages für beste Auffindbarkeit bei regionalen Suchen.',
+      },
+      {
+        title: 'Performance-orientierte Entwicklung',
+        description: 'Jede Website ist optimiert für Core Web Vitals, mobile Ladezeiten und Barrierefreiheit für Top-Google-Rankings.',
+      },
+      {
+        title: 'Transparente, partnerschaftliche Zusammenarbeit',
+        description: 'Keine Knebelverträge. Wir bauen langfristige Beziehungen zu zukunftsorientierten Unternehmern auf.',
+      },
+    ],
+    offerTag: 'Unser Angebot',
+    offerTitle1: 'Digitale Dienstleistungen für ',
+    offerTitle2: 'Unternehmen in Charleston',
+    services: [
+      { title: 'Individuelles Webdesign & UI/UX', description: 'Konversionsstarke Websites für den regionalen Markt.' },
+      { title: 'Website-Relaunch & Optimierung', description: 'Modernisieren Sie Ihre Website für Ladezeiten, SEO und Neukunden.' },
+      { title: 'Web- & SaaS-Entwicklung', description: 'Skalierbare Webanwendungen für wachsende Betriebe.' },
+      { title: 'Lokales SEO (Charleston, SC)', description: 'Top-Rankings in Google Maps und lokalen Suchanfragen.' },
+      { title: 'Digitales Marketing & Wachstum', description: 'PPC, Social Media und Content-Strategien für Zielgruppen in SC.' },
+      { title: 'Website-Wartung & Support', description: 'Zuverlässige Betreuung, damit Ihre Website sicher und aktuell bleibt.' },
+    ],
+    areasTag: 'Einzugsgebiete',
+    areasTitle1: 'Stadtteile von Charleston & ',
+    areasTitle2: 'Bediente Regionen',
+    areasSubtitle: 'Vom historischen Zentrum bis zu den umliegenden Inseln unterstützen wir Unternehmen im gesamten Großraum Charleston.',
+    viewServices: 'Dienste anzeigen',
+    neighborhoods: [
+      { slug: 'downtown', label: 'Downtown Charleston', description: 'Historisches Geschäftszentrum und Gastronomieviertel' },
+      { slug: 'mount-pleasant', label: 'Mount Pleasant', description: 'Charlestons am schnellsten wachsender Vorort' },
+      { slug: 'north-charleston', label: 'North Charleston', description: 'Handels-, Logistik- und Industriezentrum' },
+      { slug: 'west-ashley', label: 'West Ashley', description: 'Einzelhandels-, Medizin- und Wohnquartier' },
+      { slug: 'james-island', label: 'James Island', description: 'Enge Gemeinschaft und Kleinunternehmerzentrum' },
+      { slug: 'johns-island', label: 'Johns Island', description: 'Landwirtschaft, Agrotourismus und lokale Betriebe' },
+      { slug: 'daniel-island', label: 'Daniel Island', description: 'Geplantes Geschäfts- und Wohnviertel' },
+      { slug: 'summerville', label: 'Summerville', description: 'Schnell expandierende Region nördlich von Charleston' },
+    ],
+    workWithTitle1: 'Mit wem wir zusammenarbeiten in ',
+    workWithTitle2: 'Charleston, SC',
+    industries: [
+      'Gastronomie & Hotellerie',
+      'Immobilien & Property Management',
+      'Gesundheitswesen & Arztpraxen',
+      'Kanzleien & Beratung',
+      'E-Commerce & Einzelhandel',
+      'Tourismus & Reiseunternehmen',
+      'Handwerk & Dienstleistungen',
+      'Startups & Technologieunternehmen',
+    ],
   },
-];
+};
 
 export const CharlestonSC = () => {
   const { lang } = useParams();
   const locale = Array.isArray(lang) ? lang[0] : lang ?? 'en';
+  const currentLang = CHARLESTON_DATA[locale] ? locale : 'en';
+  const data = CHARLESTON_DATA[currentLang];
 
   return (
     <>
@@ -80,11 +384,11 @@ export const CharlestonSC = () => {
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.08] border border-white/10 text-white/50 text-xs font-medium tracking-widest uppercase hover:bg-white/[0.12] hover:text-white/80 transition-all"
             >
               <ArrowRight className="w-3 h-3 rotate-180" />
-              All Locations
+              {data.allLocations}
             </Link>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/40 border border-white/10 backdrop-blur-sm">
               <MapPin className="w-3 h-3 text-blue-400" />
-              <span className="text-[10px] font-bold tracking-widest text-white/60 uppercase">Charleston, SC</span>
+              <span className="text-[10px] font-bold tracking-widest text-white/60 uppercase">{data.badge}</span>
             </div>
           </motion.div>
 
@@ -94,8 +398,8 @@ export const CharlestonSC = () => {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="text-[2.8rem] sm:text-[4rem] md:text-[5.5rem] lg:text-[6.5rem] font-sans font-[600] tracking-tight leading-[1.08] text-white text-center w-full max-w-5xl"
           >
-            Web Design &amp; Digital Marketing Agency in{' '}
-            <span className="font-serif italic font-normal">Charleston, SC</span>
+            {data.heroTitle1}
+            <span className="font-serif italic font-normal">{data.heroTitle2}</span>
           </motion.h1>
 
           <motion.p
@@ -104,8 +408,7 @@ export const CharlestonSC = () => {
             transition={{ duration: 0.7, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
             className="text-white/55 text-lg md:text-xl leading-relaxed text-center max-w-2xl mx-auto"
           >
-            Belk Digital helps Charleston, SC businesses grow online with custom web design, local SEO,
-            and digital marketing strategies built for the Lowcountry market.
+            {data.heroSubtitle}
           </motion.p>
 
           <motion.div
@@ -117,7 +420,7 @@ export const CharlestonSC = () => {
               href={`/${locale}/contact`}
               className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-black text-sm font-semibold rounded-full hover:bg-white/90 transition-all"
             >
-              Get a Free Consultation
+              {data.ctaButton}
               <ArrowRight className="w-4 h-4" />
             </Link>
           </motion.div>
@@ -157,11 +460,11 @@ export const CharlestonSC = () => {
               >
                 <div className="flex items-center gap-4 mb-8">
                   <div className="w-8 h-px bg-white/20" />
-                  <span className="text-xs text-white/40 uppercase tracking-[0.3em] font-medium">Our Commitment</span>
+                  <span className="text-xs text-white/40 uppercase tracking-[0.3em] font-medium">{data.commitmentTag}</span>
                 </div>
                 <h2 className="text-[2.2rem] sm:text-[2.8rem] md:text-[3.5rem] font-sans font-[600] tracking-tight leading-[1.1] text-white">
-                  Delivering Digital Excellence in{' '}
-                  <span className="font-serif italic font-normal">Charleston, SC</span>
+                  {data.commitmentTitle1}
+                  <span className="font-serif italic font-normal">{data.commitmentTitle2}</span>
                 </h2>
               </motion.div>
 
@@ -174,17 +477,10 @@ export const CharlestonSC = () => {
               >
                 <div className="w-16 h-[2px] bg-gradient-to-r from-blue-400/60 to-purple-500/60 rounded-full" />
                 <p className="text-white/55 text-lg md:text-xl leading-relaxed font-sans">
-                  Charleston is one of the Southeast&apos;s most dynamic markets—hospitality, real estate, healthcare,
-                  and technology are all booming. We help local businesses stand out online with high-performance
-                  websites and data-driven marketing that connects you with customers across every Charleston neighborhood,
-                  from downtown to the outer islands.
+                  {data.commitmentBody}
                 </p>
                 <div className="flex gap-10 pt-4">
-                  {[
-                    { value: '50+', label: 'Projects Delivered' },
-                    { value: '98%', label: 'Client Satisfaction' },
-                    { value: '10+', label: 'Years Combined Experience' },
-                  ].map((stat, i) => (
+                  {data.stats.map((stat, i) => (
                     <div key={i} className="flex flex-col gap-1">
                       <span className="text-2xl md:text-3xl font-sans font-[700] text-white tracking-tight">{stat.value}</span>
                       <span className="text-[11px] text-white/35 uppercase tracking-widest font-medium">{stat.label}</span>
@@ -209,7 +505,7 @@ export const CharlestonSC = () => {
               className="mb-8"
             >
               <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/[0.06] border border-white/10 text-white/50 text-xs font-sans font-medium tracking-widest uppercase">
-                Why Us
+                {data.whyUsTag}
               </span>
             </motion.div>
             <motion.h2
@@ -219,14 +515,14 @@ export const CharlestonSC = () => {
               transition={{ delay: 0.08 }}
               className="text-[2.4rem] sm:text-[3.2rem] md:text-[4rem] font-sans font-[600] tracking-tight leading-[1.1] text-white max-w-3xl"
             >
-              Why Charleston Businesses Choose{' '}
-              <span className="font-serif italic font-normal">Belk Digital</span>
+              {data.whyUsTitle1}
+              <span className="font-serif italic font-normal">{data.whyUsTitle2}</span>
             </motion.h2>
           </div>
 
           <TracingBeam className="px-6">
             <div className="max-w-2xl mx-auto relative">
-              {WHY_CHOOSE.map((item, index) => (
+              {data.whyChoose.map((item, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, x: -20 }}
@@ -237,7 +533,7 @@ export const CharlestonSC = () => {
                 >
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.06] border border-white/10 text-[10px] font-black tracking-[0.4em] text-white/40 uppercase mb-5">
                     <span className="w-1.5 h-1.5 rounded-full bg-blue-400/70 inline-block" />
-                    Reason {String(index + 1).padStart(2, '0')}
+                    {data.reasonPrefix} {String(index + 1).padStart(2, '0')}
                   </div>
                   <div className="relative bg-white/[0.02] border border-white/[0.07] rounded-3xl p-8 md:p-10 overflow-hidden transition-all duration-500 group-hover:border-white/15 group-hover:bg-white/[0.04]">
                     <div
@@ -284,7 +580,7 @@ export const CharlestonSC = () => {
                 className="mb-8"
               >
                 <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/[0.06] border border-white/10 text-white/50 text-xs font-sans font-medium tracking-widest uppercase">
-                  What We Offer
+                  {data.offerTag}
                 </span>
               </motion.div>
               <motion.h2
@@ -294,13 +590,13 @@ export const CharlestonSC = () => {
                 transition={{ delay: 0.08 }}
                 className="text-[2.4rem] sm:text-[3.2rem] md:text-[4rem] font-sans font-[600] tracking-tight leading-[1.1] text-white mb-4 max-w-3xl"
               >
-                Digital Services for{' '}
-                <span className="font-serif italic font-normal">Charleston Businesses</span>
+                {data.offerTitle1}
+                <span className="font-serif italic font-normal">{data.offerTitle2}</span>
               </motion.h2>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {SERVICES.map((item, index) => (
+              {data.services.map((item, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 30 }}
@@ -340,7 +636,7 @@ export const CharlestonSC = () => {
               className="mb-8"
             >
               <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/[0.06] border border-white/10 text-white/50 text-xs font-sans font-medium tracking-widest uppercase">
-                Service Areas
+                {data.areasTag}
               </span>
             </motion.div>
             <motion.h2
@@ -350,8 +646,8 @@ export const CharlestonSC = () => {
               transition={{ delay: 0.08 }}
               className="text-[2.4rem] sm:text-[3.2rem] md:text-[4rem] font-sans font-[600] tracking-tight leading-[1.1] text-white max-w-3xl"
             >
-              Charleston Neighborhoods &amp;{' '}
-              <span className="font-serif italic font-normal">Areas We Serve</span>
+              {data.areasTitle1}
+              <span className="font-serif italic font-normal">{data.areasTitle2}</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 16 }}
@@ -360,13 +656,12 @@ export const CharlestonSC = () => {
               transition={{ delay: 0.16 }}
               className="text-white/45 text-base md:text-lg mt-6 max-w-xl"
             >
-              From the historic peninsula to the surrounding communities, we help businesses across
-              the entire Charleston metro area compete online.
+              {data.areasSubtitle}
             </motion.p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {NEIGHBORHOODS.map((area, index) => (
+            {data.neighborhoods.map((area, index) => (
               <motion.div
                 key={area.slug}
                 initial={{ opacity: 0, y: 24 }}
@@ -388,7 +683,7 @@ export const CharlestonSC = () => {
                     {area.description}
                   </p>
                   <div className="flex items-center gap-1 text-blue-400/60 text-xs font-medium mt-auto pt-2 group-hover:text-blue-400 transition-colors">
-                    View services
+                    {data.viewServices}
                     <ArrowRight className="w-3 h-3" />
                   </div>
                 </Link>
@@ -408,21 +703,12 @@ export const CharlestonSC = () => {
               viewport={{ once: true }}
               className="text-[2rem] sm:text-[2.6rem] font-sans font-[600] tracking-tight leading-[1.1] text-white max-w-2xl"
             >
-              Who We Work With in{' '}
-              <span className="font-serif italic font-normal">Charleston, SC</span>
+              {data.workWithTitle1}
+              <span className="font-serif italic font-normal">{data.workWithTitle2}</span>
             </motion.h2>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            {[
-              'Restaurants & Hospitality',
-              'Real Estate & Property',
-              'Healthcare & Medical Practices',
-              'Law Firms & Professional Services',
-              'E-commerce & Retail',
-              'Tourism & Travel Businesses',
-              'Contractors & Home Services',
-              'Startups & Tech Companies',
-            ].map((industry, i) => (
+            {data.industries.map((industry, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 16 }}

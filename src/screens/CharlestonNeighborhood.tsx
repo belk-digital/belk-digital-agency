@@ -18,7 +18,7 @@ export interface NeighborhoodData {
   keywords: string[];
 }
 
-const NEIGHBORHOOD_MAP: Record<string, NeighborhoodData> = {
+const NEIGHBORHOOD_MAP_EN: Record<string, NeighborhoodData> = {
   'downtown': {
     name: 'Downtown Charleston',
     state: 'SC',
@@ -101,21 +101,198 @@ const NEIGHBORHOOD_MAP: Record<string, NeighborhoodData> = {
   },
 };
 
-const SERVICES = [
-  'Custom Web Design & UI/UX',
-  'Website Redesign & Optimization',
-  'Web & SaaS Development',
-  'Local SEO (Charleston, SC)',
-  'Digital Marketing & Growth',
-  'Website Maintenance & Support',
-];
+const NEIGHBORHOOD_MAP_ES: Record<string, NeighborhoodData> = {
+  'downtown': {
+    name: 'Downtown Charleston',
+    state: 'SC',
+    slug: 'downtown',
+    headline: 'Diseño Web y Marketing Digital en Downtown Charleston, SC',
+    intro: 'Belk Digital ayuda a las empresas de Downtown Charleston a potenciar su presencia digital con sitios web de alto rendimiento, SEO local y marketing estratégico que atrae a clientes locales y turistas.',
+    about: 'Downtown Charleston es el epicentro del Lowcountry: restaurantes de primer nivel, hoteles boutique, firmas de abogados y atracciones históricas. Creamos experiencias digitales a la altura de esta prestigiosa zona.',
+    industries: ['Restaurantes y Alta Cocina', 'Hoteles Boutique y B&B', 'Bufetes de Abogados y Servicios Profesionales', 'Comercios y Boutiques', 'Galerías de Arte y Turismo', 'Salones de Eventos y Catering'],
+    keywords: ['marketing digital downtown charleston sc', 'diseño web downtown charleston', 'seo local peninsula charleston'],
+  },
+  'mount-pleasant': {
+    name: 'Mount Pleasant',
+    state: 'SC',
+    slug: 'mount-pleasant',
+    headline: 'Diseño Web y Marketing Digital en Mount Pleasant, SC',
+    intro: 'Belk Digital ayuda a las empresas de Mount Pleasant con diseño web moderno, SEO local y estrategias de marketing digital para captar clientes en el suburbio de más rápido crecimiento de Charleston.',
+    about: 'Mount Pleasant es una de las comunidades con mayor expansión, con un fuerte sector minorista en la Highway 17 y centros de salud y servicios profesionales en auge. Ayudamos a las empresas a liderar su sector en línea.',
+    industries: ['Salud y Clínicas Médicas', 'Bienes Raíces y Servicios del Hogar', 'Restaurantes y Gastronomía', 'Centros Comerciales y Tiendas', 'Servicios Financieros', 'Fitness y Bienestar'],
+    keywords: ['marketing digital mount pleasant sc', 'diseño web mount pleasant', 'seo local mount pleasant sc'],
+  },
+  'north-charleston': {
+    name: 'North Charleston',
+    state: 'SC',
+    slug: 'north-charleston',
+    headline: 'Diseño Web y Marketing Digital en North Charleston, SC',
+    intro: 'Belk Digital ayuda a las empresas de North Charleston a consolidar una presencia online sólida mediante diseño web personalizado, SEO local y marketing con resultados medibles.',
+    about: 'North Charleston es un polo clave de comercio y logística. Desde manufactura y logística hasta retail y servicios, desarrollamos sitios web y SEO adaptados a su dinámico mercado.',
+    industries: ['Manufactura e Industria', 'Logística y Distribución', 'Comercio Minorista', 'Servicios Automotrices', 'Restaurantes y Hospitalidad', 'Salud y Urgencias Médicas'],
+    keywords: ['marketing digital north charleston sc', 'diseño web north charleston', 'seo local north charleston'],
+  },
+  'west-ashley': {
+    name: 'West Ashley',
+    state: 'SC',
+    slug: 'west-ashley',
+    headline: 'Diseño Web y Marketing Digital en West Ashley, SC',
+    intro: 'Belk Digital ayuda a los negocios de West Ashley a crecer con sitios web a medida, SEO local y marketing digital enfocado en los suburbios occidentales de Charleston.',
+    about: 'West Ashley es una extensa área comercial y residencial a lo largo de la Highway 17. Ayudamos a sus empresas a mejorar sus clasificaciones en búsquedas locales y convertir más visitantes en clientes.',
+    industries: ['Salud y Consultorios Médicos', 'Servicios para el Hogar y Contratistas', 'Restaurantes y Cafés', 'Comercio Minorista', 'Bienes Raíces', 'Cuidado Personal y Fitness'],
+    keywords: ['marketing digital west ashley sc', 'diseño web west ashley', 'seo local west ashley'],
+  },
+  'james-island': {
+    name: 'James Island',
+    state: 'SC',
+    slug: 'james-island',
+    headline: 'Diseño Web y Marketing Digital en James Island, SC',
+    intro: 'Belk Digital ayuda a las empresas de James Island a destacar en internet con diseño web profesional, SEO local y campañas de marketing dirigidas a todo el área de Charleston.',
+    about: 'James Island es una comunidad acogedora a minutos del centro histórico. Diseñamos presencias digitales de alta credibilidad y conversión que compiten con las principales marcas de Charleston.',
+    industries: ['Restaurantes y Locales Gastronómicos', 'Servicios para el Hogar', 'Salud y Bienestar', 'Tiendas Especializadas', 'Cuidado Personal', 'Bienes Raíces'],
+    keywords: ['marketing digital james island sc', 'diseño web james island', 'seo local james island'],
+  },
+  'johns-island': {
+    name: "Johns Island",
+    state: 'SC',
+    slug: 'johns-island',
+    headline: "Diseño Web y Marketing Digital en Johns Island, SC",
+    intro: "Belk Digital ayuda a las empresas de Johns Island a crecer en internet con sitios web personalizados, SEO local y marketing que refleja la identidad de la isla más grande de Lowcountry.",
+    about: "Johns Island combina historia y rápido crecimiento residencial y comercial. Desarrollamos bases digitales que atraen nuevos clientes y destacan el valor diferencial de cada negocio local.",
+    industries: ['Agroturismo y Granjas', 'Gastronomía y Bebidas', 'Constructores y Servicios del Hogar', 'Recreación al Aire Libre', 'Desarrollo Inmobiliario', 'Comercio Local'],
+    keywords: ["marketing digital johns island sc", "diseño web johns island", "seo local johns island"],
+  },
+  'daniel-island': {
+    name: 'Daniel Island',
+    state: 'SC',
+    slug: 'daniel-island',
+    headline: 'Diseño Web y Marketing Digital en Daniel Island, SC',
+    intro: 'Belk Digital ofrece diseño web de alta gama, SEO local y marketing digital para empresas y profesionales en la prestigiosa comunidad de Daniel Island.',
+    about: 'Daniel Island combina áreas residenciales exclusivas con un distrito corporativo en crecimiento. Ofrecemos diseño de primer nivel y estrategias de SEO enfocadas en resultados de alto impacto.',
+    industries: ['Servicios Financieros y Profesionales', 'Medicina Concierge y Salud', 'Gestión Inmobiliaria', 'Oficinas Corporativas y Consultoría', 'Alta Cocina', 'Estilo de Vida y Fitness'],
+    keywords: ['marketing digital daniel island sc', 'diseño web daniel island', 'seo local daniel island'],
+  },
+  'summerville': {
+    name: 'Summerville',
+    state: 'SC',
+    slug: 'summerville',
+    headline: 'Diseño Web y Marketing Digital en Summerville, SC',
+    intro: 'Belk Digital ayuda a las empresas de Summerville, SC a expandirse en internet con sitios web a medida, SEO local y marketing que conecta con una población en rápido aumento.',
+    about: 'Summerville es una de las ciudades con mayor crecimiento en Carolina del Sur. Ayudamos a sus empresas a captar este mercado en expansión con sitios web eficaces y SEO estratégico.',
+    industries: ['Contratistas y Servicios del Hogar', 'Salud y Clínicas Médicas', 'Restaurantes y Alimentación', 'Comercio Minorista', 'Bienes Raíces e Hipotecas', 'Educación y Guarderías'],
+    keywords: ['marketing digital summerville sc', 'diseño web summerville', 'seo local summerville'],
+  },
+};
+
+const UI_STRINGS: Record<string, {
+  allNeighborhoods: string;
+  ctaButton: string;
+  expertiseTag: string;
+  servingPrefix: string;
+  servingSuffix: string;
+  offerTag: string;
+  offerTitlePrefix: string;
+  industriesTitlePrefix: string;
+  coverageNotice: string;
+  coverageMetro: (name: string) => string;
+  viewAllAreas: string;
+  services: string[];
+}> = {
+  en: {
+    allNeighborhoods: 'Charleston, SC',
+    ctaButton: 'Get a Free Consultation',
+    expertiseTag: 'Local Expertise',
+    servingPrefix: 'Serving ',
+    servingSuffix: ' Businesses',
+    offerTag: 'What We Offer',
+    offerTitlePrefix: 'Digital Services in ',
+    industriesTitlePrefix: 'Industries We Serve in ',
+    coverageNotice: 'Part of our Charleston, SC coverage',
+    coverageMetro: (name: string) => `We serve all of Charleston metro — not just ${name}.`,
+    viewAllAreas: 'View All Charleston Areas',
+    services: [
+      'Custom Web Design & UI/UX',
+      'Website Redesign & Optimization',
+      'Web & SaaS Development',
+      'Local SEO (Charleston, SC)',
+      'Digital Marketing & Growth',
+      'Website Maintenance & Support',
+    ]
+  },
+  es: {
+    allNeighborhoods: 'Charleston, SC',
+    ctaButton: 'Obtener Consulta Gratuita',
+    expertiseTag: 'Experiencia Local',
+    servingPrefix: 'Impulsando Empresas en ',
+    servingSuffix: '',
+    offerTag: 'Lo Que Ofrecemos',
+    offerTitlePrefix: 'Servicios Digitales en ',
+    industriesTitlePrefix: 'Industrias que Atendemos en ',
+    coverageNotice: 'Parte de nuestra cobertura en Charleston, SC',
+    coverageMetro: (name: string) => `Atendemos a todo el área metropolitana de Charleston, no solo ${name}.`,
+    viewAllAreas: 'Ver Todas las Áreas de Charleston',
+    services: [
+      'Diseño Web Personalizado & UI/UX',
+      'Rediseño y Optimización Web',
+      'Desarrollo Web & SaaS',
+      'SEO Local (Charleston, SC)',
+      'Marketing Digital & Crecimiento',
+      'Mantenimiento y Soporte Web',
+    ]
+  },
+  fr: {
+    allNeighborhoods: 'Charleston, SC',
+    ctaButton: 'Obtenir une Consultation Gratuite',
+    expertiseTag: 'Expertise Locale',
+    servingPrefix: 'Au Service des Entreprises de ',
+    servingSuffix: '',
+    offerTag: 'Nos Prestations',
+    offerTitlePrefix: 'Services Numériques à ',
+    industriesTitlePrefix: 'Secteurs d\'Activité à ',
+    coverageNotice: 'Dans le cadre de notre couverture à Charleston, SC',
+    coverageMetro: (name: string) => `Nous desservons toute l'agglomération de Charleston — pas uniquement ${name}.`,
+    viewAllAreas: 'Voir Tous les Quartiers de Charleston',
+    services: [
+      'Design Web Sur Mesure & UI/UX',
+      'Refonte & Optimisation Web',
+      'Développement Web & SaaS',
+      'SEO Local (Charleston, SC)',
+      'Marketing Digital & Croissance',
+      'Maintenance & Support Web',
+    ]
+  },
+  de: {
+    allNeighborhoods: 'Charleston, SC',
+    ctaButton: 'Kostenlose Beratung anfordern',
+    expertiseTag: 'Lokale Expertise',
+    servingPrefix: 'Für Unternehmen in ',
+    servingSuffix: '',
+    offerTag: 'Unser Angebot',
+    offerTitlePrefix: 'Digitale Dienstleistungen in ',
+    industriesTitlePrefix: 'Branchen, die wir betreuen in ',
+    coverageNotice: 'Teil unseres Angebots in Charleston, SC',
+    coverageMetro: (name: string) => `Wir betreuen den gesamten Großraum Charleston – nicht nur ${name}.`,
+    viewAllAreas: 'Alle Stadtteile von Charleston anzeigen',
+    services: [
+      'Individuelles Webdesign & UI/UX',
+      'Website-Relaunch & Optimierung',
+      'Web- & SaaS-Entwicklung',
+      'Lokales SEO (Charleston, SC)',
+      'Digitales Marketing & Wachstum',
+      'Website-Wartung & Support',
+    ]
+  }
+};
 
 export const CharlestonNeighborhood = () => {
   const { lang, neighborhood } = useParams();
   const locale = Array.isArray(lang) ? lang[0] : lang ?? 'en';
   const slug = Array.isArray(neighborhood) ? neighborhood[0] : neighborhood ?? '';
+  const currentLang = UI_STRINGS[locale] ? locale : 'en';
+  const ui = UI_STRINGS[currentLang];
 
-  const data = NEIGHBORHOOD_MAP[slug];
+  const map = currentLang === 'es' ? NEIGHBORHOOD_MAP_ES : NEIGHBORHOOD_MAP_EN;
+  const data = map[slug] || NEIGHBORHOOD_MAP_EN[slug];
 
   if (!data) return null;
 
@@ -148,7 +325,7 @@ export const CharlestonNeighborhood = () => {
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.08] border border-white/10 text-white/50 text-xs font-medium tracking-widest uppercase hover:bg-white/[0.12] hover:text-white/80 transition-all"
             >
               <ArrowRight className="w-3 h-3 rotate-180" />
-              Charleston, SC
+              {ui.allNeighborhoods}
             </Link>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/40 border border-white/10 backdrop-blur-sm">
               <MapPin className="w-3 h-3 text-blue-400" />
@@ -195,7 +372,7 @@ export const CharlestonNeighborhood = () => {
               href={`/${locale}/contact`}
               className="inline-flex items-center gap-2 px-7 py-3.5 bg-white text-black text-sm font-semibold rounded-full hover:bg-white/90 transition-all"
             >
-              Get a Free Consultation
+              {ui.ctaButton}
               <ArrowRight className="w-4 h-4" />
             </Link>
           </motion.div>
@@ -235,12 +412,12 @@ export const CharlestonNeighborhood = () => {
               >
                 <div className="flex items-center gap-4 mb-8">
                   <div className="w-8 h-px bg-white/20" />
-                  <span className="text-xs text-white/40 uppercase tracking-[0.3em] font-medium">Local Expertise</span>
+                  <span className="text-xs text-white/40 uppercase tracking-[0.3em] font-medium">{ui.expertiseTag}</span>
                 </div>
                 <h2 className="text-[2.2rem] sm:text-[2.8rem] md:text-[3.2rem] font-sans font-[600] tracking-tight leading-[1.1] text-white">
-                  Serving{' '}
+                  {ui.servingPrefix}
                   <span className="font-serif italic font-normal">{data.name}</span>
-                  {' '}Businesses
+                  {ui.servingSuffix}
                 </h2>
               </motion.div>
 
@@ -271,7 +448,7 @@ export const CharlestonNeighborhood = () => {
               className="mb-8"
             >
               <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/[0.06] border border-white/10 text-white/50 text-xs font-sans font-medium tracking-widest uppercase">
-                What We Offer
+                {ui.offerTag}
               </span>
             </motion.div>
             <motion.h2
@@ -281,13 +458,13 @@ export const CharlestonNeighborhood = () => {
               transition={{ delay: 0.08 }}
               className="text-[2.4rem] sm:text-[3.2rem] md:text-[4rem] font-sans font-[600] tracking-tight leading-[1.1] text-white max-w-3xl"
             >
-              Digital Services in{' '}
+              {ui.offerTitlePrefix}
               <span className="font-serif italic font-normal">{data.name}</span>
             </motion.h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {SERVICES.map((service, index) => (
+            {ui.services.map((service, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 24 }}
@@ -314,7 +491,7 @@ export const CharlestonNeighborhood = () => {
               viewport={{ once: true }}
               className="text-[2rem] sm:text-[2.6rem] font-sans font-[600] tracking-tight leading-[1.1] text-white max-w-2xl"
             >
-              Industries We Serve in{' '}
+              {ui.industriesTitlePrefix}
               <span className="font-serif italic font-normal">{data.name}</span>
             </motion.h2>
           </div>
@@ -340,16 +517,16 @@ export const CharlestonNeighborhood = () => {
       <section className="py-16 bg-black">
         <div className="w-full max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16 flex flex-col sm:flex-row items-center justify-between gap-6 border-t border-white/[0.06] pt-16">
           <div>
-            <p className="text-white/35 text-sm mb-1">Part of our Charleston, SC coverage</p>
+            <p className="text-white/35 text-sm mb-1">{ui.coverageNotice}</p>
             <p className="text-white/60 text-base font-sans">
-              We serve all of Charleston metro — not just {data.name}.
+              {ui.coverageMetro(data.name)}
             </p>
           </div>
           <Link
             href={`/${locale}/locations/charleston-sc`}
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/[0.06] border border-white/10 text-white/70 text-sm font-medium hover:bg-white/[0.10] hover:text-white transition-all"
           >
-            View All Charleston Areas
+            {ui.viewAllAreas}
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

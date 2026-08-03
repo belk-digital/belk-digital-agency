@@ -6,24 +6,61 @@ import { FooterBackgroundGradient, TextHoverEffect } from "@/components/ui/hover
 
 export function Footer() {
   const { language, t } = useLanguage();
-  const footerData = t.footer;
+  const footerData = t?.footer || {};
 
   const quickLinks = [
-    { href: `/${language}`, label: 'Home' },
-    { href: `/${language}/about`, label: 'About' },
-    { href: `/${language}/work`, label: 'Our Work' },
-    { href: `/${language}/proposals`, label: 'Proposals' },
-    { href: `/${language}/faq`, label: 'FAQ' },
-    { href: `/${language}/contact`, label: 'Contact' },
+    { href: `/${language}`, label: t?.nav?.home || (language === 'es' ? 'Inicio' : language === 'fr' ? 'Accueil' : language === 'de' ? 'Startseite' : 'Home') },
+    { href: `/${language}/about`, label: t?.nav?.about || (language === 'es' ? 'Nosotros' : language === 'fr' ? 'À propos' : language === 'de' ? 'Über uns' : 'About') },
+    { href: `/${language}/work`, label: t?.nav?.work || (language === 'es' ? 'Proyectos' : language === 'fr' ? 'Réalisations' : language === 'de' ? 'Projekte' : 'Our Work') },
+    { href: `/${language}/proposals`, label: language === 'es' ? 'Propuestas' : language === 'fr' ? 'Propositions' : language === 'de' ? 'Angebote' : 'Proposals' },
+    { href: `/${language}/faq`, label: t?.nav?.faq || 'FAQ' },
+    { href: `/${language}/contact`, label: t?.nav?.contact || (language === 'es' ? 'Contacto' : language === 'fr' ? 'Contact' : language === 'de' ? 'Kontakt' : 'Contact') },
   ];
 
   const services = [
-    { href: `/${language}/services/custom-web-design`, label: 'Custom Web Design & UI/UX' },
-    { href: `/${language}/services/website-redesign`, label: 'Website Redesign & Optimization' },
-    { href: `/${language}/services/branding`, label: 'Branding & Digital Identity' },
-    { href: `/${language}/services/web-development`, label: 'Web & SaaS Development' },
-    { href: `/${language}/services/seo-optimization`, label: 'Search Engine Optimization (SEO)' },
+    {
+      href: `/${language}/services/custom-web-design`,
+      label: language === 'es' ? 'Diseño Web Personalizado & UI/UX' :
+             language === 'fr' ? 'Design Web Sur Mesure & UI/UX' :
+             language === 'de' ? 'Individuelles Webdesign & UI/UX' :
+             'Custom Web Design & UI/UX'
+    },
+    {
+      href: `/${language}/services/website-redesign`,
+      label: language === 'es' ? 'Rediseño y Optimización de Sitios' :
+             language === 'fr' ? 'Refonte & Optimisation Web' :
+             language === 'de' ? 'Website-Relaunch & Optimierung' :
+             'Website Redesign & Optimization'
+    },
+    {
+      href: `/${language}/services/branding`,
+      label: language === 'es' ? 'Branding e Identidad Digital' :
+             language === 'fr' ? 'Image de Marque & Identité Numérique' :
+             language === 'de' ? 'Branding & Digitale Identität' :
+             'Branding & Digital Identity'
+    },
+    {
+      href: `/${language}/services/web-development`,
+      label: language === 'es' ? 'Desarrollo Web & SaaS' :
+             language === 'fr' ? 'Développement Web & SaaS' :
+             language === 'de' ? 'Web- & SaaS-Entwicklung' :
+             'Web & SaaS Development'
+    },
+    {
+      href: `/${language}/services/seo-optimization`,
+      label: language === 'es' ? 'Optimización SEO' :
+             language === 'fr' ? 'Optimisation SEO' :
+             language === 'de' ? 'Suchmaschinenoptimierung (SEO)' :
+             'Search Engine Optimization (SEO)'
+    },
   ];
+
+  const quickLinksHeading = language === 'es' ? 'Enlaces Rápidos' :
+                           language === 'fr' ? 'Liens Rapides' :
+                           language === 'de' ? 'Schnellzugriff' :
+                           'Quick Links';
+
+  const servicesHeading = t?.nav?.services || (language === 'es' ? 'Servicios' : language === 'fr' ? 'Services' : language === 'de' ? 'Leistungen' : 'Services');
 
   return (
     <footer className="bg-black relative h-fit rounded-[40px] overflow-hidden m-4 md:m-8 border border-white/[0.05]">
@@ -33,25 +70,27 @@ export function Footer() {
           {/* Brand section */}
           <div className="flex flex-col space-y-6 pointer-events-auto">
             <Link href={`/${language}`} className="flex items-center space-x-3 group">
-              <img src="/logo.png" alt={footerData.branding} className="h-12 w-auto transition-transform group-hover:scale-110" />
+              <img src="/logo.png" alt={footerData.branding || "Belk Digital"} className="h-12 w-auto transition-transform group-hover:scale-110" />
             </Link>
             <p className="text-sm text-white/50 leading-relaxed max-w-xs">
               {footerData.description}
             </p>
             {/* Email */}
-            <a
-              href={`mailto:${footerData.contactItems.email}`}
-              className="flex items-center gap-2.5 text-white/40 hover:text-[#3ca2fa] transition-colors text-sm"
-            >
-              <Mail size={16} className="text-[#3ca2fa] shrink-0" />
-              {footerData.contactItems.email}
-            </a>
+            {footerData?.contactItems?.email && (
+              <a
+                href={`mailto:${footerData.contactItems.email}`}
+                className="flex items-center gap-2.5 text-white/40 hover:text-[#3ca2fa] transition-colors text-sm"
+              >
+                <Mail size={16} className="text-[#3ca2fa] shrink-0" />
+                {footerData.contactItems.email}
+              </a>
+            )}
           </div>
 
           {/* Quick Links */}
           <div className="pointer-events-auto">
             <h4 className="text-white text-base font-bold uppercase tracking-[0.2em] mb-8 opacity-80">
-              Quick Links
+              {quickLinksHeading}
             </h4>
             <ul className="space-y-4">
               {quickLinks.map((link) => (
@@ -70,7 +109,7 @@ export function Footer() {
           {/* Services */}
           <div className="pointer-events-auto">
             <h4 className="text-white text-base font-bold uppercase tracking-[0.2em] mb-8 opacity-80">
-              Services
+              {servicesHeading}
             </h4>
             <ul className="space-y-4">
               {services.map((service) => (

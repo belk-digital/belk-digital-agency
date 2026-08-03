@@ -68,7 +68,7 @@ export default async function Layout({
 
                 <JsonLd />
             </head>
-            <body className="antialiased">
+            <body className="antialiased" suppressHydrationWarning>
                 <Preloader />
                 <Providers dictionary={dict} language={lang as Locale} dir={dir}>
                     <SmoothScroll>

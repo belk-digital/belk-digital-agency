@@ -8,9 +8,51 @@ import { useParams } from 'next/navigation';
 
 import { useLanguage } from '@/i18n/LanguageContext';
 import { cn } from '@/lib/utils';
-import { ArrowRight, Calendar, Clock, User, Tag, CheckCircle, ChevronRight, Share2, Bookmark } from 'lucide-react';
+import { ArrowRight, Calendar, Clock, User, Tag, CheckCircle, ChevronRight, Share2, Bookmark, HelpCircle, ChevronDown } from 'lucide-react';
 import { CTASection } from '@/components/home/CTASection';
 import { getBlogPosts } from '@/i18n/blogPosts';
+
+const renderContentWithLinks = (text: string, lang: string) => {
+  if (!text) return null;
+  const regex = /\[([^\]]+)\]\(([^)]+)\)/g;
+  const parts = [];
+  let lastIndex = 0;
+  let match;
+
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(text.substring(lastIndex, match.index));
+    }
+
+    const linkText = match[1];
+    let linkUrl = match[2];
+
+    if (linkUrl.startsWith('/') && !linkUrl.startsWith(`/${lang}`)) {
+      const hasLangPrefix = /^\/[a-z]{2}(\/|$)/.test(linkUrl);
+      if (!hasLangPrefix) {
+        linkUrl = `/${lang}${linkUrl}`;
+      }
+    }
+
+    parts.push(
+      <Link
+        key={match.index}
+        href={linkUrl}
+        className="text-[#9F5FFC] hover:text-white underline transition-colors duration-300"
+      >
+        {linkText}
+      </Link>
+    );
+
+    lastIndex = regex.lastIndex;
+  }
+
+  if (lastIndex < text.length) {
+    parts.push(text.substring(lastIndex));
+  }
+
+  return parts.length > 0 ? parts : text;
+};
 
 const categories = ['all', 'business', 'design', 'seo', 'performance'] as const;
 
@@ -18,13 +60,15 @@ const Blog = () => {
   const { slug } = useParams();
   const { language, t, isRTL } = useLanguage();
   const [activeCategory, setActiveCategory] = useState<string>('all');
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
   // Get localized blog posts based on current language
   const blogPosts = getBlogPosts(language);
 
   // Single blog post view
   if (slug) {
-    const post = blogPosts.find(p => p.slug === slug);
+    const effectiveSlug = slug === 'telehealth-website-development' ? 'medical-practice-website-development-hipaa-guide' : slug;
+    const post = blogPosts.find(p => p.slug === effectiveSlug);
 
     if (!post) {
       return (
@@ -118,19 +162,19 @@ const Blog = () => {
                   <h2 className="text-3xl font-sans font-[600] text-white mt-16 mb-8">
                     {language === 'es' ? 'Introducción' : (language === 'fr' ? 'Introduction' : (language === 'de' ? 'Einführung' : 'Introduction'))}
                   </h2>
-                  <p className="mb-12 text-lg text-white/70">{post.content.intro}</p>
+                  <p className="mb-12 text-lg text-white/70">{renderContentWithLinks(post.content.intro, language)}</p>
 
                   {post.content.sections.map((section, index) => (
                     <div key={index} className="mb-16">
                       <h2 className="text-2xl font-sans font-[600] text-white mt-16 mb-8">{section.title}</h2>
-                      <p className="text-lg text-white/70 mb-8">{section.content}</p>
+                      <p className="text-lg text-white/70 mb-8">{renderContentWithLinks(section.content, language)}</p>
 
                       {section.points && (
                         <div className="grid sm:grid-cols-2 gap-4 my-10">
                           {section.points.map((point, idx) => (
                             <div key={idx} className="flex items-start gap-3 p-4 bg-white/5 border border-white/5 rounded-2xl group hover:border-white/20 transition-all duration-300">
                               <CheckCircle className="w-5 h-5 text-white/40 group-hover:text-white transition-colors flex-shrink-0 mt-0.5" />
-                              <span className="font-sans text-white/80 group-hover:text-white transition-colors">{point}</span>
+                              <span className="font-sans text-white/80 group-hover:text-white transition-colors">{renderContentWithLinks(point, language)}</span>
                             </div>
                           ))}
                         </div>
@@ -141,7 +185,53 @@ const Blog = () => {
                   <h2 className="text-3xl font-sans font-[600] text-white mt-16 mb-8">
                     {language === 'es' ? 'Conclusión' : (language === 'fr' ? 'Conclusion' : (language === 'de' ? 'Fazit' : 'Conclusion'))}
                   </h2>
-                  <p className="text-lg text-white/70">{post.content.conclusion}</p>
+                  <p className="text-lg text-white/70">{renderContentWithLinks(post.content.conclusion, language)}</p>
+
+                  {/* FAQs Accordion Section */}
+                  {post.faqs && post.faqs.length > 0 && (
+                    <div className="mt-20 pt-16 border-t border-white/10">
+                      <h2 className="text-3xl font-sans font-[600] text-white mb-10 flex items-center gap-4">
+                        <HelpCircle className="w-8 h-8 text-white/40" />
+                        {language === 'es' ? 'Preguntas Frecuentes' : (language === 'fr' ? 'Questions Fréquentes' : (language === 'de' ? 'Häufig gestellte Fragen' : 'Frequently Asked Questions'))}
+                      </h2>
+                      <div className="space-y-4">
+                        {post.faqs.map((faq, index) => {
+                          const isOpen = openFaqIndex === index;
+                          return (
+                            <div
+                              key={index}
+                              className={cn(
+                                "border rounded-2xl transition-all duration-300 overflow-hidden",
+                                isOpen ? "bg-white/[0.04] border-white/20" : "bg-white/[0.01] border-white/5 hover:border-white/15"
+                              )}
+                            >
+                              <button
+                                onClick={() => setOpenFaqIndex(isOpen ? null : index)}
+                                className="w-full px-6 py-5 flex items-center justify-between gap-4 text-left font-sans text-lg font-medium text-white/90 hover:text-white transition-colors"
+                              >
+                                <span>{faq.question}</span>
+                                <ChevronDown className={cn("w-5 h-5 text-white/40 transition-transform duration-300", isOpen && "rotate-180 text-white")} />
+                              </button>
+                              <AnimatePresence initial={false}>
+                                {isOpen && (
+                                  <motion.div
+                                    initial={{ height: 0, opacity: 0 }}
+                                    animate={{ height: "auto", opacity: 1 }}
+                                    exit={{ height: 0, opacity: 0 }}
+                                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                                  >
+                                    <div className="px-6 pb-6 text-base text-white/60 leading-relaxed font-sans border-t border-white/5 pt-4">
+                                      {faq.answer}
+                                    </div>
+                                  </motion.div>
+                                )}
+                              </AnimatePresence>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 {/* Share Section */}

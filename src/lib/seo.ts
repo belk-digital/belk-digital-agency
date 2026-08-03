@@ -47,12 +47,18 @@ export function constructMetadata({
         metadataBase: new URL(BASE_URL),
         title,
         description,
+        authors: [{ name: 'Belk Digital', url: BASE_URL }],
+        creator: 'Belk Digital',
+        publisher: 'Belk Digital',
         robots: noIndex
             ? { index: false, follow: false }
             : { index: true, follow: true, googleBot: { index: true, follow: true } },
         alternates: {
             canonical: alternates.canonical,
             languages: alternates.languages,
+            types: {
+                'application/rss+xml': `${BASE_URL}/feed.xml`,
+            },
         },
         openGraph: {
             title,

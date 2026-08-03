@@ -1,49 +1,60 @@
 import Blog from '@/screens/Blog';
 import { constructMetadata } from '@/lib/seo';
 import { getDictionary } from '@/lib/i18n';
-import { Locale } from '@/lib/i18n-config';
+import { Locale, i18n } from '@/lib/i18n-config';
 import { Metadata } from 'next';
-import { blogPostsEN, blogPostsES, blogPostsFR } from '@/i18n/blogPosts';
+import { getBlogPosts, blogPostsEN } from '@/i18n/blogPosts';
 import PageJsonLd from '@/components/seo/PageJsonLd';
+
+export async function generateStaticParams() {
+    const params: Array<{ lang: string; slug: string }> = [];
+    for (const lang of i18n.locales) {
+        for (const post of blogPostsEN) {
+            params.push({ lang, slug: post.slug });
+        }
+    }
+    return params;
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string; slug: string }> }): Promise<Metadata> {
     const { lang, slug } = await params;
     const dict = await getDictionary(lang as Locale);
+    const effectiveSlug = slug === 'telehealth-website-development' ? 'medical-practice-website-development-hipaa-guide' : slug;
 
-    // Find post
-    let post;
-    if (lang === 'es') post = blogPostsES.find(p => p.slug === slug);
-    else if (lang === 'fr') post = blogPostsFR.find(p => p.slug === slug);
-    else post = blogPostsEN.find(p => p.slug === slug);
+    // Find localized post
+    const posts = getBlogPosts(lang);
+    const post = posts.find(p => p.slug === effectiveSlug);
 
     return constructMetadata({
         title: post ? post.title : dict.seo.blog.title,
         description: post ? post.excerpt : dict.seo.blog.description,
-        path: `/blog/${slug}`,
+        path: `/blog/${effectiveSlug}`,
         type: 'article',
     });
 }
 
 export default async function BlogDetailPage({ params }: { params: Promise<{ lang: string; slug: string }> }) {
     const { lang, slug } = await params;
+    const effectiveSlug = slug === 'telehealth-website-development' ? 'medical-practice-website-development-hipaa-guide' : slug;
 
     // Find English post for structured data (consistent date/author info)
-    const post = blogPostsEN.find(p => p.slug === slug);
+    const post = blogPostsEN.find(p => p.slug === effectiveSlug);
 
     return (
         <>
             {post && (
                 <PageJsonLd
                     type="Article"
-                    url={`https://belkdigital.com/${lang}/blog/${slug}`}
+                    url={`https://belkdigital.com/${lang}/blog/${effectiveSlug}`}
                     headline={post.title}
                     description={post.excerpt}
                     datePublished={post.date}
                     dateModified={post.date}
-                    authorName="Belk Digital"
+                    authorName={post.author || "Belk Digital"}
                 />
             )}
             <Blog />
         </>
     );
 }
+
