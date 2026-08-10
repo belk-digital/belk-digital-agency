@@ -1,449 +1,473 @@
 "use client";
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useRef, useEffect } from 'react';
 import { useLanguage } from '@/i18n/LanguageContext';
 import { cn } from '@/lib/utils';
-import { Mail, Phone, MapPin, Send, MessageSquare, Globe, ArrowRight, User, GlobeIcon } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import {
+  Mail, Globe, ArrowRight, ArrowLeft, Check, Send,
+  Palette, Code, Search, ShoppingBag, Brain, TrendingUp,
+  MessageCircle, Smartphone, GitBranch, Stethoscope, Fingerprint, Layout,
+  CheckSquare, Sparkles, Cloud, User
+} from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
+import emailjs from '@emailjs/browser';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { useToast } from '@/hooks/use-toast';
-import { z } from 'zod';
-import WorldMap from '@/components/ui/world-map';
-import Image from 'next/image';
-
-import emailjs from '@emailjs/browser';
-
-declare var grecaptcha: any;
 
 declare global {
-  interface Window {
-    grecaptcha: any;
-  }
+  interface Window { grecaptcha: any; }
 }
 
+const SERVICES = [
+  { id: 'web-design',            label: 'Web Design',              icon: Palette },
+  { id: 'ui-ux',                 label: 'UI / UX Design',          icon: Layout },
+  { id: 'branding',              label: 'Branding',                icon: Fingerprint },
+  { id: 'web-development',       label: 'Web Development',         icon: Code },
+  { id: 'seo',                   label: 'SEO Optimization',        icon: Search },
+  { id: 'ecommerce',             label: 'eCommerce',               icon: ShoppingBag },
+  { id: 'ai-solutions',          label: 'AI Solutions',            icon: Brain },
+  { id: 'performance-marketing', label: 'Performance Marketing',   icon: TrendingUp },
+  { id: 'social-ugc',            label: 'Social Media & UGC',      icon: MessageCircle },
+  { id: 'geo',                   label: 'GEO Optimization',        icon: Sparkles },
+  { id: 'aeo',                   label: 'AEO Optimization',        icon: CheckSquare },
+  { id: 'mobile',                label: 'Mobile App',              icon: Smartphone },
+  { id: 'api',                   label: 'API & Integrations',      icon: GitBranch },
+  { id: 'cloud',                 label: 'Cloud & Infrastructure',  icon: Cloud },
+  { id: 'telehealth',            label: 'Telehealth Platform',     icon: Stethoscope },
+];
 
-const contactSchema = z.object({
-  name: z.string().trim().min(1, 'Name is required').max(100, 'Name must be less than 100 characters'),
-  email: z.string().trim().email('Invalid email address').max(255, 'Email must be less than 255 characters'),
-  website: z.string().trim().optional(),
-  service: z.string().optional(),
-  message: z.string().trim().min(1, 'Message is required').max(2000, 'Message must be less than 2000 characters'),
-});
+const BUDGETS = [
+  { id: 'under-2k',   label: 'Under $2,000',    sub: 'Starter projects' },
+  { id: '2k-5k',      label: '$2,000 – $5,000', sub: 'Small – medium scope' },
+  { id: '5k-15k',     label: '$5,000 – $15,000',sub: 'Mid-scale builds' },
+  { id: '15k-plus',   label: '$15,000+',         sub: 'Enterprise & complex' },
+];
+
+const TIMELINES = [
+  { id: 'asap',       label: 'ASAP',             sub: 'We need this yesterday' },
+  { id: '1-3mo',      label: '1 – 3 months',     sub: 'Near-term launch' },
+  { id: '3-6mo',      label: '3 – 6 months',     sub: 'Planned rollout' },
+  { id: 'flexible',   label: 'Flexible',          sub: 'No hard deadline' },
+];
+
+const STEPS = ['Services', 'Budget', 'Timeline', 'About You', 'Message'];
+
+const slideVariants = {
+  enter: (dir: number) => ({ x: dir > 0 ? 60 : -60, opacity: 0 }),
+  center: { x: 0, opacity: 1 },
+  exit:  (dir: number) => ({ x: dir > 0 ? -60 : 60, opacity: 0 }),
+};
 
 const Contact = () => {
-  const { t, isRTL, language } = useLanguage();
+  const { language } = useLanguage();
   const { toast } = useToast();
+
+  const [step, setStep]           = useState(0);
+  const [direction, setDirection] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    website: '',
-    service: '',
-    message: '',
-  });
+  const [done, setDone]           = useState(false);
 
-  const captchaRef = useRef<HTMLDivElement>(null);
-  const widgetIdRef = useRef<number | null>(null);
+  const [services,  setServices]  = useState<string[]>([]);
+  const [budget,    setBudget]    = useState('');
+  const [timeline,  setTimeline]  = useState('');
+  const [name,      setName]      = useState('');
+  const [email,     setEmail]     = useState('');
+  const [website,   setWebsite]   = useState('');
+  const [message,   setMessage]   = useState('');
 
-  const onCaptchaResolved = async (token: string) => {
+  const captchaRef   = useRef<HTMLDivElement>(null);
+  const widgetIdRef  = useRef<number | null>(null);
+  const onResolvedRef = useRef<(token: string) => void>(() => {});
+
+  const canNext = () => {
+    if (step === 0) return services.length > 0;
+    if (step === 1) return !!budget;
+    if (step === 2) return !!timeline;
+    if (step === 3) return name.trim() !== '' && /\S+@\S+\.\S+/.test(email);
+    return true;
+  };
+
+  const go = (delta: number) => {
+    setDirection(delta);
+    setStep(s => s + delta);
+  };
+
+  const submitForm = async (token: string) => {
     try {
       setIsSubmitting(true);
+      const selectedLabels = services.map(id => SERVICES.find(s => s.id === id)?.label).join(', ');
+      const budgetLabel    = BUDGETS.find(b => b.id === budget)?.label   || budget;
+      const timelineLabel  = TIMELINES.find(t => t.id === timeline)?.label || timeline;
 
-      // Check if EmailJS is configured
-      if (!process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || !process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY) {
-        throw new Error("EmailJS is not properly configured. Please restart your dev server to load the new .env file.");
-      }
-
-      const validated = contactSchema.parse(formData);
-
-      const commonParams = {
-        website: validated.website,
-        service: validated.service,
-        message: validated.message,
-        'g-recaptcha-response': token,
-      };
-
-      // 1) Send main Admin notification email
       await emailjs.send(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
         process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ADMIN_ID!,
         {
-          from_name: validated.name,
-          from_email: validated.email,
-          name: validated.name,
-          email: validated.email,
-          reply_to: validated.email,
-          ...commonParams
+          from_name:  name,
+          from_email: email,
+          name,
+          email,
+          reply_to:   email,
+          website:    website || '—',
+          service:    selectedLabels,
+          budget:     budgetLabel,
+          timeline:   timelineLabel,
+          message:    message || '—',
+          'g-recaptcha-response': token,
         },
         process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
       );
 
-      // 2) Try sending User confirmation email (non-fatal if user template ID is unconfigured or disabled)
       try {
         if (process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_USER_ID) {
           await emailjs.send(
             process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
             process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_USER_ID!,
-            {
-              to_name: validated.name,
-              to_email: validated.email,
-              name: validated.name,
-              email: validated.email,
-              ...commonParams
-            },
+            { to_name: name, to_email: email, name, email, 'g-recaptcha-response': token },
             process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
           );
         }
-      } catch (userEmailError) {
-        console.warn("User auto-reply email failed (non-fatal):", userEmailError);
-      }
+      } catch (_) {}
 
+      setDone(true);
+    } catch (err: any) {
       toast({
-        title: "Message sent!",
-        description: "We'll get back to you within 24 hours.",
-      });
-
-      setFormData({ name: '', email: '', website: '', service: '', message: '' });
-      if (widgetIdRef.current !== null && window.grecaptcha) {
-        try {
-          window.grecaptcha.reset(widgetIdRef.current);
-        } catch (e) {
-          console.error("Reset error:", e);
-        }
-      }
-
-    } catch (error: any) {
-      console.error('EmailJS Error:', error);
-      const errorMessage = error?.text || error?.message || (typeof error === 'string' ? error : "Failed to send message. Please try again later.");
-      toast({
-        title: "Error Sending Message",
-        description: `EmailJS Error: ${errorMessage}`,
-        variant: "destructive",
+        title: 'Error sending message',
+        description: err?.text || err?.message || 'Please try again.',
+        variant: 'destructive',
       });
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const onCaptchaResolvedRef = useRef(onCaptchaResolved);
   useEffect(() => {
-    onCaptchaResolvedRef.current = onCaptchaResolved;
+    onResolvedRef.current = submitForm;
   });
 
   useEffect(() => {
-    let isMounted = true;
-
-    const loadCaptcha = () => {
-      if (!isMounted || !window.grecaptcha || !captchaRef.current) return;
-
+    let mounted = true;
+    const init = () => {
+      if (!mounted || !window.grecaptcha || !captchaRef.current) return;
       window.grecaptcha.ready(() => {
-        if (!isMounted || !captchaRef.current) return;
-        if (widgetIdRef.current !== null) return;
+        if (!mounted || !captchaRef.current || widgetIdRef.current !== null) return;
         try {
-          // Prevent 'reCAPTCHA has already been rendered in this element' in React StrictMode
           captchaRef.current.innerHTML = '';
-          const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '6Lca_2YtAAAAALvhEyU47A1Unoo3oPCniK-DcnPI';
+          const key = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '6Lca_2YtAAAAALvhEyU47A1Unoo3oPCniK-DcnPI';
           widgetIdRef.current = window.grecaptcha.render(captchaRef.current, {
-            'sitekey': siteKey,
-            'size': 'invisible',
-            'callback': (token: string) => {
-              if (isMounted) onCaptchaResolvedRef.current(token);
-            },
-            'error-callback': () => {
-              console.error("Recaptcha error-callback triggered");
-              setIsSubmitting(false);
-              toast({
-                title: "Security Check Failed",
-                description: "Google reCAPTCHA check failed. Check your internet connection or domain permissions.",
-                variant: "destructive",
-              });
-            },
-            'expired-callback': () => {
-              if (widgetIdRef.current !== null && window.grecaptcha) {
-                window.grecaptcha.reset(widgetIdRef.current);
-              }
-            }
+            sitekey: key,
+            size: 'invisible',
+            callback: (token: string) => { if (mounted) onResolvedRef.current(token); },
+            'expired-callback': () => { if (widgetIdRef.current !== null) window.grecaptcha.reset(widgetIdRef.current); },
           });
-        } catch (e) {
-          console.error("Recaptcha render error:", e);
-        }
+        } catch (_) {}
       });
     };
-
-    if (window.grecaptcha && window.grecaptcha.render) {
-      loadCaptcha();
-    } else {
-      const interval = setInterval(() => {
-        if (window.grecaptcha && window.grecaptcha.render) {
-          clearInterval(interval);
-          loadCaptcha();
-        }
-      }, 500);
-      return () => {
-        isMounted = false;
-        clearInterval(interval);
-      };
+    if (window.grecaptcha?.render) init();
+    else {
+      const iv = setInterval(() => { if (window.grecaptcha?.render) { clearInterval(iv); init(); } }, 500);
+      return () => { mounted = false; clearInterval(iv); };
     }
-
-    return () => {
-      isMounted = false;
-    };
+    return () => { mounted = false; };
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      console.log('Submitting form...');
-      contactSchema.parse(formData);
-
-      if (widgetIdRef.current !== null && window.grecaptcha) {
-        window.grecaptcha.execute(widgetIdRef.current);
-      } else if (window.grecaptcha && window.grecaptcha.render && captchaRef.current) {
-        // Fallback: if widgetId was not rendered yet, render on-the-fly and execute
-        try {
-          captchaRef.current.innerHTML = '';
-          const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '6Lca_2YtAAAAALvhEyU47A1Unoo3oPCniK-DcnPI';
-          widgetIdRef.current = window.grecaptcha.render(captchaRef.current, {
-            'sitekey': siteKey,
-            'size': 'invisible',
-            'callback': (token: string) => onCaptchaResolvedRef.current(token),
-            'error-callback': () => {
-              setIsSubmitting(false);
-              toast({
-                title: "Security Check Failed",
-                description: "Google reCAPTCHA verification failed. Check domain permissions in Google reCAPTCHA Console.",
-                variant: "destructive",
-              });
-            }
-          });
-          window.grecaptcha.execute(widgetIdRef.current);
-        } catch (fallbackError) {
-          console.error("Fallback Recaptcha render error:", fallbackError);
-          toast({
-            title: "Error",
-            description: "Security check failed to load. Please refresh the page.",
-            variant: "destructive",
-          });
-        }
-      } else {
-        toast({
-          title: "Error",
-          description: "Security check failed to load. Please refresh.",
-          variant: "destructive",
-        });
-      }
-    } catch (error) {
-      console.error('Submit Error:', error);
-      if (error instanceof z.ZodError) {
-        toast({
-          title: "Validation Error",
-          description: error.errors[0].message,
-          variant: "destructive",
-        });
-      } else {
-        toast({
-          title: "Error",
-          description: "An unexpected error occurred. Please try again.",
-          variant: "destructive",
-        });
-      }
+  const handleSubmit = () => {
+    if (widgetIdRef.current !== null && window.grecaptcha) {
+      window.grecaptcha.execute(widgetIdRef.current);
     }
   };
 
+  const toggleService = (id: string) =>
+    setServices(prev => prev.includes(id) ? prev.filter(s => s !== id) : [...prev, id]);
+
   return (
-    <div className="bg-[#0A0A0A] min-h-screen text-white">
-      {/* Hero Section */}
-      <section className="relative pt-44 pb-32 overflow-hidden min-h-[90vh] flex flex-col justify-center">
-        {/* Background Image & Overlays */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/hero/service-detail-bg.webp"
-            alt="Contact Background"
-            fill
-            className="object-cover opacity-30"
-            priority
-          />
-          <div className="absolute inset-0 bg-[#0A0A0A]/60 z-10" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0A0A0A]/50 to-[#0A0A0A] z-20" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_70%_20%,rgba(59,130,246,0.12),transparent)] z-10" />
-        </div>
+    <div className="min-h-screen bg-[#080808] text-white flex flex-col">
 
-        <div className="container-wide relative z-30">
-          <div className="grid lg:grid-cols-2 gap-20 items-center max-w-[1400px] mx-auto">
-            {/* Left Content */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className={cn("space-y-12", isRTL && "text-right")}
-            >
-              <div className="space-y-8">
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                >
-                  <span className="px-4 py-1.5 rounded-full bg-white/10 border border-white/10 text-white/60 text-xs font-sans font-medium tracking-widest uppercase">
-                    Connect With Us
-                  </span>
-                </motion.div>
+      {/* ── Progress bar ── */}
+      <div className="fixed top-0 left-0 right-0 z-40 h-[3px] bg-white/5">
+        <motion.div
+          className="h-full bg-white"
+          animate={{ width: `${((step + 1) / STEPS.length) * 100}%` }}
+          transition={{ duration: 0.4, ease: 'easeInOut' }}
+        />
+      </div>
 
-                <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-sans font-[600] tracking-tight leading-[1.05] text-white">
-                  {t.contact.title.split(' ').slice(0, -2).join(' ')}{' '}
-                  <span className="font-serif italic font-normal text-white/90">
-                    {t.contact.title.split(' ').slice(-2).join(' ')}
-                  </span>
-                </h1>
-                
-                <p className="text-xl text-white/50 max-w-xl leading-relaxed font-sans">
-                  {t.contact.subtitle}
-                </p>
+      {/* ── Step label row ── */}
+      {!done && (
+        <div className="fixed top-0 left-0 right-0 z-30 flex justify-center pt-6 pointer-events-none">
+          <div className="flex items-center gap-3">
+            {STEPS.map((s, i) => (
+              <div key={s} className="flex items-center gap-3">
+                <span className={cn(
+                  'text-[11px] font-bold tracking-[0.2em] uppercase transition-colors duration-300',
+                  i === step ? 'text-white' : i < step ? 'text-white/40' : 'text-white/15'
+                )}>
+                  {s}
+                </span>
+                {i < STEPS.length - 1 && <span className="w-4 h-px bg-white/10" />}
               </div>
+            ))}
+          </div>
+        </div>
+      )}
 
-              {/* Contact Details Cards */}
-              <div className="grid gap-6">
-                {[
-                  { icon: Mail, label: 'Email Us', value: 'contact@belkdigital.com', href: 'mailto:contact@belkdigital.com' },
-                  { icon: Globe, label: 'Business Inquiry', value: 'contact@belkdigital.com', href: 'mailto:contact@belkdigital.com' }
-                ].map((item, index) => (
-                  <motion.a
-                    key={index}
-                    href={item.href}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 + index * 0.1 }}
-                    className={cn(
-                      "group flex items-center gap-6 p-6 rounded-[24px] bg-white/[0.03] border border-white/5 hover:border-white/15 hover:bg-white/[0.05] transition-all duration-300",
-                      isRTL && "flex-row-reverse"
-                    )}
-                  >
-                    <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
-                      <item.icon className="w-5 h-5 text-white/60 group-hover:text-white" />
-                    </div>
-                    <div>
-                      <span className="text-[10px] font-black tracking-[0.2em] uppercase text-white/30 block mb-1">{item.label}</span>
-                      <span className="text-lg font-sans font-medium text-white group-hover:text-white">{item.value}</span>
-                    </div>
-                  </motion.a>
+      {/* ── Main content ── */}
+      <div className="flex-1 flex flex-col items-center justify-center px-6 pt-24 pb-12 min-h-screen">
+        <AnimatePresence mode="wait" custom={direction}>
+          {done ? (
+            <motion.div
+              key="done"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="text-center max-w-lg"
+            >
+              <div className="w-20 h-20 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-8">
+                <Check className="w-10 h-10 text-white" />
+              </div>
+              <h2 className="text-4xl md:text-5xl font-sans font-semibold tracking-tight mb-4">
+                We got it.
+              </h2>
+              <p className="text-white/50 text-lg leading-relaxed">
+                Thanks {name.split(' ')[0]} — we'll review your brief and reach out within 24 hours at <span className="text-white/80">{email}</span>.
+              </p>
+            </motion.div>
+
+          ) : step === 0 ? (
+            <motion.div key="step0" custom={direction} variants={slideVariants}
+              initial="enter" animate="center" exit="exit"
+              transition={{ duration: 0.35, ease: [0.25,0.1,0.25,1] }}
+              className="w-full max-w-4xl"
+            >
+              <QuizHeading step={1} total={STEPS.length}
+                title="What can we help you with?"
+                sub="Pick everything that applies — no limit."
+              />
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 mt-10">
+                {SERVICES.map(svc => {
+                  const Icon = svc.icon;
+                  const active = services.includes(svc.id);
+                  return (
+                    <button
+                      key={svc.id}
+                      onClick={() => toggleService(svc.id)}
+                      className={cn(
+                        'group relative flex flex-col items-center gap-3 p-4 rounded-2xl border text-center transition-all duration-200',
+                        active
+                          ? 'bg-white text-black border-white'
+                          : 'bg-white/[0.03] border-white/8 hover:border-white/20 hover:bg-white/[0.06]'
+                      )}
+                    >
+                      {active && (
+                        <span className="absolute top-2 right-2 w-4 h-4 rounded-full bg-black/20 flex items-center justify-center">
+                          <Check className="w-2.5 h-2.5" />
+                        </span>
+                      )}
+                      <Icon className={cn('w-5 h-5', active ? 'text-black' : 'text-white/50 group-hover:text-white/80')} />
+                      <span className="text-xs font-semibold leading-tight">{svc.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </motion.div>
+
+          ) : step === 1 ? (
+            <motion.div key="step1" custom={direction} variants={slideVariants}
+              initial="enter" animate="center" exit="exit"
+              transition={{ duration: 0.35, ease: [0.25,0.1,0.25,1] }}
+              className="w-full max-w-2xl"
+            >
+              <QuizHeading step={2} total={STEPS.length}
+                title="What's your budget?"
+                sub="This helps us scope the right solution for you."
+              />
+              <div className="grid sm:grid-cols-2 gap-4 mt-10">
+                {BUDGETS.map(b => (
+                  <OptionCard key={b.id} label={b.label} sub={b.sub}
+                    active={budget === b.id}
+                    onClick={() => { setBudget(b.id); }}
+                  />
                 ))}
               </div>
+            </motion.div>
 
-              {/* World Map Overlay */}
-              <div className="opacity-40 grayscale hover:grayscale-0 transition-all duration-700 pointer-events-none select-none -mx-10 scale-110">
-                <WorldMap
-                  lineColor="rgba(59,130,246,0.5)"
-                  dots={[
-                    { start: { lat: 51.5074, lng: -0.1278 }, end: { lat: 28.6139, lng: 77.209 } },
-                    { start: { lat: 25.2048, lng: 55.2708 }, end: { lat: 48.8566, lng: 2.3522 } },
-                    { start: { lat: 34.0522, lng: -118.2437 }, end: { lat: 28.6139, lng: 77.209 } }
-                  ]}
+          ) : step === 2 ? (
+            <motion.div key="step2" custom={direction} variants={slideVariants}
+              initial="enter" animate="center" exit="exit"
+              transition={{ duration: 0.35, ease: [0.25,0.1,0.25,1] }}
+              className="w-full max-w-2xl"
+            >
+              <QuizHeading step={3} total={STEPS.length}
+                title="When do you need this?"
+                sub="We'll plan around your timeline."
+              />
+              <div className="grid sm:grid-cols-2 gap-4 mt-10">
+                {TIMELINES.map(t => (
+                  <OptionCard key={t.id} label={t.label} sub={t.sub}
+                    active={timeline === t.id}
+                    onClick={() => { setTimeline(t.id); }}
+                  />
+                ))}
+              </div>
+            </motion.div>
+
+          ) : step === 3 ? (
+            <motion.div key="step3" custom={direction} variants={slideVariants}
+              initial="enter" animate="center" exit="exit"
+              transition={{ duration: 0.35, ease: [0.25,0.1,0.25,1] }}
+              className="w-full max-w-lg"
+            >
+              <QuizHeading step={4} total={STEPS.length}
+                title="Tell us about yourself"
+                sub="So we know who we're talking to."
+              />
+              <div className="mt-10 space-y-5">
+                <QuizInput icon={<User className="w-4 h-4" />} placeholder="Your name" value={name} onChange={setName} />
+                <QuizInput icon={<Mail className="w-4 h-4" />} placeholder="Email address" type="email" value={email} onChange={setEmail} />
+                <QuizInput icon={<Globe className="w-4 h-4" />} placeholder="Website (optional)" value={website} onChange={setWebsite} />
+              </div>
+            </motion.div>
+
+          ) : (
+            <motion.div key="step4" custom={direction} variants={slideVariants}
+              initial="enter" animate="center" exit="exit"
+              transition={{ duration: 0.35, ease: [0.25,0.1,0.25,1] }}
+              className="w-full max-w-lg"
+            >
+              <QuizHeading step={5} total={STEPS.length}
+                title="Anything else?"
+                sub="Share any extra context, goals, or details."
+              />
+              <div className="mt-10">
+                <Textarea
+                  value={message}
+                  onChange={e => setMessage(e.target.value)}
+                  placeholder="Tell us more about your project… (optional)"
+                  className="bg-white/[0.04] border-white/8 focus-visible:ring-0 focus-visible:border-white/25 rounded-2xl min-h-[180px] text-white placeholder:text-white/25 resize-none text-base p-5"
                 />
               </div>
             </motion.div>
+          )}
+        </AnimatePresence>
 
-            {/* Right Column - Glass Form */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="relative"
-            >
-              <div className="absolute inset-0 bg-blue-600/10 blur-[120px] rounded-full pointer-events-none translate-x-1/2 -translate-y-1/4" />
-              
-              <div className="relative bg-white/[0.03] backdrop-blur-2xl border border-white/10 rounded-[40px] p-10 md:p-12 shadow-2xl overflow-hidden group">
-                {/* Internal grid pattern */}
-                <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
-                
-                <form onSubmit={handleSubmit} className="relative z-10 space-y-8">
-                  <div className="grid md:grid-cols-2 gap-8">
-                    <div className="space-y-3">
-                      <label className={cn("text-sm font-bold tracking-widest uppercase text-white/40 block ml-1", isRTL && "text-right")}>
-                        {t.contact.form.name}
-                      </label>
-                      <div className="relative group/input">
-                        <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20 group-focus-within/input:text-white transition-colors" />
-                        <Input
-                          value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          className={cn("pl-12 bg-white/5 border-white/5 focus-visible:ring-0 focus-visible:border-white/20 rounded-2xl h-14 text-white placeholder:text-white/20 transition-all", isRTL && "text-right pr-12 pl-4")}
-                          placeholder={t.contact.form.namePlaceholder}
-                          required
-                        />
-                      </div>
-                    </div>
+        {/* ── Navigation buttons ── */}
+        {!done && (
+          <div className="flex items-center gap-4 mt-12">
+            {step > 0 && (
+              <button
+                onClick={() => go(-1)}
+                className="flex items-center gap-2 px-6 py-3 rounded-full border border-white/10 text-white/50 hover:text-white hover:border-white/25 text-sm font-medium transition-all"
+              >
+                <ArrowLeft className="w-4 h-4" /> Back
+              </button>
+            )}
 
-                    <div className="space-y-3">
-                      <label className={cn("text-sm font-bold tracking-widest uppercase text-white/40 block ml-1", isRTL && "text-right")}>
-                        {t.contact.form.email}
-                      </label>
-                      <div className="relative group/input">
-                        <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20 group-focus-within/input:text-white transition-colors" />
-                        <Input
-                          type="email"
-                          value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          className={cn("pl-12 bg-white/5 border-white/5 focus-visible:ring-0 focus-visible:border-white/20 rounded-2xl h-14 text-white placeholder:text-white/20 transition-all", isRTL && "text-right pr-12 pl-4")}
-                          placeholder={t.contact.form.emailPlaceholder}
-                          required
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="space-y-3">
-                    <label className={cn("text-sm font-bold tracking-widest uppercase text-white/40 block ml-1", isRTL && "text-right")}>
-                      {t.contact.form.website}
-                    </label>
-                    <div className="relative group/input">
-                      <Globe className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20 group-focus-within/input:text-white transition-colors" />
-                      <Input
-                        value={formData.website}
-                        onChange={(e) => setFormData({ ...formData, website: e.target.value })}
-                        className={cn("pl-12 bg-white/5 border-white/5 focus-visible:ring-0 focus-visible:border-white/20 rounded-2xl h-14 text-white placeholder:text-white/20 transition-all", isRTL && "text-right pr-12 pl-4")}
-                        placeholder={t.contact.form.websitePlaceholder}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="space-y-3">
-                    <label className={cn("text-sm font-bold tracking-widest uppercase text-white/40 block ml-1", isRTL && "text-right")}>
-                      {t.contact.form.message}
-                    </label>
-                    <div className="relative group/input">
-                      <MessageSquare className="absolute left-4 top-6 w-4 h-4 text-white/20 group-focus-within/input:text-white transition-colors" />
-                      <Textarea
-                        value={formData.message}
-                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        className={cn("pl-12 pt-5 bg-white/5 border-white/5 focus-visible:ring-0 focus-visible:border-white/20 rounded-[24px] min-h-[160px] text-white placeholder:text-white/20 transition-all resize-none", isRTL && "text-right pr-12 pl-4")}
-                        placeholder={t.contact.form.messagePlaceholder}
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full bg-white text-black hover:bg-white/90 rounded-2xl h-16 font-bold text-lg transition-all active:scale-95 group/btn overflow-hidden relative"
-                  >
-                    <span className="relative z-10 flex items-center justify-center gap-3">
-                      {isSubmitting ? 'Sending...' : t.contact.form.submit}
-                      <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                    </span>
-                  </Button>
-
-                  <div className="hidden">
-                    <div ref={captchaRef} />
-                  </div>
-                </form>
-              </div>
-            </motion.div>
+            {step < STEPS.length - 1 ? (
+              <button
+                onClick={() => go(1)}
+                disabled={!canNext()}
+                className={cn(
+                  'flex items-center gap-2 px-8 py-3 rounded-full text-sm font-semibold transition-all',
+                  canNext()
+                    ? 'bg-white text-black hover:bg-white/90'
+                    : 'bg-white/10 text-white/30 cursor-not-allowed'
+                )}
+              >
+                Continue <ArrowRight className="w-4 h-4" />
+              </button>
+            ) : (
+              <button
+                onClick={handleSubmit}
+                disabled={isSubmitting}
+                className="flex items-center gap-2 px-8 py-3 rounded-full bg-white text-black text-sm font-semibold hover:bg-white/90 transition-all disabled:opacity-50"
+              >
+                {isSubmitting ? 'Sending…' : 'Send Brief'} <Send className="w-4 h-4" />
+              </button>
+            )}
           </div>
+        )}
+      </div>
+
+      {/* ── Email contact strip ── */}
+      <div className="border-t border-white/5 py-8 px-6">
+        <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12">
+          {[
+            { label: 'Email Us', value: 'contact@belkdigital.com' },
+            { label: 'Business Inquiry', value: 'contact@belkdigital.com' },
+          ].map(item => (
+            <a key={item.label} href={`mailto:${item.value}`}
+              className="flex items-center gap-3 group"
+            >
+              <div className="w-8 h-8 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+                <Mail className="w-3.5 h-3.5 text-white/40 group-hover:text-white/70 transition-colors" />
+              </div>
+              <div>
+                <span className="block text-[10px] font-bold tracking-[0.2em] uppercase text-white/25">{item.label}</span>
+                <span className="block text-sm text-white/60 group-hover:text-white transition-colors">{item.value}</span>
+              </div>
+            </a>
+          ))}
         </div>
-      </section>
+      </div>
+
+      {/* hidden reCAPTCHA */}
+      <div className="hidden"><div ref={captchaRef} /></div>
     </div>
   );
 };
+
+function QuizHeading({ step, total, title, sub }: { step: number; total: number; title: string; sub: string }) {
+  return (
+    <div className="text-center">
+      <span className="text-xs font-bold tracking-[0.3em] uppercase text-white/25 mb-4 block">
+        {String(step).padStart(2,'0')} / {String(total).padStart(2,'0')}
+      </span>
+      <h2 className="text-3xl md:text-5xl font-sans font-semibold tracking-tight text-white mb-3">{title}</h2>
+      <p className="text-white/40 text-base">{sub}</p>
+    </div>
+  );
+}
+
+function OptionCard({ label, sub, active, onClick }: { label: string; sub: string; active: boolean; onClick: () => void }) {
+  return (
+    <button
+      onClick={onClick}
+      className={cn(
+        'relative flex flex-col items-start gap-1 p-6 rounded-2xl border text-left transition-all duration-200',
+        active
+          ? 'bg-white text-black border-white'
+          : 'bg-white/[0.03] border-white/8 hover:border-white/20 hover:bg-white/[0.06]'
+      )}
+    >
+      {active && (
+        <span className="absolute top-4 right-4 w-5 h-5 rounded-full bg-black/15 flex items-center justify-center">
+          <Check className="w-3 h-3" />
+        </span>
+      )}
+      <span className="font-semibold text-base">{label}</span>
+      <span className={cn('text-sm', active ? 'text-black/50' : 'text-white/35')}>{sub}</span>
+    </button>
+  );
+}
+
+function QuizInput({ icon, placeholder, value, onChange, type = 'text' }: {
+  icon: React.ReactNode; placeholder: string; value: string;
+  onChange: (v: string) => void; type?: string;
+}) {
+  return (
+    <div className="relative group/input">
+      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/25 group-focus-within/input:text-white/60 transition-colors">
+        {icon}
+      </span>
+      <Input
+        type={type}
+        value={value}
+        onChange={e => onChange(e.target.value)}
+        placeholder={placeholder}
+        className="pl-11 bg-white/[0.04] border-white/8 focus-visible:ring-0 focus-visible:border-white/25 rounded-2xl h-14 text-white placeholder:text-white/25 text-base"
+      />
+    </div>
+  );
+}
 
 export default Contact;
