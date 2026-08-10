@@ -12,8 +12,10 @@ import { LiquidMetalButton } from '@/components/ui/liquid-metal-button';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
+  const lastScrollY = useRef(0);
   const { language, setLanguage, t, isRTL } = useLanguage();
   const { theme, setTheme } = useTheme();
   const pathname = usePathname();
@@ -21,9 +23,18 @@ export function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const currentY = window.scrollY;
+      setIsScrolled(currentY > 20);
+      if (currentY < 60 || isMobileMenuOpen) {
+        setIsVisible(true);
+      } else if (currentY > lastScrollY.current + 8) {
+        setIsVisible(false);
+      } else if (currentY < lastScrollY.current - 4) {
+        setIsVisible(true);
+      }
+      lastScrollY.current = currentY;
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -54,7 +65,8 @@ export function Header() {
     return pathname === href || pathname === href + '/';
   };
 
-  const isHome = pathname === '/' || pathname === `/${language}` || pathname === `/${language}/`;
+  const isHome    = pathname === '/' || pathname === `/${language}` || pathname === `/${language}/`;
+  const isContact = pathname.includes('/contact');
 
   const textColor = 'text-white';
 
@@ -64,8 +76,20 @@ export function Header() {
 
   const navLinkHoverColor = 'hover:text-white';
 
+  if (isContact) {
+    return (
+      <header className="fixed top-0 left-0 right-0 z-50 flex items-center px-6 md:px-10 h-16 pointer-events-none">
+        <Link href={`/${language}`} className="pointer-events-auto">
+          <img src="/logo.png" alt="Belk Digital" className="h-12" />
+        </Link>
+      </header>
+    );
+  }
+
   return (
-    <header
+    <motion.header
+      animate={{ y: isVisible ? 0 : '-120%' }}
+      transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
       className="fixed top-0 left-0 right-0 z-50 flex justify-center pointer-events-none"
     >
       <motion.div
@@ -318,6 +342,6 @@ export function Header() {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 }
