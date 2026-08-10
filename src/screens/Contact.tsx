@@ -184,10 +184,24 @@ const Contact = () => {
   return (
     <div className="min-h-screen bg-[#080808] text-white flex flex-col">
 
+      {/* ── Fullscreen background video ── */}
+      <div className="fixed inset-0 z-0 overflow-hidden">
+        <video
+          src="https://res.cloudinary.com/denskvdyt/video/upload/v1786323681/Firefly_Use_the_provided_deep-blue_glossy_liquid_ribbon_image_as_the_exact_visual_reference._Preserv_udaxtb.webm"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        {/* Dark veil for readability */}
+        <div className="absolute inset-0 bg-black/50" />
+      </div>
+
       {/* ── Progress bar ── */}
-      <div className="fixed top-0 left-0 right-0 z-40 h-[3px] bg-white/5">
+      <div className="fixed top-0 left-0 right-0 z-40 h-[3px] bg-white/10">
         <motion.div
-          className="h-full bg-white"
+          className="h-full bg-white/70"
           animate={{ width: `${((step + 1) / STEPS.length) * 100}%` }}
           transition={{ duration: 0.4, ease: 'easeInOut' }}
         />
@@ -212,8 +226,10 @@ const Contact = () => {
         </div>
       )}
 
-      {/* ── Main content ── */}
-      <div className="flex-1 flex flex-col items-center justify-center px-6 pt-24 pb-12 min-h-screen">
+      {/* ── Main content – glass panel ── */}
+      <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 pt-24 pb-12 min-h-screen">
+        {/* Glass panel */}
+        <div className="w-full max-w-5xl bg-white/[0.06] backdrop-blur-2xl border border-white/10 rounded-3xl px-8 py-12 md:px-14 md:py-16 shadow-2xl">
         <AnimatePresence mode="wait" custom={direction}>
           {done ? (
             <motion.div
@@ -386,28 +402,26 @@ const Contact = () => {
             )}
           </div>
         )}
-      </div>
 
-      {/* ── Email contact strip ── */}
-      <div className="border-t border-white/5 py-8 px-6">
-        <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12">
-          {[
-            { label: 'Email Us', value: 'contact@belkdigital.com' },
-            { label: 'Business Inquiry', value: 'contact@belkdigital.com' },
-          ].map(item => (
-            <a key={item.label} href={`mailto:${item.value}`}
-              className="flex items-center gap-3 group"
-            >
-              <div className="w-8 h-8 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
-                <Mail className="w-3.5 h-3.5 text-white/40 group-hover:text-white/70 transition-colors" />
-              </div>
-              <div>
-                <span className="block text-[10px] font-bold tracking-[0.2em] uppercase text-white/25">{item.label}</span>
-                <span className="block text-sm text-white/60 group-hover:text-white transition-colors">{item.value}</span>
-              </div>
-            </a>
-          ))}
-        </div>
+          {/* ── Email contact strip inside glass panel ── */}
+          <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12">
+            {[
+              { label: 'Email Us', value: 'contact@belkdigital.com' },
+              { label: 'Business Inquiry', value: 'contact@belkdigital.com' },
+            ].map(item => (
+              <a key={item.label} href={`mailto:${item.value}`} className="flex items-center gap-3 group">
+                <div className="w-8 h-8 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+                  <Mail className="w-3.5 h-3.5 text-white/40 group-hover:text-white/70 transition-colors" />
+                </div>
+                <div>
+                  <span className="block text-[10px] font-bold tracking-[0.2em] uppercase text-white/25">{item.label}</span>
+                  <span className="block text-sm text-white/60 group-hover:text-white transition-colors">{item.value}</span>
+                </div>
+              </a>
+            ))}
+          </div>
+
+        </div>{/* end glass panel */}
       </div>
 
       {/* hidden reCAPTCHA */}
