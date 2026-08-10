@@ -291,7 +291,7 @@ const Contact = () => {
             <motion.div key="step1" custom={direction} variants={slideVariants}
               initial="enter" animate="center" exit="exit"
               transition={{ duration: 0.35, ease: [0.25,0.1,0.25,1] }}
-              className="w-full max-w-2xl"
+              className="w-full max-w-2xl mx-auto"
             >
               <QuizHeading step={2} total={STEPS.length}
                 title="What's your budget?"
@@ -311,7 +311,7 @@ const Contact = () => {
             <motion.div key="step2" custom={direction} variants={slideVariants}
               initial="enter" animate="center" exit="exit"
               transition={{ duration: 0.35, ease: [0.25,0.1,0.25,1] }}
-              className="w-full max-w-2xl"
+              className="w-full max-w-2xl mx-auto"
             >
               <QuizHeading step={3} total={STEPS.length}
                 title="When do you need this?"
@@ -331,7 +331,7 @@ const Contact = () => {
             <motion.div key="step3" custom={direction} variants={slideVariants}
               initial="enter" animate="center" exit="exit"
               transition={{ duration: 0.35, ease: [0.25,0.1,0.25,1] }}
-              className="w-full max-w-lg"
+              className="w-full max-w-lg mx-auto"
             >
               <QuizHeading step={4} total={STEPS.length}
                 title="Tell us about yourself"
@@ -348,7 +348,7 @@ const Contact = () => {
             <motion.div key="step4" custom={direction} variants={slideVariants}
               initial="enter" animate="center" exit="exit"
               transition={{ duration: 0.35, ease: [0.25,0.1,0.25,1] }}
-              className="w-full max-w-lg"
+              className="w-full max-w-lg mx-auto"
             >
               <QuizHeading step={5} total={STEPS.length}
                 title="Anything else?"
@@ -368,7 +368,7 @@ const Contact = () => {
 
         {/* ── Navigation buttons ── */}
         {!done && (
-          <div className="flex items-center gap-4 mt-8">
+          <div className="flex items-center justify-center gap-4 mt-8">
             {step > 0 && (
               <button
                 onClick={() => go(-1)}
