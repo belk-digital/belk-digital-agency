@@ -182,7 +182,7 @@ const Contact = () => {
     setServices(prev => prev.includes(id) ? prev.filter(s => s !== id) : [...prev, id]);
 
   return (
-    <div className="min-h-screen bg-[#080808] text-white flex flex-col">
+    <div className="h-screen overflow-hidden bg-[#080808] text-white flex flex-col">
 
       {/* ── Fullscreen background video ── */}
       <div className="fixed inset-0 z-0 overflow-hidden">
@@ -227,9 +227,9 @@ const Contact = () => {
       )}
 
       {/* ── Main content – glass panel ── */}
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 pt-24 pb-12 min-h-screen">
-        {/* Glass panel */}
-        <div className="w-full max-w-5xl bg-white/[0.06] backdrop-blur-2xl border border-white/10 rounded-3xl px-8 py-12 md:px-14 md:py-16 shadow-2xl">
+      <div className="relative z-10 flex-1 flex items-center justify-center px-4 py-4 overflow-hidden">
+        {/* Glass panel — max height keeps it inside viewport; content scrolls inside if step overflows */}
+        <div className="w-full max-w-5xl bg-white/[0.06] backdrop-blur-2xl border border-white/10 rounded-3xl px-8 py-8 md:px-12 md:py-10 shadow-2xl flex flex-col max-h-[calc(100vh-100px)] overflow-y-auto scrollbar-hide">
         <AnimatePresence mode="wait" custom={direction}>
           {done ? (
             <motion.div
@@ -259,7 +259,7 @@ const Contact = () => {
                 title="What can we help you with?"
                 sub="Pick everything that applies — no limit."
               />
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 mt-10">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2.5">
                 {SERVICES.map(svc => {
                   const Icon = svc.icon;
                   const active = services.includes(svc.id);
@@ -297,7 +297,7 @@ const Contact = () => {
                 title="What's your budget?"
                 sub="This helps us scope the right solution for you."
               />
-              <div className="grid sm:grid-cols-2 gap-4 mt-10">
+              <div className="grid sm:grid-cols-2 gap-3">
                 {BUDGETS.map(b => (
                   <OptionCard key={b.id} label={b.label} sub={b.sub}
                     active={budget === b.id}
@@ -317,7 +317,7 @@ const Contact = () => {
                 title="When do you need this?"
                 sub="We'll plan around your timeline."
               />
-              <div className="grid sm:grid-cols-2 gap-4 mt-10">
+              <div className="grid sm:grid-cols-2 gap-3">
                 {TIMELINES.map(t => (
                   <OptionCard key={t.id} label={t.label} sub={t.sub}
                     active={timeline === t.id}
@@ -337,7 +337,7 @@ const Contact = () => {
                 title="Tell us about yourself"
                 sub="So we know who we're talking to."
               />
-              <div className="mt-10 space-y-5">
+              <div className="space-y-4">
                 <QuizInput icon={<User className="w-4 h-4" />} placeholder="Your name" value={name} onChange={setName} />
                 <QuizInput icon={<Mail className="w-4 h-4" />} placeholder="Email address" type="email" value={email} onChange={setEmail} />
                 <QuizInput icon={<Globe className="w-4 h-4" />} placeholder="Website (optional)" value={website} onChange={setWebsite} />
@@ -368,7 +368,7 @@ const Contact = () => {
 
         {/* ── Navigation buttons ── */}
         {!done && (
-          <div className="flex items-center gap-4 mt-12">
+          <div className="flex items-center gap-4 mt-8">
             {step > 0 && (
               <button
                 onClick={() => go(-1)}
@@ -403,24 +403,6 @@ const Contact = () => {
           </div>
         )}
 
-          {/* ── Email contact strip inside glass panel ── */}
-          <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12">
-            {[
-              { label: 'Email Us', value: 'contact@belkdigital.com' },
-              { label: 'Business Inquiry', value: 'contact@belkdigital.com' },
-            ].map(item => (
-              <a key={item.label} href={`mailto:${item.value}`} className="flex items-center gap-3 group">
-                <div className="w-8 h-8 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
-                  <Mail className="w-3.5 h-3.5 text-white/40 group-hover:text-white/70 transition-colors" />
-                </div>
-                <div>
-                  <span className="block text-[10px] font-bold tracking-[0.2em] uppercase text-white/25">{item.label}</span>
-                  <span className="block text-sm text-white/60 group-hover:text-white transition-colors">{item.value}</span>
-                </div>
-              </a>
-            ))}
-          </div>
-
         </div>{/* end glass panel */}
       </div>
 
@@ -432,12 +414,12 @@ const Contact = () => {
 
 function QuizHeading({ step, total, title, sub }: { step: number; total: number; title: string; sub: string }) {
   return (
-    <div className="text-center">
-      <span className="text-xs font-bold tracking-[0.3em] uppercase text-white/25 mb-4 block">
+    <div className="text-center mb-6">
+      <span className="text-xs font-bold tracking-[0.3em] uppercase text-white/25 mb-2 block">
         {String(step).padStart(2,'0')} / {String(total).padStart(2,'0')}
       </span>
-      <h2 className="text-3xl md:text-5xl font-sans font-semibold tracking-tight text-white mb-3">{title}</h2>
-      <p className="text-white/40 text-base">{sub}</p>
+      <h2 className="text-2xl md:text-4xl font-sans font-semibold tracking-tight text-white mb-2">{title}</h2>
+      <p className="text-white/40 text-sm">{sub}</p>
     </div>
   );
 }
