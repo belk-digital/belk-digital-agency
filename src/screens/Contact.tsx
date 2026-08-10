@@ -236,7 +236,7 @@ const Contact = () => {
               key="done"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="text-center max-w-lg"
+              className="flex-1 flex flex-col items-center justify-center text-center max-w-lg mx-auto py-8"
             >
               <div className="w-20 h-20 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-8">
                 <Check className="w-10 h-10 text-white" />
