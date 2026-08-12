@@ -9,10 +9,11 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     const dict = await getDictionary(lang as Locale);
 
     return constructMetadata({
-        title: dict.seo.services.title,
+            locale: lang,
+            title: dict.seo.services.title,
         description: dict.seo.services.description,
         path: '/services'
-    });
+        });
 }
 
 export default function ServicesPage() {

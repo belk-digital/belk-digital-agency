@@ -15,10 +15,11 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     const dict = await getDictionary(lang as Locale);
 
     return constructMetadata({
-        title: `${dict.nav.areasWeServe} Across the United States | Belk Digital`,
+            locale: lang,
+            title: `${dict.nav.areasWeServe} Across the United States | Belk Digital`,
         description: 'Belk Digital provides custom web design, SaaS development, and outcome-based SEO services across all 50 U.S. states. Explore your state and services.',
         path: '/areas-we-serve'
-    });
+        });
 }
 
 export default async function AreasWeServePage({ params }: { params: Promise<{ lang: string }> }) {

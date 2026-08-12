@@ -17,10 +17,11 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     const description = service ? service.description : dict.seo.services.description;
 
     return constructMetadata({
-        title,
+            locale: lang,
+            title,
         description,
         path: `/services/${slug}`
-    });
+        });
 }
 
 export default async function ServiceDetailPage({ params }: { params: Promise<{ lang: string; slug: string }> }) {

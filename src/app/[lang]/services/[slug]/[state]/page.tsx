@@ -73,10 +73,11 @@ export async function generateMetadata({
     const optimizedDescription = description.length > 160 ? description.substring(0, 157) + '...' : description;
 
     return constructMetadata({
-        title: optimizedTitle,
+            locale: lang,
+            title: optimizedTitle,
         description: optimizedDescription,
         path: `/services/${slug}/${state}`,
-    });
+        });
 }
 
 export default async function ServiceStateDetailPage({

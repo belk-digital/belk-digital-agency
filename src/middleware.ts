@@ -9,6 +9,39 @@ function getLocale(request: NextRequest): string {
 export function middleware(request: NextRequest) {
     const pathname = request.nextUrl.pathname;
 
+    // Explicitly return 404 for feed.xml and any sub-paths under it to prevent invalid locale routing
+    if (pathname === '/feed.xml' || pathname.startsWith('/feed.xml/')) {
+        return new NextResponse(null, { status: 404 });
+    }
+
+    // Match legacy routes and redirect them immediately to absolute, localized destinations
+    const redirectMap: Record<string, string> = {
+        '/pricing': 'https://www.belkdigital.com/en/contact',
+        '/pricing/': 'https://www.belkdigital.com/en/contact',
+        '/clients': 'https://www.belkdigital.com/en/work',
+        '/clients/': 'https://www.belkdigital.com/en/work',
+        '/login': 'https://www.belkdigital.com/en/contact',
+        '/login/': 'https://www.belkdigital.com/en/contact',
+        '/signup': 'https://www.belkdigital.com/en/contact',
+        '/signup/': 'https://www.belkdigital.com/en/contact',
+        '/forgot-password': 'https://www.belkdigital.com/en/contact',
+        '/forgot-password/': 'https://www.belkdigital.com/en/contact',
+        '/products': 'https://www.belkdigital.com/en/services',
+        '/products/': 'https://www.belkdigital.com/en/services',
+        '/cookie-policy': 'https://www.belkdigital.com/en/privacy',
+        '/cookie-policy/': 'https://www.belkdigital.com/en/privacy',
+        '/studio': 'https://www.belkdigital.com/en',
+        '/studio/': 'https://www.belkdigital.com/en',
+    };
+
+    if (pathname in redirectMap) {
+        const redirectUrl = new URL(redirectMap[pathname]);
+        redirectUrl.search = request.nextUrl.search;
+        return NextResponse.redirect(redirectUrl, {
+            status: 308 // Permanent Redirect
+        });
+    }
+
     // 1. Exclude static files and API routes explicitly
     if (
         pathname.startsWith('/_next') || // Next.js internals

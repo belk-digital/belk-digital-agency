@@ -54,6 +54,221 @@ const renderContentWithLinks = (text: string, lang: string) => {
   return parts.length > 0 ? parts : text;
 };
 
+
+const renderInline = (text: string, lang: string): React.ReactNode[] => {
+  if (!text) return [];
+  const regex = /(\*\*([^\*]+)\*\*|\[([^\]]+)\]\(([^)]+)\))/g;
+  const parts: React.ReactNode[] = [];
+  let lastIndex = 0;
+  let match;
+
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(text.substring(lastIndex, match.index));
+    }
+
+    if (match[2] !== undefined) {
+      // Bold text
+      parts.push(<strong key={match.index} className="font-[600] text-white">{match[2]}</strong>);
+    } else if (match[3] !== undefined && match[4] !== undefined) {
+      // Link
+      const linkText = match[3];
+      let linkUrl = match[4];
+
+      if (linkUrl.startsWith('/') && !linkUrl.startsWith(`/${lang}`)) {
+        const hasLangPrefix = /^\/[a-z]{2}(\/|$)/.test(linkUrl);
+        if (!hasLangPrefix) {
+          linkUrl = `/${lang}${linkUrl}`;
+        }
+      }
+
+      parts.push(
+        <Link
+          key={match.index}
+          href={linkUrl}
+          className="text-[#9F5FFC] hover:text-white underline transition-colors duration-300"
+        >
+          {linkText}
+        </Link>
+      );
+    }
+
+    lastIndex = regex.lastIndex;
+  }
+
+  if (lastIndex < text.length) {
+    parts.push(text.substring(lastIndex));
+  }
+
+  return parts.length > 0 ? parts : [text];
+};
+
+const renderRichContent = (text: string, lang: string) => {
+  if (!text) return null;
+
+  const lines = text.split('\n');
+  const blocks: React.ReactNode[] = [];
+  
+  let currentBlockType: 'paragraph' | 'list' | 'ordered-list' | 'code' | 'table' | null = null;
+  let currentLines: string[] = [];
+
+  const flushBlock = (key: string | number) => {
+    if (currentLines.length === 0) return;
+
+    if (currentBlockType === 'code') {
+      const codeText = currentLines.join('\n');
+      blocks.push(
+        <pre key={key} className="bg-white/5 border border-white/10 rounded-2xl p-6 overflow-x-auto text-sm text-white/90 font-mono mb-8 my-6">
+          <code>{codeText}</code>
+        </pre>
+      );
+    } else if (currentBlockType === 'table') {
+      const rows = currentLines.map(line => 
+        line.split('|').map(cell => cell.trim()).filter((_, idx, arr) => idx > 0 && idx < arr.length - 1)
+      ).filter(row => row.length > 0);
+
+      if (rows.length > 0) {
+        const headers = rows[0];
+        const dataRows = rows.slice(1).filter(row => !row.every(cell => cell.startsWith('-')));
+
+        blocks.push(
+          <div key={key} className="overflow-x-auto my-8 border border-white/10 rounded-2xl bg-white/5">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="border-b border-white/10 bg-white/5">
+                  {headers.map((h, i) => (
+                    <th key={i} className="p-4 font-sans font-[600] text-white text-sm uppercase tracking-wider">{renderInline(h, lang)}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-white/5">
+                {dataRows.map((row, rIdx) => (
+                  <tr key={rIdx} className="hover:bg-white/[0.02] transition-colors">
+                    {row.map((cell, cIdx) => (
+                      <td key={cIdx} className="p-4 text-sm text-white/70 font-sans">{renderInline(cell, lang)}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        );
+      }
+    } else if (currentBlockType === 'list') {
+      blocks.push(
+        <ul key={key} className="list-disc pl-6 space-y-3 text-lg text-white/70 mb-8 my-4">
+          {currentLines.map((li, i) => (
+            <li key={i}>{renderInline(li, lang)}</li>
+          ))}
+        </ul>
+      );
+    } else if (currentBlockType === 'ordered-list') {
+      blocks.push(
+        <ol key={key} className="list-decimal pl-6 space-y-3 text-lg text-white/70 mb-8 my-4">
+          {currentLines.map((li, i) => (
+            <li key={i}>{renderInline(li, lang)}</li>
+          ))}
+        </ol>
+      );
+    } else {
+      const pText = currentLines.join('\n');
+      blocks.push(
+        <p key={key} className="text-lg text-white/70 mb-6 leading-relaxed whitespace-pre-wrap">
+          {renderInline(pText, lang)}
+        </p>
+      );
+    }
+
+    currentLines = [];
+    currentBlockType = null;
+  };
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const trimmed = line.trim();
+
+    if (trimmed.startsWith('```')) {
+      if (currentBlockType === 'code') {
+        flushBlock(`code-${i}`);
+      } else {
+        flushBlock(`pre-code-${i}`);
+        currentBlockType = 'code';
+      }
+      continue;
+    }
+
+    if (currentBlockType === 'code') {
+      currentLines.push(line);
+      continue;
+    }
+
+    if (trimmed.startsWith('### ')) {
+      flushBlock(`pre-h3-${i}`);
+      const h3Text = trimmed.substring(4);
+      blocks.push(
+        <h3 key={`h3-${i}`} className="text-xl font-sans font-[600] text-white mt-10 mb-4">
+          {renderInline(h3Text, lang)}
+        </h3>
+      );
+      continue;
+    }
+
+    if (trimmed.startsWith('## ')) {
+      flushBlock(`pre-h2-${i}`);
+      const h2Text = trimmed.substring(3);
+      blocks.push(
+        <h2 key={`h2-${i}`} className="text-2xl font-sans font-[600] text-white mt-14 mb-6">
+          {renderInline(h2Text, lang)}
+        </h2>
+      );
+      continue;
+    }
+
+    if (trimmed.startsWith('|') && trimmed.endsWith('|')) {
+      if (currentBlockType !== 'table') {
+        flushBlock(`pre-table-${i}`);
+        currentBlockType = 'table';
+      }
+      currentLines.push(trimmed);
+      continue;
+    }
+
+    const listMatch = trimmed.match(/^[-*•]\s+(.*)/);
+    if (listMatch) {
+      if (currentBlockType !== 'list') {
+        flushBlock(`pre-list-${i}`);
+        currentBlockType = 'list';
+      }
+      currentLines.push(listMatch[1]);
+      continue;
+    }
+
+    const oListMatch = trimmed.match(/^(\d+)\.\s+(.*)/);
+    if (oListMatch) {
+      if (currentBlockType !== 'ordered-list') {
+        flushBlock(`pre-olist-${i}`);
+        currentBlockType = 'ordered-list';
+      }
+      currentLines.push(oListMatch[2]);
+      continue;
+    }
+
+    if (trimmed === '') {
+      flushBlock(`empty-${i}`);
+      continue;
+    }
+
+    if (currentBlockType !== 'paragraph' && currentBlockType !== null) {
+      flushBlock(`flush-para-${i}`);
+    }
+    currentBlockType = 'paragraph';
+    currentLines.push(line);
+  }
+
+  flushBlock('final');
+  return blocks;
+};
+
 const categories = ['all', 'business', 'design', 'seo', 'performance'] as const;
 
 const Blog = () => {
@@ -133,7 +348,8 @@ const Blog = () => {
                   {new Date(post.date).toLocaleDateString(language === 'es' ? 'es-ES' : 'en-US', {
                     year: 'numeric',
                     month: 'long',
-                    day: 'numeric'
+                    day: 'numeric',
+                    timeZone: 'UTC'
                   })}
                 </span>
                 <span className="flex items-center gap-2">
@@ -159,22 +375,28 @@ const Blog = () => {
                     {post.excerpt}
                   </p>
 
-                  <h2 className="text-3xl font-sans font-[600] text-white mt-16 mb-8">
-                    {language === 'es' ? 'Introducción' : (language === 'fr' ? 'Introduction' : (language === 'de' ? 'Einführung' : 'Introduction'))}
-                  </h2>
-                  <p className="mb-12 text-lg text-white/70">{renderContentWithLinks(post.content.intro, language)}</p>
+                  {post.content.intro && (
+                    <>
+                      {!post.content.intro.trim().startsWith('#') && (
+                        <h2 className="text-3xl font-sans font-[600] text-white mt-16 mb-8">
+                          {language === 'es' ? 'Introducción' : (language === 'fr' ? 'Introduction' : (language === 'de' ? 'Einführung' : 'Introduction'))}
+                        </h2>
+                      )}
+                      <div className="mb-12 text-lg text-white/70 leading-relaxed font-sans">{renderRichContent(post.content.intro, language)}</div>
+                    </>
+                  )}
 
-                  {post.content.sections.map((section, index) => (
+                  {post.content.sections && post.content.sections.length > 0 && post.content.sections.map((section, index) => (
                     <div key={index} className="mb-16">
                       <h2 className="text-2xl font-sans font-[600] text-white mt-16 mb-8">{section.title}</h2>
-                      <p className="text-lg text-white/70 mb-8">{renderContentWithLinks(section.content, language)}</p>
+                      {section.content && <div className="mb-8 text-lg text-white/70 leading-relaxed font-sans">{renderRichContent(section.content, language)}</div>}
 
                       {section.points && (
                         <div className="grid sm:grid-cols-2 gap-4 my-10">
                           {section.points.map((point, idx) => (
                             <div key={idx} className="flex items-start gap-3 p-4 bg-white/5 border border-white/5 rounded-2xl group hover:border-white/20 transition-all duration-300">
                               <CheckCircle className="w-5 h-5 text-white/40 group-hover:text-white transition-colors flex-shrink-0 mt-0.5" />
-                              <span className="font-sans text-white/80 group-hover:text-white transition-colors">{renderContentWithLinks(point, language)}</span>
+                              <span className="font-sans text-white/80 group-hover:text-white transition-colors">{renderRichContent(point, language)}</span>
                             </div>
                           ))}
                         </div>
@@ -182,10 +404,16 @@ const Blog = () => {
                     </div>
                   ))}
 
-                  <h2 className="text-3xl font-sans font-[600] text-white mt-16 mb-8">
-                    {language === 'es' ? 'Conclusión' : (language === 'fr' ? 'Conclusion' : (language === 'de' ? 'Fazit' : 'Conclusion'))}
-                  </h2>
-                  <p className="text-lg text-white/70">{renderContentWithLinks(post.content.conclusion, language)}</p>
+                  {post.content.conclusion && (
+                    <>
+                      {!post.content.conclusion.trim().startsWith('#') && (
+                        <h2 className="text-3xl font-sans font-[600] text-white mt-16 mb-8">
+                          {language === 'es' ? 'Conclusión' : (language === 'fr' ? 'Conclusion' : (language === 'de' ? 'Fazit' : 'Conclusion'))}
+                        </h2>
+                      )}
+                      <div className="mb-12 text-lg text-white/70 leading-relaxed font-sans">{renderRichContent(post.content.conclusion, language)}</div>
+                    </>
+                  )}
 
                   {/* FAQs Accordion Section */}
                   {post.faqs && post.faqs.length > 0 && (
@@ -221,7 +449,7 @@ const Blog = () => {
                                     transition={{ duration: 0.3, ease: "easeInOut" }}
                                   >
                                     <div className="px-6 pb-6 text-base text-white/60 leading-relaxed font-sans border-t border-white/5 pt-4">
-                                      {faq.answer}
+                                      {renderInline(faq.answer, language)}
                                     </div>
                                   </motion.div>
                                 )}
@@ -426,7 +654,7 @@ const Blog = () => {
                         {post.readTime} {t.blog.readTime}
                       </span>
                       <span className="w-1 h-1 rounded-full bg-white/20" />
-                      <span>{new Date(post.date).toLocaleDateString(language === 'es' ? 'es-ES' : 'en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                      <span>{new Date(post.date).toLocaleDateString(language === 'es' ? 'es-ES' : 'en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}</span>
                     </div>
 
                     <h2 className={cn(
@@ -533,7 +761,7 @@ const Blog = () => {
                           {post.readTime} {t.blog.readTime}
                         </span>
                         <span className="w-1 h-1 rounded-full bg-white/20" />
-                        <span>{new Date(post.date).toLocaleDateString(language === 'es' ? 'es-ES' : 'en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                        <span>{new Date(post.date).toLocaleDateString(language === 'es' ? 'es-ES' : 'en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}</span>
                       </div>
 
                       <h2 className={cn(

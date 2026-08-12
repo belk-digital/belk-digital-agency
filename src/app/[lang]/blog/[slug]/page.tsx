@@ -26,11 +26,12 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     const post = posts.find(p => p.slug === effectiveSlug);
 
     return constructMetadata({
-        title: post ? post.title : dict.seo.blog.title,
+            locale: lang,
+            title: post ? post.title : dict.seo.blog.title,
         description: post ? post.excerpt : dict.seo.blog.description,
         path: `/blog/${effectiveSlug}`,
         type: 'article',
-    });
+        });
 }
 
 export default async function BlogDetailPage({ params }: { params: Promise<{ lang: string; slug: string }> }) {

@@ -28,6 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
     return {
         ...constructMetadata({
+            locale: lang,
             title: dict.seo.home.title,
             description: dict.seo.home.description,
             path: '/'

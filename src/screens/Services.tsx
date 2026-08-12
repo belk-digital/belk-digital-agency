@@ -155,9 +155,9 @@ const Services = () => {
               </div>
 
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-sans font-[600] tracking-tight leading-[1.1] mb-8 text-white">
-                {(service?.detailTitle || service?.title).split(' ').slice(0, -2).join(' ')}{' '}
+                {(service?.detailTitle || service?.title || '').split(' ').slice(0, -2).join(' ')}{' '}
                 <span className="font-serif italic font-normal text-white/90">
-                  {(service?.detailTitle || service?.title).split(' ').slice(-2).join(' ')}
+                  {(service?.detailTitle || service?.title || '').split(' ').slice(-2).join(' ')}
                 </span>
               </h1>
               

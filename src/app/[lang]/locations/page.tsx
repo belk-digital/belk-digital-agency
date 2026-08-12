@@ -12,10 +12,11 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     const seo = (dict.seo as any).locations;
 
     return constructMetadata({
-        title: seo?.title || 'Global Service Locations',
+            locale: lang,
+            title: seo?.title || 'Global Service Locations',
         description: seo?.description || 'Serving clients in the USA, Europe, GCC, and Australia.',
         path: '/locations'
-    });
+        });
 }
 
 export default function LocationsPage() {

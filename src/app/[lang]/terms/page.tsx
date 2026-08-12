@@ -13,10 +13,11 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     const description = (dict.seo as any).terms?.description || `Read Belk Digital's terms and conditions.`;
 
     return constructMetadata({
-        title,
+            locale: lang,
+            title,
         description,
         path: '/terms'
-    });
+        });
 }
 
 export default async function Page() {

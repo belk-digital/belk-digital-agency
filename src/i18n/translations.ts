@@ -816,7 +816,7 @@ export const translations = {
         },
         {
           question: 'What is your pricing structure?',
-          answer: 'We offer customized pricing based on your specific needs. Projects typically range from $5,000 to $50,000+ depending on scope and complexity.',
+          answer: 'We offer customized pricing based on your specific needs. Projects are completely tailored to your unique scope and complexity.',
         },
         {
           question: 'Do you work with international clients?',
@@ -1121,7 +1121,7 @@ export const translations = {
       {
         name: 'Pricing & Payments',
         questions: [
-          { q: 'What is your pricing structure?', a: 'We offer customized pricing based on your specific needs. Projects typically range from $5,000 for basic websites to $50,000+ for complex enterprise solutions.' },
+          { q: 'What is your pricing structure?', a: 'We offer customized pricing based on your specific needs. Projects are completely tailored to your unique scope, ranging from simple setups to complex enterprise solutions.' },
           { q: 'Do you offer payment plans?', a: 'Yes, we offer flexible payment plans. Typically, we require 50% upfront and 50% upon completion.' },
           { q: 'Are there any hidden costs?', a: 'No hidden costs. Our quotes are comprehensive and include everything discussed.' },
           { q: 'What payment methods do you accept?', a: 'We accept bank transfers, credit cards, and PayPal.' },

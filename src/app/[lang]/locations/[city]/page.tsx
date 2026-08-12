@@ -43,10 +43,11 @@ export async function generateMetadata({
         || 'Serving clients in the USA, Europe, GCC, and Australia.';
 
     return constructMetadata({
-        title,
+            locale: lang,
+            title,
         description,
         path: `/locations/${city}`,
-    });
+        });
 }
 
 export default function LocationCityPage() {

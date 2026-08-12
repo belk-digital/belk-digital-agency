@@ -49,13 +49,14 @@ export async function generateStaticParams() {
 export async function generateMetadata({
     params,
 }: {
-    params: Promise<{ neighborhood: string }>;
+    params: Promise<{ lang: string; neighborhood: string }>;
 }): Promise<Metadata> {
-    const { neighborhood } = await params;
+    const { lang, neighborhood } = await params;
     const meta = NEIGHBORHOOD_META[neighborhood];
 
     if (!meta) {
         return constructMetadata({
+            locale: lang,
             title: 'Charleston SC Local Digital Services | Belk Digital',
             description: 'Belk Digital provides web design and digital marketing services across Charleston, SC and surrounding neighborhoods.',
             path: `/locations/charleston-sc/${neighborhood}`,
@@ -63,6 +64,7 @@ export async function generateMetadata({
     }
 
     return constructMetadata({
+        locale: lang,
         title: meta.title,
         description: meta.description,
         path: `/locations/charleston-sc/${neighborhood}`,

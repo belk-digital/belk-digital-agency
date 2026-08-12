@@ -3,11 +3,11 @@ import { languages } from '@/lib/i18n-config';
 const BASE_URL = 'https://www.belkdigital.com';
 const OG_IMAGE = '/assets/og (1).png';
 
-export function getHreflang(path: string = ''): {
+export function getHreflang(path: string = '', locale?: string): {
     canonical: string;
     languages: Record<string, string>;
 } {
-    const cleanPath = path.startsWith('/') ? path : `/${path}`;
+    const cleanPath = path === '/' ? '' : (path.startsWith('/') ? path : `/${path}`);
 
     const languageAlternates: Record<string, string> = {};
 
@@ -18,8 +18,10 @@ export function getHreflang(path: string = ''): {
     // Add x-default pointing to English
     languageAlternates['x-default'] = `${BASE_URL}/en${cleanPath}`;
 
+    const canonicalLocale = locale || 'en';
+
     return {
-        canonical: `${BASE_URL}/en${cleanPath}`,
+        canonical: `${BASE_URL}/${canonicalLocale}${cleanPath}`,
         languages: languageAlternates,
     };
 }
@@ -31,6 +33,7 @@ export function constructMetadata({
     image,
     type = 'website',
     noIndex = false,
+    locale,
 }: {
     title: string;
     description: string;
@@ -38,10 +41,11 @@ export function constructMetadata({
     image?: string;
     type?: 'website' | 'article';
     noIndex?: boolean;
+    locale?: string;
 }) {
-    const alternates = getHreflang(path);
+    const alternates = getHreflang(path, locale);
     const ogImage = image || OG_IMAGE;
-    const pageUrl = `${BASE_URL}/en${path}`;
+    const pageUrl = `${BASE_URL}/${locale || 'en'}${path === '/' ? '' : path}`;
 
     return {
         metadataBase: new URL(BASE_URL),
@@ -56,9 +60,6 @@ export function constructMetadata({
         alternates: {
             canonical: alternates.canonical,
             languages: alternates.languages,
-            types: {
-                'application/rss+xml': `${BASE_URL}/feed.xml`,
-            },
         },
         openGraph: {
             title,
