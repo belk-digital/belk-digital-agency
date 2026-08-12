@@ -162,20 +162,20 @@ export function ProjectsSection() {
       </div>
 
       {/* 3D Rotating Gallery Cards (Variant 3) */}
-      <div className="gallery relative flex flex-col items-center pt-[15vh] pb-[25vh] z-10 px-4">
+      <div className="gallery relative w-full flex flex-col items-center pt-[22vh] pb-[20vh] z-10 px-6 md:px-24 lg:px-32">
         {projects.map((project: any, index: number) => (
           <div
             key={index}
-            className="gallery__item-wrap w-full max-w-[1080px] [perspective:1100px] mb-[-2rem] md:mb-[-4rem]"
+            className="gallery__item-wrap w-full max-w-[760px] mx-auto [perspective:1100px] mb-[18vh]"
           >
             <div
               ref={(el) => {
                 cardsRef.current[index] = el;
               }}
-              className="gallery__item relative w-full aspect-[16/10] md:aspect-[16/9] rounded-3xl md:rounded-[36px] border border-white/10 bg-[#0e0e0e] shadow-2xl cursor-pointer group [will-change:transform,filter]"
+              className="gallery__item relative w-full aspect-[3/2] rounded-2xl md:rounded-3xl border border-white/10 bg-[#0e0e0e] shadow-2xl cursor-pointer group [will-change:transform,filter]"
             >
               {/* overflow-hidden is on this inner wrapper, not the rotated element, to avoid flattening the 3D context */}
-              <div className="absolute inset-0 overflow-hidden rounded-3xl md:rounded-[36px]">
+              <div className="absolute inset-0 overflow-hidden rounded-2xl md:rounded-3xl">
                 <Link
                   href={`/${language}/work`}
                   className="relative block w-full h-full"
@@ -186,7 +186,7 @@ export function ProjectsSection() {
                       src={project.image}
                       alt={project.title}
                       fill
-                      className="object-cover md:object-contain object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                      className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
                       sizes="(max-width: 768px) 90vw, 60vw"
                       priority={index === 0}
                     />
@@ -196,7 +196,7 @@ export function ProjectsSection() {
                   <div className="absolute inset-0 bg-black/35 group-hover:bg-black/20 transition-colors duration-500 pointer-events-none" />
 
                   {/* Subtle Hover Ring */}
-                  <div className="absolute inset-0 border border-white/0 group-hover:border-white/25 rounded-3xl md:rounded-[36px] transition-colors duration-500 pointer-events-none" />
+                  <div className="absolute inset-0 border border-white/0 group-hover:border-white/25 rounded-2xl md:rounded-3xl transition-colors duration-500 pointer-events-none" />
                 </Link>
               </div>
             </div>
