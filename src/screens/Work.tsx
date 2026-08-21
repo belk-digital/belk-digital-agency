@@ -8,6 +8,7 @@ import { CTASection } from '@/components/home/CTASection';
 import Image from 'next/image';
 import Link from 'next/link';
 import MuxPlayer from '@mux/mux-player-react';
+import { Counter } from '@/components/ui/counter';
 
 interface CaseStudy {
     subtitle: string;
@@ -19,6 +20,7 @@ interface CaseStudy {
     categories: string;
     services: string;
     about: string;
+    url?: string;
 }
 
 const Work = () => {
@@ -47,16 +49,7 @@ const Work = () => {
             services: "E-commerce Platform Design",
             about: "99 Purity Peptides operates as a research-focused peptide company that USA laboratories and independent research professionals rely on when sourcing synthetic research peptides. As a trusted peptide supplier and established peptide supplier, USA buyers choose for consistency. We specialise exclusively in laboratory-grade peptides designated for controlled research environments.\n\nOur organisation supports analytical and laboratory research by providing high-purity synthetic research peptides with structured documentation, research classification clarity, and compliance-aligned sourcing practices. Every material offered through our platform is intended strictly for research use only and supplied with defined quality verification standards."
         },
-        {
-            subtitle: "FilmFluence - Influencer Marketing",
-            title: "Transform Your Brand with Authenticity",
-            videoId: "Yd02KEEO0002U8h00OC028Y02L666UQAwgWH7R8L5gWCCkIEE",
-            client: "FilmFluence",
-            date: "2024",
-            categories: "Branding & Digital Campaigns",
-            services: "Platform Design & Strategy",
-            about: "FilmFluence serves as India's rising bridge between visionary brands and impactful creators, curating collaborations that speak, engage, and convert. The mission is to empower nano and micro creators with real opportunities, while helping brands craft high-impact digital campaigns through a curated team of creators, writers, editors, and campaign supervisors.\n\nThe proven 3-step process transforms a brand's vision into compelling influencer campaigns that drive real results. By matching brands with the perfect creators based on audience alignment and content style, FilmFluence ensures campaigns blend creativity with tangible conversion."
-        },
+
         {
             subtitle: "Belk Body Lab",
             title: "Elite Body Transformations Engineered for Performance",
@@ -66,6 +59,36 @@ const Work = () => {
             categories: "Health, Fitness & Coaching",
             services: "Fat Loss & Hypertrophy Protocols",
             about: "Belk Body Lab, led by certified personal trainer Kyle Belk, offers elite transformation coaching engineered for performance. With over 7 years of coaching experience and 500+ clients transformed, the focus is on building custom protocols rooted in unique metabolism, schedules, and goals.\n\nThe approach completely rejects cookie-cutter plans. Instead, it provides expert-led, highly customized coaching for both beginners and elite performers, ensuring sustainable fat loss and muscle hypertrophy. With a 98% success rate, Belk Body Lab is trusted by top performers across the US."
+        },
+        {
+            subtitle: "Helix Bio",
+            title: "Setting the Gold Standard in Research Peptide Synthesis & E-Commerce",
+            videoId: "T00C2xtcVjNBZC8fOs7X01qj3VPUKH349S003yyMURtRFM",
+            client: "Helix Bio",
+            date: "2024",
+            categories: "UI/UX, E-Commerce & Web Development",
+            services: "Custom E-Commerce Platform & Catalog",
+            about: "Helix Bio operates as a premier USA-based biotechnology and research compound provider dedicated to supplying laboratories and independent research professionals with high-purity synthetic research peptides. Built with high-performance Next.js architecture, the platform features verified HPLC/MS testing documentation, complete COA certification tracking, and an interactive peptide dosage calculator.\n\nOur team engineered a custom e-commerce architecture tailored for high-volume research compound catalogs, optimizing speed, mobile responsiveness, and seamless user experience to establish Helix Bio as a trusted industry leader."
+        },
+        {
+            subtitle: "Velvet Girl Entertainment",
+            title: "Premium Event Booking & Entertainment Platform",
+            videoId: "kWoQZ5xuj007gQpL7mTnZ01fg1xq20000M5foz6VhHdjax00",
+            client: "Velvet Girl Entertainment",
+            date: "2024",
+            categories: "UI/UX, Booking Platform & Web Development",
+            services: "Custom Booking System & Platform Design",
+            about: "Velvet Girl Entertainment is a premier nationwide event booking platform specializing in verified entertainment services for private celebrations, VIP gatherings, and corporate events. Built with high-performance modern web architecture, the platform features location-based performer cataloging, online package selection, dynamic scheduling, and encrypted booking requests.\n\nOur team developed an intuitive, mobile-optimized digital experience tailored to streamline booking inquiries, enhance client trust through verified roster management, and deliver robust search functionality across major metropolitan markets."
+        },
+        {
+            subtitle: "99 Purity Wholesale",
+            title: "B2B Wholesale Research Peptides & Bulk Supply Platform",
+            videoId: "bznbYfOZVLopLBJVQnIBYVnNyNqLhGqe01lWUAFLd00og",
+            client: "99 Purity Wholesale",
+            date: "2024",
+            categories: "UI/UX, B2B E-Commerce & Web Development",
+            services: "Wholesale Platform Design & Bulk Supply System",
+            about: "99 Purity Wholesale operates as a specialized B2B distributor providing compounding pharmacies, wellness clinics, and licensed research institutions across the United States with high-purity research compounds.\n\nBelk Digital engineered a robust, high-performance B2B e-commerce infrastructure tailored for high-volume research compound catalogs. Built on a scalable Next.js framework, the platform features batch-level Certificate of Analysis (COA) verification tracking, multi-currency localization, an institutional peptide reconstitution calculator, and automated tier-based bulk pricing workflows.\n\nOur team structured an intuitive, mobile-optimized digital experience designed to streamline procurement, automate institutional quote requests, and ensure seamless navigation for verified B2B buyers."
         }
     ];
 
@@ -131,7 +154,9 @@ const Work = () => {
                                     className="bg-white/[0.03] backdrop-blur-md rounded-[32px] p-8 border border-white/5 hover:border-white/10 transition-all group"
                                 >
                                     <stat.icon className="w-10 h-10 text-white/40 mb-6 mx-auto group-hover:scale-110 group-hover:text-white transition-all" />
-                                    <div className="text-4xl md:text-5xl font-sans font-bold mb-2 tracking-tight text-white">{stat.value}</div>
+                                    <div className="text-4xl md:text-5xl font-sans font-bold mb-2 tracking-tight text-white">
+                                        <Counter value={stat.value} />
+                                    </div>
                                     <div className="text-[11px] text-white/40 uppercase tracking-[0.2em] font-medium">{stat.label}</div>
                                 </motion.div>
                             ))}
@@ -151,7 +176,7 @@ const Work = () => {
                         className={cn("text-center max-w-3xl mx-auto mb-24", isRTL && "text-right")}
                     >
                         <span className="text-xs font-bold tracking-[0.5em] uppercase text-white/40 mb-6 block">
-                            Showcase
+                            {t.work.caseStudies?.showcaseBadge || 'Showcase'}
                         </span>
                         <h2 className="text-4xl md:text-6xl font-sans font-[600] text-white">
                             {t.work.caseStudies?.title || 'Featured Projects'}
@@ -168,7 +193,7 @@ const Work = () => {
 
                     {/* Redesigned Single Case Study Layout */}
                     <div className="flex flex-col gap-32 max-w-7xl mx-auto">
-                        {featuredCaseStudies.map((caseStudy, index) => (
+                        {(t.work.caseStudies?.items || featuredCaseStudies).map((caseStudy: CaseStudy, index: number) => (
                             <motion.div
                                 key={index}
                                 initial={{ opacity: 0, y: 30 }}
@@ -178,7 +203,14 @@ const Work = () => {
                                 className="flex flex-col"
                             >
                                 <div className="mb-8">
-                                    <p className="text-white/80 font-medium font-sans mb-4">{caseStudy.subtitle}</p>
+                                    {caseStudy.url ? (
+                                        <Link href={caseStudy.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 group">
+                                            <p className="text-white/80 font-medium font-sans mb-4 group-hover:text-white transition-colors underline decoration-white/20 underline-offset-4 group-hover:decoration-white/100">{caseStudy.subtitle}</p>
+                                            <ArrowRight className="w-4 h-4 text-white/50 group-hover:text-white transition-colors mb-4" />
+                                        </Link>
+                                    ) : (
+                                        <p className="text-white/80 font-medium font-sans mb-4">{caseStudy.subtitle}</p>
+                                    )}
                                     <h3 className="text-4xl md:text-5xl lg:text-7xl font-sans font-[600] text-white max-w-4xl tracking-tight leading-[1.1]">
                                         {caseStudy.title}
                                     </h3>
@@ -188,6 +220,7 @@ const Work = () => {
                                     {caseStudy.videoId ? (
                                         <MuxPlayer
                                             playbackId={caseStudy.videoId}
+                                            poster={`https://image.mux.com/${caseStudy.videoId}/thumbnail.webp?time=0`}
                                             muted={true}
                                             autoPlay={false}
                                             streamType="on-demand"
@@ -206,25 +239,25 @@ const Work = () => {
 
                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12 border-b border-white/10 pb-12">
                                     <div>
-                                        <h4 className="text-white font-[600] font-sans mb-2 text-lg">Client Name</h4>
+                                        <h4 className="text-white font-[600] font-sans mb-2 text-lg">{t.work.caseStudies?.labels?.client || 'Client Name'}</h4>
                                         <p className="text-white/60 font-sans">{caseStudy.client}</p>
                                     </div>
                                     <div>
-                                        <h4 className="text-white font-[600] font-sans mb-2 text-lg">Date</h4>
+                                        <h4 className="text-white font-[600] font-sans mb-2 text-lg">{t.work.caseStudies?.labels?.date || 'Date'}</h4>
                                         <p className="text-white/60 font-sans">{caseStudy.date}</p>
                                     </div>
                                     <div>
-                                        <h4 className="text-white font-[600] font-sans mb-2 text-lg">Categories</h4>
+                                        <h4 className="text-white font-[600] font-sans mb-2 text-lg">{t.work.caseStudies?.labels?.categories || 'Categories'}</h4>
                                         <p className="text-white/60 font-sans">{caseStudy.categories}</p>
                                     </div>
                                     <div>
-                                        <h4 className="text-white font-[600] font-sans mb-2 text-lg">Services</h4>
+                                        <h4 className="text-white font-[600] font-sans mb-2 text-lg">{t.work.caseStudies?.labels?.services || 'Services'}</h4>
                                         <p className="text-white/60 font-sans">{caseStudy.services}</p>
                                     </div>
                                 </div>
 
                                 <div className="max-w-4xl">
-                                    <h4 className="text-2xl font-[600] text-white font-sans mb-6">About</h4>
+                                    <h4 className="text-2xl font-[600] text-white font-sans mb-6">{t.work.caseStudies?.labels?.about || 'About'}</h4>
                                     <div className="space-y-6">
                                         {caseStudy.about.split('\n\n').map((paragraph: string, pIndex: number) => (
                                             <p key={pIndex} className="text-white/70 text-lg leading-relaxed font-sans">

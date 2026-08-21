@@ -36,6 +36,32 @@ export function ProjectsSection() {
       const uiEl = uiRef.current;
       if (!triggerEl || !uiEl || projects.length === 0) return;
 
+      const updateActiveIndex = () => {
+        const viewportCenter = window.innerHeight / 2;
+        let closestIndex = 0;
+        let minDistance = Infinity;
+
+        cardsRef.current.forEach((card, idx) => {
+          if (!card) return;
+          const rect = card.getBoundingClientRect();
+          const cardCenter = rect.top + rect.height / 2;
+          const distance = Math.abs(cardCenter - viewportCenter);
+
+          if (distance < minDistance) {
+            minDistance = distance;
+            closestIndex = idx;
+          }
+        });
+
+        if (activeIndexRef.current !== closestIndex) {
+          activeIndexRef.current = closestIndex;
+          setActiveIndex(closestIndex);
+        }
+      };
+
+      // Initial calculation on mount / trigger refresh
+      updateActiveIndex();
+
       // Pin the UI Overlay (01/04, center project title, view all work button) while the section scrolls
       ScrollTrigger.create({
         trigger: triggerEl,
@@ -44,6 +70,7 @@ export function ProjectsSection() {
         pin: uiEl,
         pinSpacing: false,
         invalidateOnRefresh: true,
+        onUpdate: updateActiveIndex,
       });
 
       cardsRef.current.forEach((item, index) => {
@@ -90,12 +117,7 @@ export function ProjectsSection() {
               filter: `saturate(${saturate}) brightness(${brightness})`,
             });
 
-            if (progress > 0.30 && progress < 0.70) {
-              if (activeIndexRef.current !== index) {
-                activeIndexRef.current = index;
-                setActiveIndex(index);
-              }
-            }
+            updateActiveIndex();
           },
         });
       });
@@ -110,17 +132,17 @@ export function ProjectsSection() {
       {/* Pinned UI Overlay Layer (GSAP ScrollTrigger pin) */}
       <div
         ref={uiRef}
-        className="absolute top-0 left-0 h-screen w-full pointer-events-none z-30 flex flex-col justify-between p-6 md:p-12 lg:p-16"
+        className="absolute top-0 left-0 h-screen w-full pointer-events-none z-30 flex flex-col justify-between p-4 sm:p-6 md:p-12 lg:p-16"
       >
         {/* Top Heading */}
         <div className="w-full text-center mt-2 md:mt-4">
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-sans font-medium tracking-tight text-white/90 drop-shadow-sm select-none">
+          <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-sans font-medium tracking-tight text-white/90 drop-shadow-sm select-none">
             {t.homeProjects.titlePart1} {t.homeProjects.titlePart2}
           </h2>
         </div>
 
         {/* Left Sticky Counter */}
-        <div className="absolute left-6 md:left-12 lg:left-16 top-1/2 -translate-y-1/2 z-30 font-mono text-sm md:text-base lg:text-lg tracking-[0.2em] text-white/90 select-none pointer-events-auto">
+        <div className="absolute left-4 sm:left-6 md:left-12 lg:left-16 bottom-6 md:bottom-auto md:top-1/2 md:-translate-y-1/2 z-30 font-mono text-xs sm:text-sm md:text-base lg:text-lg tracking-[0.2em] text-white/90 select-none pointer-events-auto flex items-center gap-1 bg-black/40 md:bg-transparent backdrop-blur-md md:backdrop-blur-none px-3 py-1.5 md:p-0 rounded-full border border-white/10 md:border-none">
           <span className="font-semibold text-white">
             {String(activeIndex + 1).padStart(2, "0")}
           </span>
@@ -131,17 +153,17 @@ export function ProjectsSection() {
         </div>
 
         {/* Sticky Center Project Title (Changes on Card Change) */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 text-center select-none w-full max-w-[75vw] px-4 pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 text-center select-none w-full max-w-[90vw] md:max-w-[75vw] px-4 pointer-events-none">
           <div
             key={activeIndex}
             className="transition-all duration-500 ease-out"
           >
-            <h3 className="text-xl md:text-3xl lg:text-4xl font-sans font-medium tracking-tight text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)]">
+            <h3 className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-sans font-medium tracking-tight text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)]">
               {projects[activeIndex]?.title}
             </h3>
             {projects[activeIndex]?.tags && (
-              <div className="flex items-center justify-center gap-2 mt-2 opacity-90">
-                <span className="text-[11px] md:text-xs tracking-[0.25em] uppercase font-mono text-white/85 drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
+              <div className="flex items-center justify-center gap-2 mt-1.5 md:mt-2 opacity-90">
+                <span className="text-[10px] sm:text-[11px] md:text-xs tracking-[0.15em] sm:tracking-[0.25em] uppercase font-mono text-white/85 drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
                   {projects[activeIndex]?.tags.slice(0, 3).join(" • ")}
                 </span>
               </div>
@@ -150,13 +172,13 @@ export function ProjectsSection() {
         </div>
 
         {/* Right Sticky CTA Button */}
-        <div className="absolute right-6 md:right-12 lg:right-16 top-1/2 -translate-y-1/2 z-30 pointer-events-auto">
+        <div className="absolute right-4 sm:right-6 md:right-12 lg:right-16 bottom-6 md:bottom-auto md:top-1/2 md:-translate-y-1/2 z-30 pointer-events-auto">
           <Link
             href={`/${language}/work`}
-            className="group inline-flex items-center gap-2 md:gap-3 px-5 py-2.5 md:px-6 md:py-3 rounded-full border border-white/20 bg-white/5 hover:bg-white hover:text-black text-white text-xs md:text-sm font-medium tracking-wide transition-all duration-300 backdrop-blur-md shadow-lg"
+            className="group inline-flex items-center gap-2 md:gap-3 px-4 py-2 md:px-6 md:py-3 rounded-full border border-white/20 bg-white/10 md:bg-white/5 hover:bg-white hover:text-black text-white text-xs md:text-sm font-medium tracking-wide transition-all duration-300 backdrop-blur-md shadow-lg"
           >
             <span>{t.homeProjects.explore || "view all work"}</span>
-            <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+            <ArrowRight className="w-3 h-3 md:w-3.5 md:h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </div>
       </div>
@@ -172,7 +194,7 @@ export function ProjectsSection() {
               ref={(el) => {
                 cardsRef.current[index] = el;
               }}
-              className="gallery__item relative w-full aspect-[3/2] rounded-2xl md:rounded-3xl border border-white/10 bg-[#0e0e0e] shadow-2xl cursor-pointer group [will-change:transform,filter]"
+              className="gallery__item relative w-full aspect-[21/10] rounded-2xl md:rounded-3xl border border-white/10 bg-[#0e0e0e] shadow-2xl cursor-pointer group [will-change:transform,filter]"
             >
               {/* overflow-hidden is on this inner wrapper, not the rotated element, to avoid flattening the 3D context */}
               <div className="absolute inset-0 overflow-hidden rounded-2xl md:rounded-3xl">
@@ -186,7 +208,7 @@ export function ProjectsSection() {
                       src={project.image}
                       alt={project.title}
                       fill
-                      className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                      className="object-contain object-center transition-transform duration-700 ease-out group-hover:scale-105"
                       sizes="(max-width: 768px) 90vw, 60vw"
                       priority={index === 0}
                     />

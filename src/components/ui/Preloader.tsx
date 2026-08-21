@@ -4,9 +4,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 
 export function Preloader() {
+  const [mounted, setMounted] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
     // Disable scrolling while loading
     if (loading) {
       document.body.style.overflow = 'hidden';
@@ -23,7 +30,9 @@ export function Preloader() {
       clearTimeout(timer);
       document.body.style.overflow = '';
     };
-  }, [loading]);
+  }, [loading, mounted]);
+
+  if (!mounted) return null;
 
   return (
     <AnimatePresence mode="wait">

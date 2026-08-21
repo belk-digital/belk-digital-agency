@@ -29,6 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
             locale: lang,
             title: post ? post.title : dict.seo.blog.title,
         description: post ? post.excerpt : dict.seo.blog.description,
+            keywords: post?.keywords,
         path: `/blog/${effectiveSlug}`,
         type: 'article',
         });
@@ -54,8 +55,13 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ lan
                     authorName={post.author || "Belk Digital"}
                 />
             )}
+            {post && post.faqs && post.faqs.length > 0 && (
+                <PageJsonLd
+                    type="FAQPage"
+                    questions={post.faqs}
+                />
+            )}
             <Blog />
         </>
     );
 }
-

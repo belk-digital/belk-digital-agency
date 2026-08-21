@@ -16,7 +16,7 @@ export function Counter({ value, direction = "up", className }: CounterProps) {
         damping: 60,
         stiffness: 100,
     });
-    const isInView = useInView(ref, { once: true, margin: "-100px" });
+    const isInView = useInView(ref, { once: true, margin: "0px" });
     const [displayValue, setDisplayValue] = useState<string>(direction === "down" ? value : "0");
 
     useEffect(() => {
@@ -34,7 +34,7 @@ export function Counter({ value, direction = "up", className }: CounterProps) {
         const unsubscribe = springValue.on("change", (latest) => {
             const match = value.match(/(\d+(?:\.\d+)?)(.*)/);
             const suffix = match ? match[2] : "";
-            const newValue = `${Math.floor(latest)}${suffix}`;
+            const newValue = `${Math.round(latest)}${suffix}`;
             setDisplayValue(newValue);
         });
 

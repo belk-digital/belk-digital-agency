@@ -2361,6 +2361,14 @@ const translations = {
     "statsTitle": "Nuestro Impacto",
     "caseStudies": {
       "title": "Casos de Estudio Destacados",
+      "showcaseBadge": "Demostración",
+      "labels": {
+        "client": "Nombre del Cliente",
+        "date": "Fecha",
+        "categories": "Categorías",
+        "services": "Servicios",
+        "about": "Acerca de"
+      },
       "filters": [
         "Diseño Web",
         "Desarrollo Web",
@@ -2375,7 +2383,64 @@ const translations = {
       },
       "mobile": {
         "title": "Aplicación Móvil"
-      }
+      },
+      "items": [
+        {
+          "subtitle": "99Purity Peptides",
+          "url": "https://99puritypeptides.com/",
+          "title": "Elevando la Investigación con Péptidos Sintéticos de Alta Pureza",
+          "videoId": "02UDvvGgCcwGd01iOE3C4ElNe77bwyNWvkwOc8W3FEvoU",
+          "client": "99Purity Peptides",
+          "date": "2023",
+          "categories": "Diseño UI/UX y Fotografía",
+          "services": "Diseño de Plataforma de Comercio Electrónico",
+          "about": "99 Purity Peptides opera como una empresa de péptidos enfocada en la investigación en la que confían los laboratorios de EE. UU. y los profesionales de investigación independientes para obtener péptidos sintéticos. Como proveedor establecido de péptidos, los compradores de EE. UU. nos eligen por nuestra consistencia. Nos especializamos exclusivamente en péptidos de grado de laboratorio designados para entornos de investigación controlados.\n\nNuestra organización respalda la investigación analítica y de laboratorio proporcionando péptidos de investigación sintéticos de alta pureza con documentación estructurada, claridad en la clasificación de investigación y prácticas de abastecimiento alineadas con el cumplimiento."
+        },
+        {
+          "subtitle": "Belk Body Lab",
+          "url": "https://belkbodylab.com/",
+          "title": "Transformaciones Corporales de Élite Diseñadas para el Rendimiento",
+          "videoId": "mk3JhR01n2Eci2RmbfpySn4b1C3JImg7029Y2U01rEMV4s",
+          "client": "Coach Kyle Belk",
+          "date": "2024",
+          "categories": "Salud, Fitness y Entrenamiento",
+          "services": "Protocolos de Pérdida de Grasa e Hipertrofia",
+          "about": "Belk Body Lab, dirigido por el entrenador personal certificado Kyle Belk, ofrece entrenamiento de transformación de élite diseñado para el rendimiento. Con más de 7 años de experiencia en entrenamiento y más de 500 clientes transformados, el enfoque se centra en crear protocolos personalizados basados en la metabolización, horarios y objetivos únicos de cada cliente.\n\nEl enfoque rechaza por completo los planes genéricos. En su lugar, proporciona un entrenamiento experto y altamente personalizado tanto para principiantes como para atletas de élite, asegurando una pérdida de grasa sostenible e hipertrofia muscular."
+        },
+        {
+          "subtitle": "Helix Bio",
+          "url": "https://helixbiochem.com/",
+          "title": "Estableciendo el Estándar de Oro en Síntesis de Péptidos y Comercio Electrónico",
+          "videoId": "T00C2xtcVjNBZC8fOs7X01qj3VPUKH349S003yyMURtRFM",
+          "client": "Helix Bio",
+          "date": "2024",
+          "categories": "UI/UX, Comercio Electrónico y Desarrollo Web",
+          "services": "Plataforma Personalizada de E-Commerce y Catálogo",
+          "about": "Helix Bio opera como un proveedor líder de biotecnología y compuestos de investigación con sede en EE. UU., dedicado a suministrar a laboratorios y profesionales de investigación independientes péptidos sintéticos de alta pureza. Desarrollada con arquitectura Next.js de alto rendimiento, la plataforma cuenta con documentación de pruebas HPLC/MS verificada, seguimiento completo de certificaciones COA y una calculadora interactiva de dosis de péptidos.\n\nNuestro equipo diseñó una arquitectura de comercio electrónico personalizada adaptada para catálogos de compuestos de investigación de alto volumen, optimizando la velocidad, la capacidad de respuesta móvil y una experiencia de usuario fluida."
+        },
+        {
+          "subtitle": "Velvet Girl Entertainment",
+          "url": "https://velvetgirlentertainment.com/",
+          "title": "Plataforma de Entretenimiento y Reserva de Eventos de Primera Categoría",
+          "videoId": "kWoQZ5xuj007gQpL7mTnZ01fg1xq20000M5foz6VhHdjax00",
+          "client": "Velvet Girl Entertainment",
+          "date": "2024",
+          "categories": "UI/UX, Plataforma de Reservas y Desarrollo Web",
+          "services": "Sistema de Reservas Personalizado y Diseño de Plataforma",
+          "about": "Velvet Girl Entertainment es una plataforma líder a nivel nacional de reserva de eventos que se especializa en servicios de entretenimiento verificados para celebraciones privadas, reuniones VIP y eventos corporativos. Construida con una arquitectura web moderna de alto rendimiento, la plataforma cuenta con catalogación de artistas basada en la ubicación, selección de paquetes en línea, programación dinámica y solicitudes de reserva cifradas.\n\nNuestro equipo desarrolló una experiencia digital intuitiva y optimizada para dispositivos móviles diseñada para agilizar las solicitudes de reserva, mejorar la confianza del cliente a través de una gestión verificada y ofrecer una funcionalidad de búsqueda sólida en los principales mercados metropolitanos."
+        },
+        {
+          "subtitle": "99 Purity Wholesale",
+          "url": "https://99puritywholesale.com/",
+          "title": "Plataforma B2B de Péptidos de Investigación al Por Mayor",
+          "videoId": "bznbYfOZVLopLBJVQnIBYVnNyNqLhGqe01lWUAFLd00og",
+          "client": "99 Purity Wholesale",
+          "date": "2024",
+          "categories": "UI/UX, Comercio Electrónico B2B y Desarrollo Web",
+          "services": "Diseño de Plataforma al Por Mayor y Sistema de Suministro",
+          "about": "99 Purity Wholesale opera como un distribuidor B2B de primer nivel que suministra a farmacias de formulación magistral, clínicas de bienestar e instituciones de investigación autorizadas en todo Estados Unidos compuestos de investigación de alta pureza ≥99.0%. Desarrollada en Next.js, la plataforma cuenta con seguimiento de verificación COA a nivel de lote, localización multimoneda, una calculadora institucional de reconstitución de péptidos y flujos de trabajo de precios al por mayor por niveles.\n\nNuestro equipo diseñó una infraestructura sólida de comercio electrónico B2B adaptada a catálogos mayoristas de alto volumen, incorporando solicitudes de cotización automatizadas, procesos de pago al por mayor simplificados y navegación de laboratorio optimizada para dispositivos móviles."
+        }
+      ]
     },
     "methodologyTitle": "Nuestra Metodología",
     "methodologySubtitle": "Aseguramos resultados consistentes.",

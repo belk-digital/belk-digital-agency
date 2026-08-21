@@ -140,7 +140,7 @@ export default {
         "slide-in-left": "slide-in-left 0.5s ease-out forwards",
         "scale-in": "scale-in 0.3s ease-out forwards",
         "float": "float 6s ease-in-out infinite",
-        "marquee": "marquee 20s linear infinite",
+        "marquee": "marquee 40s linear infinite",
         "scroll-down": "scroll-down 1.5s ease-in-out infinite",
         "role-fade-in": "role-fade-in 0.4s ease-out forwards",
         "gradient-shift": "gradient-shift 6s ease infinite",

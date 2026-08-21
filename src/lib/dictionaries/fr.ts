@@ -2370,6 +2370,14 @@ const translations = {
     "statsTitle": "Notre Impact à Travers les Projets Numériques Mondiaux",
     "caseStudies": {
       "title": "Études de Cas en Vedette",
+      "showcaseBadge": "Présentation",
+      "labels": {
+        "client": "Nom du Client",
+        "date": "Date",
+        "categories": "Catégories",
+        "services": "Services",
+        "about": "À propos"
+      },
       "filters": [
         "Design Web",
         "Développement Web",
@@ -2384,7 +2392,64 @@ const translations = {
       },
       "mobile": {
         "title": "Application Mobile"
-      }
+      },
+      "items": [
+        {
+          "subtitle": "99Purity Peptides",
+          "url": "https://99puritypeptides.com/",
+          "title": "Élever la Recherche avec des Peptides Synthétiques de Haute Pureté",
+          "videoId": "02UDvvGgCcwGd01iOE3C4ElNe77bwyNWvkwOc8W3FEvoU",
+          "client": "99Purity Peptides",
+          "date": "2023",
+          "categories": "Design UI/UX & Photographie",
+          "services": "Conception de Plateforme E-Commerce",
+          "about": "99 Purity Peptides opère en tant qu'entreprise de peptides axée sur la recherche sur laquelle les laboratoires américains et les chercheurs indépendants s'appuient lors de l'approvisionnement en peptides synthétiques. En tant que fournisseur établi, les acheteurs américains nous choisissent pour notre régularité. Nous sommes spécialisés exclusivement dans les peptides de qualité laboratoire destinés à des environnements de recherche contrôlés.\n\nNotre organisation soutient la recherche analytique et en laboratoire en fournissant des peptides de recherche synthétiques de haute pureté avec une documentation structurée, une clarté dans la classification et des pratiques d'approvisionnement conformes."
+        },
+        {
+          "subtitle": "Belk Body Lab",
+          "url": "https://belkbodylab.com/",
+          "title": "Transformations Corporelles d'Élite Conçues pour la Performance",
+          "videoId": "mk3JhR01n2Eci2RmbfpySn4b1C3JImg7029Y2U01rEMV4s",
+          "client": "Coach Kyle Belk",
+          "date": "2024",
+          "categories": "Santé, Fitness & Coaching",
+          "services": "Protocoles de Perte de Graisse & Hypertrophie",
+          "about": "Belk Body Lab, dirigé par le entraîneur personnel certifié Kyle Belk, propose un coaching de transformation d'élite conçu pour la performance. Avec plus de 7 ans d'expérience dans le coaching et plus de 500 clients transformés, l'accent est mis sur l'élaboration de protocoles personnalisés ancrés dans le métabolisme, l'emploi du temps et les objectifs uniques de chaque client.\n\nL'approche rejette complètement les plans génériques. Au lieu de cela, elle fournit un accompagnement hautement personnalisé pour les débutants comme pour les athlètes d'élite, garantissant une perte de graisse durable et une hypertrophie musculaire."
+        },
+        {
+          "subtitle": "Helix Bio",
+          "url": "https://helixbiochem.com/",
+          "title": "L'Étalon-Or de la Synthèse de Peptides & du E-Commerce",
+          "videoId": "T00C2xtcVjNBZC8fOs7X01qj3VPUKH349S003yyMURtRFM",
+          "client": "Helix Bio",
+          "date": "2024",
+          "categories": "UI/UX, E-Commerce & Développement Web",
+          "services": "Plateforme E-Commerce Sur Mesure & Catalogue",
+          "about": "Helix Bio opère en tant que premier fournisseur de biotechnologie et de composés de recherche basé aux États-Unis, dédié à la fourniture de peptides synthétiques de haute pureté aux laboratoires et aux chercheurs. Développée sur une architecture Next.js haute performance, la plateforme propose une documentation de test HPLC/MS vérifiée, un suivi complet des certifications COA et un calculateur interactif de dosage de peptides.\n\nNotre équipe a conçu une architecture e-commerce sur mesure adaptée aux catalogues de composés à fort volume, optimisant la vitesse, la réactivité mobile et l'expérience utilisateur."
+        },
+        {
+          "subtitle": "Velvet Girl Entertainment",
+          "url": "https://velvetgirlentertainment.com/",
+          "title": "Plateforme Haut de Gamme de Réservation d'Événements",
+          "videoId": "kWoQZ5xuj007gQpL7mTnZ01fg1xq20000M5foz6VhHdjax00",
+          "client": "Velvet Girl Entertainment",
+          "date": "2024",
+          "categories": "UI/UX, Plateforme de Réservation & Développement Web",
+          "services": "Système de Réservation Sur Mesure & Design",
+          "about": "Velvet Girl Entertainment est une plateforme nationale de réservation d'événements spécialisée dans les services de divertissement vérifiés pour les célébrations privées, les rassemblements VIP et les événements d'entreprise. Conçue avec une architecture web moderne, la plateforme intègre un catalogage des artistes par localisation, une sélection de formules en ligne et des demandes de réservation sécurisées.\n\nNotre équipe a développé une expérience numérique intuitive et optimisée pour mobile conçue pour simplifier les demandes de réservation, renforcer la confiance des clients et offrir des fonctionnalités de recherche performantes."
+        },
+        {
+          "subtitle": "99 Purity Wholesale",
+          "url": "https://99puritywholesale.com/",
+          "title": "Plateforme Grossiste B2B de Peptides de Recherche",
+          "videoId": "bznbYfOZVLopLBJVQnIBYVnNyNqLhGqe01lWUAFLd00og",
+          "client": "99 Purity Wholesale",
+          "date": "2024",
+          "categories": "UI/UX, E-Commerce B2B & Développement Web",
+          "services": "Conception Grossiste & Système de Distribution",
+          "about": "99 Purity Wholesale opère en tant que principal distributeur B2B fournissant des pharmacies de préparation, des cliniques de bien-être et des institutions de recherche à travers les États-Unis en composés de recherche de haute pureté ≥99,0 %. Conçue sur Next.js, la plateforme intègre le suivi de vérification COA par lot, la localisation multi-devises et des workflows de tarification dégressive.\n\nNotre équipe a architecturé une infrastructure e-commerce B2B robuste adaptée aux catalogues de gros à fort volume, intégrant des demandes de devis automatisées et une navigation fluide."
+        }
+      ]
     },
     "methodologyTitle": "Notre Méthodologie pour Livrer des Résultats Numériques Constants",
     "methodologySubtitle": "Notre méthodologie éprouvée garantit des résultats constants et de haute qualité pour chaque projet.",

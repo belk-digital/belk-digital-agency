@@ -4,10 +4,15 @@ import { useEffect, useState, useRef, useCallback } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
 
 export const CustomScrollbar = () => {
+    const [mounted, setMounted] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const [isDragging, setIsDragging] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll();
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     // Mutable motion value allows us to control it directly during drag
     const progress = useMotionValue(0);
@@ -91,6 +96,8 @@ export const CustomScrollbar = () => {
             document.body.style.userSelect = '';
         };
     }, [isDragging, handleDrag]);
+
+    if (!mounted) return null;
 
     return (
         <motion.div

@@ -8,11 +8,14 @@ import { Button } from "@/components/ui/button";
 import ShinyText from '@/components/ui/ShinyText/ShinyText';
 
 const brands = [
-  { name: 'The Looksmaxxing Lab', logo: '/images/projects/looksmaxxing-logo-trans.png', url: 'https://www.thelooksmaxxinglab.com/' },
+  { name: 'Longevia Research', logo: '/images/projects/longevia-logo-v9.png', url: 'https://longeviaresearch.com/' },
+  { name: 'Velvet Girl Entertainment', logo: '/images/projects/velvet-girl-logo-v7.png', url: 'https://velvetgirlentertainment.com/' },
   { name: 'Sparta Labs', logo: '/images/projects/sparta-labs-logo-trans.png', url: 'https://www.spartalabs.shop' },
   { name: 'Body By Brad', logo: '/images/projects/bodybybrad-logo.png', url: 'https://bodybybradfitness.com/' },
   { name: '99Purity Peptides', logo: '/images/projects/99puritypeptides-logo.png', url: 'https://99puritypeptides.com/' },
+  { name: '99Purity Wholesale', logo: '/images/projects/99puritywholesale-logo-v4.png', url: 'https://99puritywholesale.com/' },
   { name: 'Belk Body Lab', logo: '/images/projects/belk-body-lab-logo.png', url: 'https://belkbodylab.com/' },
+  { name: 'Helix Bio', logo: '/images/projects/helix-bio-logo-v1.png', url: 'https://helixbiochem.com/' },
 ];
 
 export function HeroSection() {

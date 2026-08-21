@@ -27,6 +27,7 @@ export function getHreflang(path: string = '', locale?: string): {
 }
 
 export function constructMetadata({
+    keywords,
     title,
     description,
     path = '',
@@ -42,6 +43,7 @@ export function constructMetadata({
     type?: 'website' | 'article';
     noIndex?: boolean;
     locale?: string;
+    keywords?: string[];
 }) {
     const alternates = getHreflang(path, locale);
     const ogImage = image || OG_IMAGE;

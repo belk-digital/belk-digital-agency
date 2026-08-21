@@ -54,7 +54,7 @@ export function LanguageProvider({
             dir,
             isRTL
         }}>
-            <div dir={dir} className="contents">
+            <div dir={dir} className="contents" suppressHydrationWarning>
                 {children}
             </div>
         </LanguageContext.Provider>

@@ -1654,6 +1654,14 @@ const translations = {
     "statsTitle": "Unser Einfluss bei globalen digitalen Projekten",
     "caseStudies": {
       "title": "Ausgewählte Fallstudien",
+      "showcaseBadge": "Portfolio",
+      "labels": {
+        "client": "Kundenname",
+        "date": "Datum",
+        "categories": "Kategorien",
+        "services": "Dienstleistungen",
+        "about": "Über das Projekt"
+      },
       "filters": [
         "Webdesign",
         "Webentwicklung",
@@ -1668,7 +1676,64 @@ const translations = {
       },
       "mobile": {
         "title": "Mobile App"
-      }
+      },
+      "items": [
+        {
+          "subtitle": "99Purity Peptides",
+          "url": "https://99puritypeptides.com/",
+          "title": "Forschung mit hochreinen synthetischen Peptiden auf ein neues Niveau heben",
+          "videoId": "02UDvvGgCcwGd01iOE3C4ElNe77bwyNWvkwOc8W3FEvoU",
+          "client": "99Purity Peptides",
+          "date": "2023",
+          "categories": "UI/UX Design & Fotografie",
+          "services": "E-Commerce-Plattformdesign",
+          "about": "99 Purity Peptides ist ein forschungsorientiertes Peptidunternehmen, auf das sich US-Laboratorien und unabhängige Forscher bei der Beschaffung synthetischer Forschungspeptide verlassen. Als etablierter Peptidanbieter schätzen US-Kunden unsere Konsistenz. Wir spezialisieren uns ausschließlich auf Laborpeptide für kontrollierte Forschungsumgebungen.\n\nUnsere Organisation unterstützt die analytische Laborforschung durch die Bereitstellung hochreiner synthetischer Forschungspeptide mit strukturierter Dokumentation und konformen Beschaffungspraktiken."
+        },
+        {
+          "subtitle": "Belk Body Lab",
+          "url": "https://belkbodylab.com/",
+          "title": "Elite-Körpertransformationen für maximale Leistung",
+          "videoId": "mk3JhR01n2Eci2RmbfpySn4b1C3JImg7029Y2U01rEMV4s",
+          "client": "Coach Kyle Belk",
+          "date": "2024",
+          "categories": "Gesundheit, Fitness & Coaching",
+          "services": "Fettabbau- & Hypertrophie-Protokolle",
+          "about": "Belk Body Lab unter der Leitung von zertifiziertem Personal Trainer Kyle Belk bietet erstklassiges Transformations-Coaching. Mit über 7 Jahren Coaching-Erfahrung und mehr als 500 betreuten Kunden liegt der Fokus auf maßgeschneiderten Protokollen, die auf den individuellen Stoffwechsel und die Ziele abgestimmt sind.\n\nDer Ansatz lehnt Standardpläne konsequent ab. Stattdessen bietet er hochgradig angepasstes Coaching für Anfänger und Athleten, um nachhaltigen Fettabbau und Muskelaufbau zu gewährleisten."
+        },
+        {
+          "subtitle": "Helix Bio",
+          "url": "https://helixbiochem.com/",
+          "title": "Der Goldstandard für Peptidsynthese & E-Commerce",
+          "videoId": "T00C2xtcVjNBZC8fOs7X01qj3VPUKH349S003yyMURtRFM",
+          "client": "Helix Bio",
+          "date": "2024",
+          "categories": "UI/UX, E-Commerce & Webentwicklung",
+          "services": "Maßgeschneiderte E-Commerce-Plattform & Katalog",
+          "about": "Helix Bio ist ein führender US-Biotechnologie- und Forschungsanbieter, der Laboratorien mit hochreinen Forschungspeptiden versorgt. Aufgebaut auf einer leistungsstarken Next.js-Architektur bietet die Plattform verifizierte HPLC/MS-Testdokumentation, COA-Zertifikatsverfolgung und einen interaktiven Peptid-Dosierungsrechner.\n\nUnser Team entwickelte eine maßgeschneiderte E-Commerce-Architektur für umfangreiche Forschungskataloge, die Geschwindigkeit, mobile Optimierung und ein nahtloses Nutzererlebnis vereint."
+        },
+        {
+          "subtitle": "Velvet Girl Entertainment",
+          "url": "https://velvetgirlentertainment.com/",
+          "title": "Erstklassige Event-Buchungs- & Unterhaltungsplattform",
+          "videoId": "kWoQZ5xuj007gQpL7mTnZ01fg1xq20000M5foz6VhHdjax00",
+          "client": "Velvet Girl Entertainment",
+          "date": "2024",
+          "categories": "UI/UX, Buchungsplattform & Webentwicklung",
+          "services": "Maßgeschneidertes Buchungssystem & Plattformdesign",
+          "about": "Velvet Girl Entertainment ist eine führende landesweite Event-Buchungsplattform für verifizierte Unterhaltungsdienste bei privaten Feiern, VIP-Veranstaltungen und Firmenevents. Entwickelt mit moderner Webarchitektur bietet die Plattform standortbezogene Künstlerkataloge, Online-Paketauswahl und verschlüsselte Buchungsanfragen.\n\nUnser Team entwickelte ein intuitives, mobiles digitales Erlebnis, um Buchungsanfragen zu rationalisieren und Vertrauen durch verifiziertes Rostermanagement aufzubauen."
+        },
+        {
+          "subtitle": "99 Purity Wholesale",
+          "url": "https://99puritywholesale.com/",
+          "title": "B2B-Großhandelsplattform für Forschungspeptide",
+          "videoId": "bznbYfOZVLopLBJVQnIBYVnNyNqLhGqe01lWUAFLd00og",
+          "client": "99 Purity Wholesale",
+          "date": "2024",
+          "categories": "UI/UX, B2B E-Commerce & Webentwicklung",
+          "services": "Großhandelsplattform-Design & Lieferantensystem",
+          "about": "99 Purity Wholesale ist ein führender B2B-Distributor, der Apotheken, Wellness-Kliniken und lizenzierte Forschungseinrichtungen in den USA mit hochreinen Forschungsverbindungen (≥99,0 %) beliefert. Die Plattform auf Next.js-Basis bietet Chargen-COA-Verfolgung, Multi-Währungs-Lokalisierung und gestaffelte Großhandelspreis-Workflows.\n\nUnser Team konzipierte eine robuste B2B-E-Commerce-Infrastruktur für Großhandelskataloge mit automatisierten Angebotserstellungen und optimiertem Bestellprozess."
+        }
+      ]
     },
     "methodologyTitle": "Unsere Methodik für konsistente digitale Ergebnisse",
     "methodologySubtitle": "Unsere bewährte Methodik sichert konsistente, hochwertige Ergebnisse für jedes Projekt.",

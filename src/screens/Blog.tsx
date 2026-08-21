@@ -391,7 +391,7 @@ const Blog = () => {
                       <h2 className="text-2xl font-sans font-[600] text-white mt-16 mb-8">{section.title}</h2>
                       {section.content && <div className="mb-8 text-lg text-white/70 leading-relaxed font-sans">{renderRichContent(section.content, language)}</div>}
 
-                      {section.points && (
+                      {section.points && section.points.length > 0 && (
                         <div className="grid sm:grid-cols-2 gap-4 my-10">
                           {section.points.map((point, idx) => (
                             <div key={idx} className="flex items-start gap-3 p-4 bg-white/5 border border-white/5 rounded-2xl group hover:border-white/20 transition-all duration-300">
