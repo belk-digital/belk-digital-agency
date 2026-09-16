@@ -1289,7 +1289,6 @@ const translations = {
       members: [
         { name: 'Kyle Belk', role: 'Strategic Founder', portrait: 'kyle-belk' },
         { name: 'Kamran Khalid', role: 'Tech & Architecture Lead', portrait: 'kamran-khalid' },
-        { name: 'Adam', role: 'Creative & Design Lead', portrait: 'adam' },
       ],
     },
     approach: {

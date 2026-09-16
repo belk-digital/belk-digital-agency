@@ -29,6 +29,31 @@ const nextConfig = {
         ],
     },
 
+    async redirects() {
+        return [
+            {
+                source: '/case-studies',
+                destination: '/work',
+                permanent: true,
+            },
+            {
+                source: '/:lang(en|es|fr|de)/case-studies',
+                destination: '/:lang/work',
+                permanent: true,
+            },
+            {
+                source: '/portfolio',
+                destination: '/work',
+                permanent: true,
+            },
+            {
+                source: '/:lang(en|es|fr|de)/portfolio',
+                destination: '/:lang/work',
+                permanent: true,
+            },
+        ];
+    },
+
     // Build output configuration (if needed for standalone/export)
     // output: 'standalone',
     experimental: {
@@ -37,4 +62,3 @@ const nextConfig = {
 };
 
 export default nextConfig;
-

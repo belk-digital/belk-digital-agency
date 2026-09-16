@@ -435,25 +435,27 @@ const Blog = () => {
                             >
                               <button
                                 onClick={() => setOpenFaqIndex(isOpen ? null : index)}
+                                aria-expanded={isOpen}
+                                aria-controls={`faq-answer-${index}`}
                                 className="w-full px-6 py-5 flex items-center justify-between gap-4 text-left font-sans text-lg font-medium text-white/90 hover:text-white transition-colors"
                               >
                                 <span>{faq.question}</span>
                                 <ChevronDown className={cn("w-5 h-5 text-white/40 transition-transform duration-300", isOpen && "rotate-180 text-white")} />
                               </button>
-                              <AnimatePresence initial={false}>
-                                {isOpen && (
-                                  <motion.div
-                                    initial={{ height: 0, opacity: 0 }}
-                                    animate={{ height: "auto", opacity: 1 }}
-                                    exit={{ height: 0, opacity: 0 }}
-                                    transition={{ duration: 0.3, ease: "easeInOut" }}
-                                  >
-                                    <div className="px-6 pb-6 text-base text-white/60 leading-relaxed font-sans border-t border-white/5 pt-4">
-                                      {renderInline(faq.answer, language)}
-                                    </div>
-                                  </motion.div>
-                                )}
-                              </AnimatePresence>
+                              <motion.div
+                                id={`faq-answer-${index}`}
+                                initial={false}
+                                animate={{
+                                  height: isOpen ? "auto" : 0,
+                                  opacity: isOpen ? 1 : 0
+                                }}
+                                transition={{ duration: 0.3, ease: "easeInOut" }}
+                                style={{ overflow: "hidden" }}
+                              >
+                                <div className="px-6 pb-6 text-base text-white/60 leading-relaxed font-sans border-t border-white/5 pt-4">
+                                  {renderInline(faq.answer, language)}
+                                </div>
+                              </motion.div>
                             </div>
                           );
                         })}

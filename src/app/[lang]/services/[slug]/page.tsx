@@ -4,33 +4,51 @@ import { getDictionary } from '@/lib/i18n';
 import { Locale } from '@/lib/i18n-config';
 import { Metadata } from 'next';
 import PageJsonLd from '@/components/seo/PageJsonLd';
+import { notFound } from 'next/navigation';
+import { SERVICE_SLUGS } from '@/lib/services';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string; slug: string }> }): Promise<Metadata> {
     const { lang, slug } = await params;
+
+    if (!SERVICE_SLUGS.includes(slug)) {
+        return {};
+    }
+
     const dict = await getDictionary(lang as Locale);
 
     // Find service to get specific title/description
     const service = dict.services?.items?.find((item: any) => item.slug === slug);
+    if (!service) {
+        return {};
+    }
 
-    // Fallback to generic services metadata if not found
-    const title = service ? `${service.title} - Belk Digital` : dict.seo.services.title;
-    const description = service ? service.description : dict.seo.services.description;
+    const title = `${service.title} - Belk Digital`;
+    const description = service.description;
 
     return constructMetadata({
-            locale: lang,
-            title,
+        locale: lang,
+        title,
         description,
         path: `/services/${slug}`
-        });
+    });
 }
 
 export default async function ServiceDetailPage({ params }: { params: Promise<{ lang: string; slug: string }> }) {
     const { lang, slug } = await params;
+
+    if (!SERVICE_SLUGS.includes(slug)) {
+        notFound();
+    }
+
     const dict = await getDictionary(lang as Locale);
     const service = dict.services?.items?.find((item: any) => item.slug === slug);
 
-    const title = service ? `${service.title} - Belk Digital` : dict.seo.services.title;
-    const description = service ? service.description : dict.seo.services.description;
+    if (!service) {
+        notFound();
+    }
+
+    const title = `${service.title} - Belk Digital`;
+    const description = service.description;
 
     return (
         <>

@@ -5,6 +5,7 @@ import { Locale, i18n } from '@/lib/i18n-config';
 import { Metadata } from 'next';
 import { getBlogPosts, blogPostsEN } from '@/i18n/blogPosts';
 import PageJsonLd from '@/components/seo/PageJsonLd';
+import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
     const params: Array<{ lang: string; slug: string }> = [];
@@ -18,44 +19,54 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string; slug: string }> }): Promise<Metadata> {
     const { lang, slug } = await params;
-    const dict = await getDictionary(lang as Locale);
+
+    // Resolve legacy alias first
     const effectiveSlug = slug === 'telehealth-website-development' ? 'medical-practice-website-development-hipaa-guide' : slug;
 
-    // Find localized post
+    // Find localized post using effectiveSlug
     const posts = getBlogPosts(lang);
     const post = posts.find(p => p.slug === effectiveSlug);
 
+    if (!post) {
+        return {};
+    }
+
     return constructMetadata({
-            locale: lang,
-            title: post ? post.title : dict.seo.blog.title,
-        description: post ? post.excerpt : dict.seo.blog.description,
-            keywords: post?.keywords,
+        locale: lang,
+        title: post.title,
+        description: post.excerpt,
+        keywords: post.keywords,
         path: `/blog/${effectiveSlug}`,
         type: 'article',
-        });
+    });
 }
 
 export default async function BlogDetailPage({ params }: { params: Promise<{ lang: string; slug: string }> }) {
     const { lang, slug } = await params;
+
+    // Resolve legacy alias first
     const effectiveSlug = slug === 'telehealth-website-development' ? 'medical-practice-website-development-hipaa-guide' : slug;
 
-    // Find English post for structured data (consistent date/author info)
+    // Find English post using effectiveSlug
     const post = blogPostsEN.find(p => p.slug === effectiveSlug);
+
+    // Call notFound() only AFTER alias resolution if effectiveSlug is absent from blogPostsEN
+    if (!post) {
+        notFound();
+    }
 
     return (
         <>
-            {post && (
-                <PageJsonLd
-                    type="Article"
-                    url={`https://belkdigital.com/${lang}/blog/${effectiveSlug}`}
-                    headline={post.title}
-                    description={post.excerpt}
-                    datePublished={post.date}
-                    dateModified={post.date}
-                    authorName={post.author || "Belk Digital"}
-                />
-            )}
-            {post && post.faqs && post.faqs.length > 0 && (
+            <PageJsonLd
+                type="Article"
+                url={`https://belkdigital.com/${lang}/blog/${effectiveSlug}`}
+                headline={post.title}
+                description={post.excerpt}
+                datePublished={post.date}
+                dateModified={post.date}
+                authorName={post.author || "Belk Digital"}
+            />
+            {post.faqs && post.faqs.length > 0 && (
                 <PageJsonLd
                     type="FAQPage"
                     questions={post.faqs}

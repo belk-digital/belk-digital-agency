@@ -2309,11 +2309,6 @@ const translations = {
           "name": "Kamran Khalid",
           "role": "Líder Técnico & Arquitectura",
           "portrait": "kamran-khalid"
-        },
-        {
-          "name": "Adam",
-          "role": "Líder Creativo",
-          "portrait": "adam"
         }
       ]
     },

@@ -7,29 +7,7 @@ import PageJsonLd from '@/components/seo/PageJsonLd';
 import { US_STATES } from '@/lib/states';
 import { getPSEOTemplates } from '@/lib/pseo-templates';
 import { notFound } from 'next/navigation';
-
-const SERVICE_SLUGS = [
-    'custom-web-design',
-    'website-redesign',
-    'branding',
-    'ui-ux-design',
-    'web-development',
-    'seo-optimization',
-    'maintenance',
-    'shopify-development',
-    'custom-cms',
-    'telehealth-development',
-    'ecommerce-development',
-    'ai-solutions',
-    'ai-lead-generation',
-    'performance-marketing',
-    'social-media-ugc',
-    'geo-optimization',
-    'aeo-optimization',
-    'mobile-development',
-    'api-integrations',
-    'cloud-infrastructure'
-];
+import { SERVICE_SLUGS } from '@/lib/services';
 
 export async function generateStaticParams() {
     const states = Object.keys(US_STATES);
@@ -73,11 +51,11 @@ export async function generateMetadata({
     const optimizedDescription = description.length > 160 ? description.substring(0, 157) + '...' : description;
 
     return constructMetadata({
-            locale: lang,
-            title: optimizedTitle,
+        locale: lang,
+        title: optimizedTitle,
         description: optimizedDescription,
         path: `/services/${slug}/${state}`,
-        });
+    });
 }
 
 export default async function ServiceStateDetailPage({

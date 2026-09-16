@@ -25,7 +25,6 @@ import cardMarketing from '@/assets/images/card_marketing.png';
 import cardSupport from '@/assets/images/card_support.png';
 import kylePortrait from '@/assets/images/team/kyle-belk.jpeg';
 import kamranPortrait from '@/assets/images/team/kamran-khalid.jpeg';
-import adamPortrait from '@/assets/images/team/adam.png';
 
 
 
@@ -46,7 +45,7 @@ export function AboutContent() {
     const whatWeDoIcons = [Layout, Sparkles, PenTool, Target, Code, BarChart, Shield];
     const valuesIcons = [Lightbulb, Target, Zap, Shield];
     const whyChooseIcons = [Globe2, TrendingUp, Cpu, Handshake];
-    const teamImages = [kylePortrait, kamranPortrait, adamPortrait];
+    const teamImages = [kylePortrait, kamranPortrait];
 
     // Unique looping animations per icon index
     const iconAnimations = [
@@ -477,7 +476,7 @@ export function AboutContent() {
                         </div>
 
                         {/* Team Grid */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-20">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 max-w-3xl mx-auto gap-x-12 gap-y-20">
                             {t.about.team.members.map((member: any, index: number) => (
                                 <motion.div
                                     key={index}

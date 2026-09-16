@@ -32,6 +32,10 @@ export function middleware(request: NextRequest) {
         '/cookie-policy/': 'https://www.belkdigital.com/en/privacy',
         '/studio': 'https://www.belkdigital.com/en',
         '/studio/': 'https://www.belkdigital.com/en',
+        '/case-studies': 'https://www.belkdigital.com/en/work',
+        '/case-studies/': 'https://www.belkdigital.com/en/work',
+        '/portfolio': 'https://www.belkdigital.com/en/work',
+        '/portfolio/': 'https://www.belkdigital.com/en/work',
     };
 
     if (pathname in redirectMap) {

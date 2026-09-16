@@ -1,0 +1,22 @@
+export const SERVICE_SLUGS = [
+    'custom-web-design',
+    'website-redesign',
+    'branding',
+    'ui-ux-design',
+    'web-development',
+    'seo-optimization',
+    'maintenance',
+    'shopify-development',
+    'custom-cms',
+    'telehealth-development',
+    'ecommerce-development',
+    'ai-solutions',
+    'ai-lead-generation',
+    'performance-marketing',
+    'social-media-ugc',
+    'geo-optimization',
+    'aeo-optimization',
+    'mobile-development',
+    'api-integrations',
+    'cloud-infrastructure'
+];
