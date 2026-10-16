@@ -10,6 +10,7 @@ interface WebPageSchemaProps {
     name: string;
     description: string;
     breadcrumb?: Array<{ name: string; url: string }>;
+    lang?: string;
 }
 
 interface ArticleSchemaProps {
@@ -21,6 +22,8 @@ interface ArticleSchemaProps {
     dateModified?: string;
     authorName?: string;
     image?: string;
+    breadcrumb?: Array<{ name: string; url: string }>;
+    lang?: string;
 }
 
 interface ServiceSchemaProps {
@@ -31,6 +34,7 @@ interface ServiceSchemaProps {
     serviceType?: string;
     areaServed?: string[];
     breadcrumb?: Array<{ name: string; url: string }>;
+    lang?: string;
 }
 
 interface FAQSchemaProps {
@@ -50,6 +54,38 @@ type PageJsonLdProps =
     | ServiceSchemaProps
     | FAQSchemaProps
     | SpeakableSchemaProps;
+
+type SupportedLocale = 'en' | 'es' | 'fr' | 'de';
+
+const CANONICAL_DOMAIN = 'https://www.belkdigital.com';
+
+const BREADCRUMB_LABELS: Record<SupportedLocale, { home: string; services: string; blog: string }> = {
+    en: { home: 'Home', services: 'Services', blog: 'Blog' },
+    es: { home: 'Inicio', services: 'Servicios', blog: 'Blog' },
+    fr: { home: 'Accueil', services: 'Services', blog: 'Blog' },
+    de: { home: 'Startseite', services: 'Dienstleistungen', blog: 'Blog' },
+};
+
+function resolveLocale(lang?: string, url?: string): SupportedLocale {
+    if (lang && (lang === 'en' || lang === 'es' || lang === 'fr' || lang === 'de')) {
+        return lang;
+    }
+    if (url) {
+        try {
+            const pathname = new URL(url).pathname;
+            const segment = pathname.split('/')[1]?.toLowerCase();
+            if (segment === 'en' || segment === 'es' || segment === 'fr' || segment === 'de') {
+                return segment;
+            }
+        } catch {
+            const match = url.match(/(?:\/|^)(en|es|fr|de)(?:\/|$)/i);
+            if (match) {
+                return match[1].toLowerCase() as SupportedLocale;
+            }
+        }
+    }
+    return 'en';
+}
 
 const buildBreadcrumb = (items: Array<{ name: string; url: string }>) => ({
     '@type': 'BreadcrumbList',
@@ -72,8 +108,8 @@ export default function PageJsonLd(props: PageJsonLdProps) {
             url: props.url,
             name: props.name,
             description: props.description,
-            isPartOf: { '@id': 'https://belkdigital.com/#website' },
-            publisher: { '@id': 'https://belkdigital.com/#organization' },
+            isPartOf: { '@id': 'https://www.belkdigital.com/#website' },
+            publisher: { '@id': 'https://www.belkdigital.com/#organization' },
             ...(props.breadcrumb && { breadcrumb: buildBreadcrumb(props.breadcrumb) }),
         });
     }
@@ -90,24 +126,28 @@ export default function PageJsonLd(props: PageJsonLdProps) {
             dateModified: props.dateModified || props.datePublished,
             author: {
                 '@type': 'Organization',
-                '@id': 'https://belkdigital.com/#organization',
+                '@id': 'https://www.belkdigital.com/#organization',
                 name: props.authorName || 'Belk Digital',
             },
-            publisher: { '@id': 'https://belkdigital.com/#organization' },
-            isPartOf: { '@id': 'https://belkdigital.com/#website' },
+            publisher: { '@id': 'https://www.belkdigital.com/#organization' },
+            isPartOf: { '@id': 'https://www.belkdigital.com/#website' },
             ...(props.image && {
                 image: { '@type': 'ImageObject', url: props.image },
             }),
         });
 
         // Add BreadcrumbList for blog posts
+        const articleLocale = resolveLocale(props.lang, props.url);
+        const articleLabels = BREADCRUMB_LABELS[articleLocale];
         schemas.push({
             '@context': 'https://schema.org',
-            ...buildBreadcrumb([
-                { name: 'Home', url: 'https://belkdigital.com/en' },
-                { name: 'Blog', url: 'https://belkdigital.com/en/blog' },
-                { name: props.headline, url: props.url },
-            ]),
+            ...buildBreadcrumb(
+                props.breadcrumb || [
+                    { name: articleLabels.home, url: `${CANONICAL_DOMAIN}/${articleLocale}` },
+                    { name: articleLabels.blog, url: `${CANONICAL_DOMAIN}/${articleLocale}/blog` },
+                    { name: props.headline, url: props.url },
+                ]
+            ),
         });
     }
 
@@ -118,7 +158,7 @@ export default function PageJsonLd(props: PageJsonLdProps) {
             name: props.name,
             description: props.description,
             url: props.url,
-            provider: { '@id': 'https://belkdigital.com/#organization' },
+            provider: { '@id': 'https://www.belkdigital.com/#organization' },
             ...(props.serviceType && { serviceType: props.serviceType }),
             ...(props.areaServed && {
                 areaServed: props.areaServed.map((area) => ({
@@ -129,12 +169,14 @@ export default function PageJsonLd(props: PageJsonLdProps) {
         });
 
         // Add BreadcrumbList for service pages
+        const serviceLocale = resolveLocale(props.lang, props.url);
+        const serviceLabels = BREADCRUMB_LABELS[serviceLocale];
         schemas.push({
             '@context': 'https://schema.org',
             ...buildBreadcrumb(
                 props.breadcrumb || [
-                    { name: 'Home', url: 'https://belkdigital.com/en' },
-                    { name: 'Services', url: 'https://belkdigital.com/en/services' },
+                    { name: serviceLabels.home, url: `${CANONICAL_DOMAIN}/${serviceLocale}` },
+                    { name: serviceLabels.services, url: `${CANONICAL_DOMAIN}/${serviceLocale}/services` },
                     { name: props.name, url: props.url },
                 ]
             ),

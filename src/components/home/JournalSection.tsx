@@ -62,7 +62,7 @@ export function JournalSection() {
                                 {/* Background image */}
                                 <Image
                                     src={post.image}
-                                    alt={post.title}
+                                    alt={post.imageAlt || post.title}
                                     fill
                                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                                     sizes="(max-width: 768px) 100vw, 33vw"

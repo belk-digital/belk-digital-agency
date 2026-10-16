@@ -3,7 +3,18 @@ import { languages } from '@/lib/i18n-config';
 const BASE_URL = 'https://www.belkdigital.com';
 const OG_IMAGE = '/assets/og (1).png';
 
-export function getHreflang(path: string = '', locale?: string): {
+const OG_LOCALES: Record<string, string> = {
+    en: 'en_US',
+    es: 'es_ES',
+    fr: 'fr_FR',
+    de: 'de_DE',
+};
+
+export function getHreflang(
+    path: string = '',
+    locale?: string,
+    availableLocales?: string[]
+): {
     canonical: string;
     languages: Record<string, string>;
 } {
@@ -11,17 +22,26 @@ export function getHreflang(path: string = '', locale?: string): {
 
     const languageAlternates: Record<string, string> = {};
 
-    languages.forEach((lang) => {
+    const targetLanguages = availableLocales
+        ? languages.filter((lang) => availableLocales.includes(lang.code))
+        : languages;
+
+    targetLanguages.forEach((lang) => {
         languageAlternates[lang.code] = `${BASE_URL}/${lang.code}${cleanPath}`;
     });
 
-    // Add x-default pointing to English
-    languageAlternates['x-default'] = `${BASE_URL}/en${cleanPath}`;
+    // Add x-default pointing to English if English is among available locales (or by default)
+    if (!availableLocales || availableLocales.includes('en')) {
+        languageAlternates['x-default'] = `${BASE_URL}/en${cleanPath}`;
+    }
 
-    const canonicalLocale = locale || 'en';
+    // If current locale is not genuinely available, canonicalize to English (or primary available locale)
+    const effectiveCanonicalLocale = (availableLocales && locale && !availableLocales.includes(locale))
+        ? (availableLocales[0] || 'en')
+        : (locale || 'en');
 
     return {
-        canonical: `${BASE_URL}/${canonicalLocale}${cleanPath}`,
+        canonical: `${BASE_URL}/${effectiveCanonicalLocale}${cleanPath}`,
         languages: languageAlternates,
     };
 }
@@ -35,19 +55,24 @@ export function constructMetadata({
     type = 'website',
     noIndex = false,
     locale,
+    availableLocales,
+    imageAlt,
 }: {
     title: string;
     description: string;
     path?: string;
     image?: string;
+    imageAlt?: string;
     type?: 'website' | 'article';
     noIndex?: boolean;
     locale?: string;
     keywords?: string[];
+    availableLocales?: string[];
 }) {
-    const alternates = getHreflang(path, locale);
+    const alternates = getHreflang(path, locale, availableLocales);
     const ogImage = image || OG_IMAGE;
     const pageUrl = `${BASE_URL}/${locale || 'en'}${path === '/' ? '' : path}`;
+    const ogLocale = (locale && OG_LOCALES[locale.toLowerCase()]) || 'en_US';
 
     return {
         metadataBase: new URL(BASE_URL),
@@ -69,13 +94,13 @@ export function constructMetadata({
             url: pageUrl,
             siteName: 'Belk Digital',
             type,
-            locale: 'en_US',
+            locale: ogLocale,
             images: [
                 {
                     url: ogImage,
                     width: 1200,
                     height: 630,
-                    alt: title,
+                    alt: imageAlt || title,
                 },
             ],
         },

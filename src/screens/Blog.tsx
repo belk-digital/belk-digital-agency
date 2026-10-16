@@ -283,7 +283,7 @@ const Blog = () => {
   // Single blog post view
   if (slug) {
     const effectiveSlug = slug === 'telehealth-website-development' ? 'medical-practice-website-development-hipaa-guide' : slug;
-    const post = blogPosts.find(p => p.slug === effectiveSlug);
+    const post = blogPosts.find(p => p.slug === effectiveSlug) || getBlogPosts('en').find(p => p.slug === effectiveSlug);
 
     if (!post) {
       return (
@@ -305,7 +305,7 @@ const Blog = () => {
           <div className="absolute inset-0 z-0">
             <Image
               src={post.image}
-              alt={post.title}
+              alt={post.imageAlt || post.title}
               fill
               className="object-cover opacity-30"
               priority
@@ -628,7 +628,7 @@ const Blog = () => {
                   <div className="aspect-[16/10] overflow-hidden relative">
                     <Image
                       src={post.image}
-                      alt={post.title}
+                      alt={post.imageAlt || post.title}
                       fill
                       className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out grayscale-[0.2] group-hover:grayscale-0"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -740,7 +740,7 @@ const Blog = () => {
                     <div className="aspect-[16/10] overflow-hidden relative">
                       <Image
                         src={post.image}
-                        alt={post.title}
+                        alt={post.imageAlt || post.title}
                         fill
                         className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out grayscale-[0.2] group-hover:grayscale-0"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
