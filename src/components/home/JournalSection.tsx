@@ -4,14 +4,12 @@ import Image from 'next/image';
 import { motion } from 'motion/react';
 import { useLanguage } from '@/i18n/LanguageContext';
 import { ArrowUpRight } from 'lucide-react';
-import { getBlogPosts } from '@/i18n/blogPosts';
+import { getPublishedBlogPosts } from '@/i18n/blogPosts';
 
 export function JournalSection() {
     const { language, t } = useLanguage();
 
-    const latestPosts = [...getBlogPosts(language)]
-        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-        .slice(0, 3);
+    const latestPosts = getPublishedBlogPosts(language).slice(0, 3);
 
     return (
         <section className="py-24 md:py-32 bg-black transition-colors duration-300">

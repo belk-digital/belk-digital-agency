@@ -8,9 +8,16 @@ import { useParams } from 'next/navigation';
 
 import { useLanguage } from '@/i18n/LanguageContext';
 import { cn } from '@/lib/utils';
-import { ArrowRight, Calendar, Clock, User, Tag, CheckCircle, ChevronRight, Share2, Bookmark, HelpCircle, ChevronDown } from 'lucide-react';
+import { ArrowRight, Calendar, Clock, User, Tag, CheckCircle, ChevronRight, Share2, Bookmark, HelpCircle, ChevronDown, Check } from 'lucide-react';
 import { CTASection } from '@/components/home/CTASection';
-import { getBlogPosts } from '@/i18n/blogPosts';
+import { getBlogPosts, isDraftSlug, sortBlogPostsChronologically, DEFAULT_BLOG_AUTHOR } from '@/i18n/blogPosts';
+
+const getCardAuthor = (author?: string): string => {
+  if (!author || author === 'Belk Digital Team') {
+    return DEFAULT_BLOG_AUTHOR;
+  }
+  return author;
+};
 
 const renderContentWithLinks = (text: string, lang: string) => {
   if (!text) return null;
@@ -109,7 +116,8 @@ const renderRichContent = (text: string, lang: string) => {
   const lines = text.split('\n');
   const blocks: React.ReactNode[] = [];
   
-  let currentBlockType: 'paragraph' | 'list' | 'ordered-list' | 'code' | 'table' | null = null;
+  let currentBlockType: 'paragraph' | 'list' | 'ordered-list' | 'task-list' | 'code' | 'table' | 'callout' | null = null;
+  let currentCalloutType = 'note';
   let currentLines: string[] = [];
 
   const flushBlock = (key: string | number) => {
@@ -154,14 +162,80 @@ const renderRichContent = (text: string, lang: string) => {
           </div>
         );
       }
-    } else if (currentBlockType === 'list') {
+    } else if (currentBlockType === 'task-list') {
       blocks.push(
-        <ul key={key} className="list-disc pl-6 space-y-3 text-lg text-white/70 mb-8 my-4">
-          {currentLines.map((li, i) => (
-            <li key={i}>{renderInline(li, lang)}</li>
-          ))}
+        <ul key={key} className="space-y-3.5 text-lg text-white/70 mb-8 my-4 list-none pl-0" role="list">
+          {currentLines.map((li, i) => {
+            const taskMatch = li.match(/^\[([ xX])\]\s*(.*)/);
+            const isChecked = taskMatch ? taskMatch[1].toLowerCase() === 'x' : false;
+            const itemText = taskMatch ? taskMatch[2] : li;
+            return (
+              <li key={i} className="flex items-start gap-3.5 leading-relaxed font-sans text-white/80">
+                <span
+                  className={cn(
+                    "w-5 h-5 rounded-md border flex items-center justify-center flex-shrink-0 mt-1 select-none transition-colors",
+                    isChecked
+                      ? "bg-white/15 border-white/40 text-white"
+                      : "border-white/20 bg-white/[0.03] text-transparent"
+                  )}
+                  aria-hidden="true"
+                >
+                  {isChecked && (
+                    <Check className="w-3.5 h-3.5 text-white stroke-[3]" />
+                  )}
+                </span>
+                <span className="sr-only">{isChecked ? '(Completed) ' : '(Unchecked) '}</span>
+                <div className="flex-1">{renderInline(itemText, lang)}</div>
+              </li>
+            );
+          })}
         </ul>
       );
+    } else if (currentBlockType === 'list') {
+      const hasTaskItems = currentLines.some(li => /^\[([ xX])\]\s*/.test(li));
+      if (hasTaskItems) {
+        blocks.push(
+          <ul key={key} className="space-y-3.5 text-lg text-white/70 mb-8 my-4 list-none pl-0" role="list">
+            {currentLines.map((li, i) => {
+              const taskMatch = li.match(/^\[([ xX])\]\s*(.*)/);
+              if (taskMatch) {
+                const isChecked = taskMatch[1].toLowerCase() === 'x';
+                const itemText = taskMatch[2];
+                return (
+                  <li key={i} className="flex items-start gap-3.5 leading-relaxed font-sans text-white/80">
+                    <span
+                      className={cn(
+                        "w-5 h-5 rounded-md border flex items-center justify-center flex-shrink-0 mt-1 select-none transition-colors",
+                        isChecked
+                          ? "bg-white/15 border-white/40 text-white"
+                          : "border-white/20 bg-white/[0.03] text-transparent"
+                      )}
+                      aria-hidden="true"
+                    >
+                      {isChecked && (
+                        <Check className="w-3.5 h-3.5 text-white stroke-[3]" />
+                      )}
+                    </span>
+                    <span className="sr-only">{isChecked ? '(Completed) ' : '(Unchecked) '}</span>
+                    <div className="flex-1">{renderInline(itemText, lang)}</div>
+                  </li>
+                );
+              }
+              return (
+                <li key={i} className="leading-relaxed font-sans pl-8">{renderInline(li, lang)}</li>
+              );
+            })}
+          </ul>
+        );
+      } else {
+        blocks.push(
+          <ul key={key} className="list-disc pl-6 space-y-3 text-lg text-white/70 mb-8 my-4">
+            {currentLines.map((li, i) => (
+              <li key={i}>{renderInline(li, lang)}</li>
+            ))}
+          </ul>
+        );
+      }
     } else if (currentBlockType === 'ordered-list') {
       blocks.push(
         <ol key={key} className="list-decimal pl-6 space-y-3 text-lg text-white/70 mb-8 my-4">
@@ -169,6 +243,22 @@ const renderRichContent = (text: string, lang: string) => {
             <li key={i}>{renderInline(li, lang)}</li>
           ))}
         </ol>
+      );
+    } else if (currentBlockType === 'callout') {
+      const calloutText = currentLines.join('\n');
+      const isWarning = currentCalloutType === 'warning';
+      blocks.push(
+        <div
+          key={key}
+          className={cn(
+            "p-6 my-8 rounded-2xl border font-sans text-base leading-relaxed",
+            isWarning
+              ? "bg-amber-500/10 border-amber-500/20 text-amber-200/90"
+              : "bg-blue-500/10 border-blue-500/20 text-blue-200/90"
+          )}
+        >
+          {renderInline(calloutText, lang)}
+        </div>
       );
     } else {
       const pText = currentLines.join('\n');
@@ -186,6 +276,22 @@ const renderRichContent = (text: string, lang: string) => {
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
     const trimmed = line.trim();
+
+    if (trimmed.startsWith(':::')) {
+      if (currentBlockType === 'callout') {
+        flushBlock(`callout-${i}`);
+      } else {
+        flushBlock(`pre-callout-${i}`);
+        currentBlockType = 'callout';
+        currentCalloutType = trimmed.substring(3).trim() || 'note';
+      }
+      continue;
+    }
+
+    if (currentBlockType === 'callout') {
+      currentLines.push(line);
+      continue;
+    }
 
     if (trimmed.startsWith('```')) {
       if (currentBlockType === 'code') {
@@ -233,6 +339,16 @@ const renderRichContent = (text: string, lang: string) => {
       continue;
     }
 
+    const taskMatch = trimmed.match(/^[-*•]\s+\[([ xX])\]\s*(.*)/);
+    if (taskMatch) {
+      if (currentBlockType !== 'task-list') {
+        flushBlock(`pre-tasklist-${i}`);
+        currentBlockType = 'task-list';
+      }
+      currentLines.push(`[${taskMatch[1]}] ${taskMatch[2]}`);
+      continue;
+    }
+
     const listMatch = trimmed.match(/^[-*•]\s+(.*)/);
     if (listMatch) {
       if (currentBlockType !== 'list') {
@@ -270,6 +386,30 @@ const renderRichContent = (text: string, lang: string) => {
 };
 
 const categories = ['all', 'business', 'design', 'seo', 'performance'] as const;
+
+const formatLocalizedDate = (dateStr: string, lang: string, options?: Intl.DateTimeFormatOptions) => {
+  const locale = lang === 'es' ? 'es-ES' : lang === 'fr' ? 'fr-FR' : lang === 'de' ? 'de-DE' : 'en-US';
+  return new Date(dateStr).toLocaleDateString(locale, options || {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    timeZone: 'UTC',
+  });
+};
+
+const formatReadTime = (readTime: string, lang: string) => {
+  const num = readTime.replace(/[^0-9]/g, '') || readTime;
+  switch (lang) {
+    case 'es':
+      return `${num} min de lectura`;
+    case 'fr':
+      return `${num} min de lecture`;
+    case 'de':
+      return `${num} Min. Lesezeit`;
+    default:
+      return `${num} min read`;
+  }
+};
 
 const Blog = () => {
   const { slug } = useParams();
@@ -331,7 +471,7 @@ const Blog = () => {
 
               <div className="flex flex-col items-center gap-6 mb-8">
                 <span className="px-4 py-1.5 rounded-full bg-white/10 border border-white/10 text-white/80 text-xs font-sans font-medium tracking-widest uppercase">
-                  {t.blog.categories[post.category as keyof typeof t.blog.categories]}
+                  {t.blog.categories?.[post.category as keyof typeof t.blog.categories] || post.category}
                 </span>
                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-sans font-[600] tracking-tight leading-[1.1] text-white">
                   {post.title}
@@ -341,20 +481,15 @@ const Blog = () => {
               <div className="flex flex-wrap items-center justify-center gap-8 text-sm text-white/50 border-y border-white/10 py-6">
                 <span className="flex items-center gap-2">
                   <User className="w-4 h-4" />
-                  {post.author}
+                  {getCardAuthor(post.author)}
                 </span>
                 <span className="flex items-center gap-2">
                   <Calendar className="w-4 h-4" />
-                  {new Date(post.date).toLocaleDateString(language === 'es' ? 'es-ES' : 'en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                    timeZone: 'UTC'
-                  })}
+                  {formatLocalizedDate(post.date, language)}
                 </span>
                 <span className="flex items-center gap-2">
                   <Clock className="w-4 h-4" />
-                  {post.readTime} {t.blog.readTime}
+                  {formatReadTime(post.readTime, language)}
                 </span>
               </div>
             </motion.div>
@@ -507,12 +642,14 @@ const Blog = () => {
     );
   }
 
-  const sortedByDate = [...blogPosts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  const latestPosts = sortedByDate.slice(0, 3);
+  const isDev = process.env.NODE_ENV === 'development';
+  const visiblePosts = isDev ? blogPosts : blogPosts.filter(post => !isDraftSlug(post.slug));
+  const sortedPosts = sortBlogPostsChronologically(visiblePosts);
+  const latestPosts = sortedPosts.slice(0, 3);
 
   const filteredPosts = activeCategory === 'all'
-    ? blogPosts
-    : blogPosts.filter(post => post.category === activeCategory);
+    ? sortedPosts
+    : sortedPosts.filter(post => post.category === activeCategory);
 
   // Blog listing page
   return (
@@ -641,7 +778,7 @@ const Blog = () => {
                         </span>
                       )}
                       <span className="px-3 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-white/90 text-[10px] font-bold uppercase tracking-wider">
-                        {t.blog.categories[post.category as keyof typeof t.blog.categories]}
+                        {t.blog.categories?.[post.category as keyof typeof t.blog.categories] || post.category}
                       </span>
                     </div>
                   </div>
@@ -653,10 +790,10 @@ const Blog = () => {
                     )}>
                       <span className="flex items-center gap-1.5">
                         <Clock className="w-3.5 h-3.5" />
-                        {post.readTime} {t.blog.readTime}
+                        {formatReadTime(post.readTime, language)}
                       </span>
                       <span className="w-1 h-1 rounded-full bg-white/20" />
-                      <span>{new Date(post.date).toLocaleDateString(language === 'es' ? 'es-ES' : 'en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}</span>
+                      <span>{formatLocalizedDate(post.date, language, { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}</span>
                     </div>
 
                     <h2 className={cn(
@@ -679,9 +816,9 @@ const Blog = () => {
                     )}>
                       <div className="flex items-center gap-3">
                         <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-[10px] font-bold text-white">
-                          {post.author.charAt(0)}
+                          {getCardAuthor(post.author).charAt(0)}
                         </div>
-                        <span className="text-xs font-semibold text-white/80">{post.author}</span>
+                        <span className="text-xs font-semibold text-white/80">{getCardAuthor(post.author)}</span>
                       </div>
                       <div className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all duration-300">
                         <ChevronRight className={cn("w-4 h-4", isRTL && "rotate-180")} />
@@ -748,7 +885,7 @@ const Blog = () => {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                       <div className="absolute top-6 left-6 z-10">
                         <span className="px-3 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-white/90 text-[10px] font-bold uppercase tracking-wider">
-                           {t.blog.categories[post.category as keyof typeof t.blog.categories]}
+                           {t.blog.categories?.[post.category as keyof typeof t.blog.categories] || post.category}
                         </span>
                       </div>
                     </div>
@@ -760,10 +897,10 @@ const Blog = () => {
                       )}>
                         <span className="flex items-center gap-1.5">
                           <Clock className="w-3.5 h-3.5" />
-                          {post.readTime} {t.blog.readTime}
+                          {formatReadTime(post.readTime, language)}
                         </span>
                         <span className="w-1 h-1 rounded-full bg-white/20" />
-                        <span>{new Date(post.date).toLocaleDateString(language === 'es' ? 'es-ES' : 'en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}</span>
+                        <span>{formatLocalizedDate(post.date, language, { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}</span>
                       </div>
 
                       <h2 className={cn(
@@ -786,9 +923,9 @@ const Blog = () => {
                       )}>
                         <div className="flex items-center gap-3">
                            <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-[10px] font-bold text-white">
-                             {post.author.charAt(0)}
-                           </div>
-                           <span className="text-xs font-semibold text-white/80">{post.author}</span>
+                             {getCardAuthor(post.author).charAt(0)}
+                            </div>
+                            <span className="text-xs font-semibold text-white/80">{getCardAuthor(post.author)}</span>
                         </div>
                         <div className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all duration-300">
                           <ChevronRight className={cn("w-4 h-4", isRTL && "rotate-180")} />

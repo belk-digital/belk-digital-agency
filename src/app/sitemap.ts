@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 import { getDictionary } from '@/lib/i18n';
 import { i18n, Locale } from '@/lib/i18n-config';
-import { blogPostsEN } from '@/i18n/blogPosts';
+import { blogPostsEN, isDraftSlug } from '@/i18n/blogPosts';
 
 const baseUrl = 'https://www.belkdigital.com';
 
@@ -56,7 +56,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         for (const route of staticRoutes) {
             sitemap.push({
                 url: `${baseUrl}/${locale}${route.path}`,
-                lastModified: new Date(),
                 changeFrequency: route.changeFrequency,
                 priority: route.priority,
             });
@@ -66,7 +65,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         for (const slug of locationSlugs) {
             sitemap.push({
                 url: `${baseUrl}/${locale}/locations/${slug}`,
-                lastModified: new Date(),
                 changeFrequency: 'monthly',
                 priority: 0.7,
             });
@@ -75,7 +73,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         // 3. Charleston, SC hub page
         sitemap.push({
             url: `${baseUrl}/${locale}/locations/charleston-sc`,
-            lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.8,
         });
@@ -84,17 +81,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         for (const neighborhood of charlestonNeighborhoods) {
             sitemap.push({
                 url: `${baseUrl}/${locale}/locations/charleston-sc/${neighborhood}`,
-                lastModified: new Date(),
                 changeFrequency: 'monthly',
                 priority: 0.75,
             });
         }
 
         // 5. Dynamic Blog Posts
-        for (const post of blogPostsEN) {
+        for (const post of blogPostsEN.filter(p => !isDraftSlug(p.slug))) {
             sitemap.push({
                 url: `${baseUrl}/${locale}/blog/${post.slug}`,
-                lastModified: new Date(post.date),
                 changeFrequency: 'monthly',
                 priority: 0.7,
             });
@@ -106,7 +101,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             dict.services.items.forEach((service: any) => {
                 sitemap.push({
                     url: `${baseUrl}/${locale}/services/${service.slug}`,
-                    lastModified: new Date(),
                     changeFrequency: 'weekly',
                     priority: 0.9,
                 });
