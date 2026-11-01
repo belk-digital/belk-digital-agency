@@ -17457,17 +17457,8 @@ export const getBlogPosts = (language: string): BlogPost[] => {
     }));
 };
 
-// Draft blog slugs configuration (Batch 1 drafts)
-export const DRAFT_BLOG_SLUGS: ReadonlySet<string> = new Set([
-    'b2b-lead-generation-peptide-suppliers',
-    'can-peptide-suppliers-advertise-google-ads-meta',
-    'meta-ads-creative-fatigue-identify-refresh',
-    'meta-partnership-ads-creator-content-testing',
-    'email-lead-nurturing-b2b-qualified-opportunities',
-    'marketing-platform-conversion-tracking-attribution-guide',
-    'why-website-visitors-abandon-forms',
-    'ai-chatbots-business-websites',
-]);
+// Draft blog slugs configuration - all eight articles published
+export const DRAFT_BLOG_SLUGS: ReadonlySet<string> = new Set([]);
 
 export const isDraftSlug = (slug: string): boolean => DRAFT_BLOG_SLUGS.has(slug);
 
